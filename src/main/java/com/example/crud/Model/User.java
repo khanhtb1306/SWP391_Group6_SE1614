@@ -3,7 +3,7 @@ package com.example.crud.Model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="userss")
+@Table(name="users")
 public class User {
 
     @Id
@@ -16,15 +16,24 @@ public class User {
     @Column(length = 45,nullable = false)
     private String password;
 
-    @Column(nullable = false,length = 45)
-    private String fullname;
+    @Column(nullable = false,length = 45,name="full_name")
+    private String fullName;
+    @Column(nullable = false)
     private Integer role;
+
+    @Column(nullable = false)
     private String gender;
 
     @Column(nullable = false,unique = true,length = 45)
     private String email;
+
+    @Column(nullable = false)
     private String phone;
+
+    @Column(nullable = false)
     private String address;
+
+    @Column(nullable = false)
     private String avatar;
 
     public Integer getId() {
@@ -51,12 +60,12 @@ public class User {
         this.password = password;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public Integer getRole() {
@@ -105,5 +114,21 @@ public class User {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", role=" + role +
+                ", gender='" + gender + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", avatar='" + avatar + '\'' +
+                '}';
     }
 }
