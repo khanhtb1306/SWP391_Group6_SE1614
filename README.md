@@ -1,2 +1,2 @@
 # SWP391_Group6_SE1614
-Shoping online
+Spring Boot Shopping online with IntelliJ IDEA, MsSQL, JPA, Hibernate, Thymeleaf and Bootstrap
