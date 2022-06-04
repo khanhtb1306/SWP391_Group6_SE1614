@@ -25,7 +25,7 @@ public class Feedback {
     public String toString() {
         return "FeedBack{" +
                 "user id=" + userid +
-                ", product name='" + productid + '\'' +
+                ", product id='" + productid + '\'' +
                 ", comment='" + comment + '\'' +
                 ", star='" + star + '\'' +
                 '}';
