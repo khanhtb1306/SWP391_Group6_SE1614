@@ -1,4 +1,8 @@
 package com.example.crud.Repo;
 
-public class FeedbackRepository {
+import com.example.crud.Model.Feedback;
+import org.springframework.data.repository.CrudRepository;
+
+public interface FeedbackRepository extends CrudRepository<Feedback, Integer>  {
+
 }
