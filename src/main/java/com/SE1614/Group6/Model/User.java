@@ -3,6 +3,8 @@ package com.SE1614.Group6.Model;
 import javax.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -32,6 +34,9 @@ public class User {
     private String address;
     @Column(nullable = false)
     private String avatar;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Blog> blog;
 
     @Override
     public String toString() {
