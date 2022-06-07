@@ -16,27 +16,37 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name="roleId",nullable=false)
+    private Role role;
+
+    @ManyToOne
+    @JoinColumn(name="statusId",nullable=false)
+    private Status status;
     @Column(nullable = false,length = 45)
     private String username;
     @Column(length = 45,nullable = false)
     private String password;
-    @Column(nullable = false,length = 45,name="full_name")
-    private String fullName;
-    @Column(nullable = false)
-    private Integer role;
-    @Column(nullable = false)
+    @Column
     private String gender;
     @Column(nullable = false,unique = true,length = 45)
     private String email;
-    @Column(nullable = false)
+    @Column
     private String phone;
-    @Column(nullable = false)
+    @Column
     private String address;
-    @Column(nullable = false)
+    @Column
     private String avatar;
 
     @OneToMany(mappedBy = "user")
     private Set<Blog> blog;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Order> order;
+
+    @OneToMany(mappedBy = "sale")
+    private Set<Order> saleUser;
 
     @Override
     public String toString() {
@@ -44,8 +54,6 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", role=" + role +
                 ", gender='" + gender + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
