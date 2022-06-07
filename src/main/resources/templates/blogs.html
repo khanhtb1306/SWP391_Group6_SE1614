@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html lang="zxx">
 
 <head>
@@ -14,14 +15,14 @@
         rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/elegant-icons.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/slicknav.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
 </head>
 
 <body>
@@ -110,7 +111,7 @@
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>
                             </li>
-                            <li class="active"><a href="./blog.html">Blog</a></li>
+                            <li class="active"><a href="./blogs.html">Blog</a></li>
                             <li><a href="./contact.html">Contacts</a></li>
                         </ul>
                     </nav>
