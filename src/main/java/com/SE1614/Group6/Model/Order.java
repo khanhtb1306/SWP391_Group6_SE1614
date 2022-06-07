@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -39,5 +40,7 @@ public class Order {
 
     @Column
     private String userSession;
+    @OneToMany(mappedBy = "order")
+    private Set<OrderDetail> orderDetails;
 
 }
