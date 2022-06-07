@@ -31,13 +31,13 @@ public class Blog {
     @JoinColumn(name="categoryID",nullable=false)
     private Category category;
 
-    @Column(nullable = false)
+    @Column
     private String title;
 
-    @Column(nullable = false)
+    @Column
     private String views;
 
-    @Column(nullable = false)
+    @Column
     private Date updateDate;
 
 }

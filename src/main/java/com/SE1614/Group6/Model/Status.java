@@ -24,4 +24,10 @@ public class Status {
 
     @OneToMany(mappedBy = "status")
     private Set<Blog> blog;
+
+    @OneToMany(mappedBy = "status")
+    private Set<Order> order;
+
+    @OneToMany(mappedBy = "status")
+    private Set<User> user;
 }
