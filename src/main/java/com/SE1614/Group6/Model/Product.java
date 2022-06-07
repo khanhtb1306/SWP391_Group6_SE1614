@@ -1,4 +1,4 @@
-package com.example.crud.Model;
+package com.SE1614.Group6.Model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,21 +20,30 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int productid;
+    private Integer productid;
+    @Column
     private char productname;
-    private int quantity;
-    private char categoryid;
-    private int originalprice;
+    @Column
+    private Integer quantity;
+
+
+    @ManyToOne
+    @JoinColumn(name="categoryid",nullable=false)
+    private Category category;
+    @Column
+    private Integer originalprice;
+    @Column
     private char detail;
+    @Column
     private char title;
-    private int saleprice;
+    @Column
+    private Integer saleprice;
+    @Column
     private char images;
+    @Column(nullable = false)
     private Date updatedate;
 
-    @OneToMany(mappedBy="feedback")
-    List<Feedback> feedback;
-    @OneToMany(mappedBy = "category")
-    List<Category> category;
-    @OneToMany(mappedBy= "orderdetail")
-    List<OrderDetail> orderdetail;
+
+
+
 }

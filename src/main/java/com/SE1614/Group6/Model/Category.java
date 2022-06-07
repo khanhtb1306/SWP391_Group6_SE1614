@@ -24,4 +24,6 @@ public class Category {
 
     @OneToMany(mappedBy = "category")
     private Set<Blog> blog;
+    @OneToMany(mappedBy = "category")
+    private  Set<Product> products;
 }
