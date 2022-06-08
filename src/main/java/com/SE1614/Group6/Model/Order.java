@@ -14,7 +14,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name="order")
+@Table(name="orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +40,6 @@ public class Order {
 
     @Column
     private String userSession;
-    @OneToMany(mappedBy = "order")
-    private Set<OrderDetail> orderDetails;
+
 
 }

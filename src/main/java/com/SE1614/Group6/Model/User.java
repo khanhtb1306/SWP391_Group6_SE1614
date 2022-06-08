@@ -39,14 +39,6 @@ public class User {
     @Column
     private String avatar;
 
-    @OneToMany(mappedBy = "user")
-    private Set<Blog> blog;
-
-    @OneToMany(mappedBy = "user")
-    private Set<Order> order;
-
-    @OneToMany(mappedBy = "sale")
-    private Set<Order> saleUser;
 
     @Override
     public String toString() {
