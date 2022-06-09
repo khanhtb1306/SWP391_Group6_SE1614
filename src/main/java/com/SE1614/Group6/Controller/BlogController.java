@@ -3,8 +3,10 @@ package com.SE1614.Group6.Controller;
 import com.SE1614.Group6.Exception.BlogNotFoundException;
 import com.SE1614.Group6.Exception.UserNotFoundException;
 import com.SE1614.Group6.Model.Blog;
+import com.SE1614.Group6.Model.Category;
 import com.SE1614.Group6.Model.User;
 import com.SE1614.Group6.Service.BlogService;
+import com.SE1614.Group6.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,9 @@ public class BlogController {
     @Autowired
     private BlogService service;
 
+    @Autowired
+    private CategoryService cateService;
+
     @GetMapping("/blogs")
     public String showBlogList(Model model){
         List<Blog> listBlogs = service.listAll();
@@ -29,7 +34,9 @@ public class BlogController {
 
     @GetMapping("/blogs/new")
     public String showNewForm(Model model){
-        model.addAttribute("blog",new User());
+        List<Category> listCategories = cateService.listAll();
+        model.addAttribute("blog",new Blog());
+        model.addAttribute("listCategories",listCategories);
         model.addAttribute("pageTitle","Add New Blog");
         return "blog_form";
     }

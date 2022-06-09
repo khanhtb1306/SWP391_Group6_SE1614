@@ -18,11 +18,11 @@ public class User {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="roleId",nullable=false)
+    @JoinColumn(name="roleId")
     private Role role;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="statusId",nullable=false)
+    @JoinColumn(name="statusId")
     private Status status;
     @Column(nullable = false,length = 45)
     private String username;
@@ -39,8 +39,8 @@ public class User {
     @Column
     private String avatar;
 
-    @OneToMany(mappedBy = "user")
-    private Set<Blog> blog;
+    /*@OneToMany(mappedBy = "user")
+    private Set<Blog> blog;*/
 
     @OneToMany(mappedBy = "user")
     private Set<Order> order;
