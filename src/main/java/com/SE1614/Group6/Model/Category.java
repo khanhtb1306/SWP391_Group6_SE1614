@@ -16,6 +16,4 @@ public class Category {
     @Column(length = 45, nullable = false,unique = true)
     private String value;
 
-    /*@OneToMany(mappedBy = "category")
-    private Set<Blog> blog;*/
 }
