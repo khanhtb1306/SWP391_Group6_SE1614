@@ -14,21 +14,19 @@ import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)//test real database
-@Rollback(true)//let data not update in database
+@Rollback(false)//let data not update in database
 public class UserRepositoryTest {
     @Autowired private UserRepository repo;
 
     @Test
     public void testAddUser(){
         User user=new User();
-        user.setFullName("Nguyen Van A");
         user.setAddress("Moon");
         user.setAvatar("http://localhost");
         user.setEmail("lmaolmado@gmail.com");
         user.setGender("nam");
         user.setPassword("lmao");
         user.setPhone("1234567890");
-        user.setRole(3);
         user.setUsername("lmao");
 
         User savedUser=repo.save(user);

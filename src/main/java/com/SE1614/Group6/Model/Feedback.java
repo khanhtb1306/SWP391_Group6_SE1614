@@ -13,15 +13,21 @@ import javax.persistence.*;
 public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userid;
-    @ManyToOne @JoinColumn(name ="productid",nullable = false)
+    private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name ="productid",nullable = false)
     private Product product;
+
     @Column(nullable = false)
     private char comment;
+
     @Column
     private Integer star;
-    @ManyToOne @JoinColumn(name = "userid")
-    User user;
+
+    @ManyToOne
+    @JoinColumn(name = "userid")
+    private User user;
 
 
 

@@ -1,29 +1,19 @@
 package com.SE1614.Group6.Model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
 
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 @Entity
-@Getter
-@Setter
-@Table(name="category")
+@Table(name="categories")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(length = 45, nullable = false,unique = true)
     private String value;
 
-    @OneToMany(mappedBy = "category")
-    private Set<Blog> blog;
-    @OneToMany(mappedBy = "category")
-    private  Set<Product> products;
 }
