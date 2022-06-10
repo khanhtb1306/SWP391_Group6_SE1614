@@ -15,14 +15,10 @@ public class Blog {
 
     /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="authorID",nullable=false)
-    private User user;
+    private User user;*/
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="statusID",nullable=false)
-    private Status status;*/
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="categoryID",nullable=false)
+    @JoinColumn(name="category_id",nullable=false)
     private Category category;
 
     @Column
