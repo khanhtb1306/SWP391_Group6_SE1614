@@ -14,11 +14,11 @@ public class ProductService {
     private ProductRepository repo;
     public List<Product> listAllProduct(){
         return (List<Product>) repo.findAll();
-    }
+    }// trỏ đến hàm find all ở trong repo
 
     public void save(Product product) {
         repo.save(product);
-    }
+    }// trỏ đến hàm save ở repo
 
 
 

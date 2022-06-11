@@ -21,10 +21,10 @@ public class ProductController {
     @Autowired
     private ProductService service;
 
-    @GetMapping("/product")
-    public String showProductList(Model model){
-        List<Product> listProduct = service.listAllProduct();
-        model.addAttribute("listProduct",listProduct);
+    @GetMapping("/product")//get mapping là để chỉ dẫn đường link đến url product
+    public String showProductList(Model model){// hàm show product
+        List<Product> listProduct = service.listAllProduct();//khai báo biến để gọi hàm từ services
+        model.addAttribute("listProduct",listProduct);//gán list product vào attribute
         return "product";
     }
 

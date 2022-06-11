@@ -27,7 +27,7 @@ public class Product {
     private Integer quantity;
 
 
-    @ManyToOne
+    @ManyToOne//câu lệnh truy vấn quan hệ bảng
     @JoinColumn(name="categoryid",nullable=false)
     private Category category;
     @Column
