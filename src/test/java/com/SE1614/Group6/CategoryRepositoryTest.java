@@ -16,11 +16,11 @@ public class CategoryRepositoryTest {
     @Autowired
     private CategoryRepository repo;
 
-    @Test
-    public void testCreateCategory(){
-        Category temp1 = new Category();
-        temp1.setValue("New trends");
-        Category temp =repo.save(temp1);
-        Assertions.assertThat(temp.getId()).isGreaterThan(0);
-    }
+//    @Test
+//    public void testCreateCategory(){
+//        Category temp1 = new Category();
+//        temp1.setValue("New trends");
+//        Category temp =repo.save(temp1);
+//        Assertions.assertThat(temp.getId()).isGreaterThan(0);
+//    }
 }

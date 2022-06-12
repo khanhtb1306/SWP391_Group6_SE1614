@@ -18,29 +18,29 @@ import java.util.Set;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer order_id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="userId",nullable=false)
+    @ManyToOne
+    @JoinColumn(name="user_Id",nullable=false)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="statusId",nullable=false)
-    private Status status;
+    @Enumerated(EnumType.ORDINAL)
+    private Order_status order_status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="saleId",nullable=false)
+    @ManyToOne
+    @JoinColumn(name="sale_Id",nullable=false)
     private User sale;
 
     @Column
     private String notes;
 
     @Column
-    private Date orderDate;
+    private Date order_Date;
 
     @Column
-    private String userSession;
+    private String user_session;
     @OneToMany(mappedBy = "order")
-    private Set<OrderDetail> orderDetails;
+
+    private Set<OrderDetail> order_etails;
 
 }

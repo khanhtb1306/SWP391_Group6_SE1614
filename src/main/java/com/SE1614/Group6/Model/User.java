@@ -15,47 +15,64 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer user_id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="roleId")
+    @Enumerated(EnumType.ORDINAL)
     private Role role;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="statusId")
-    private Status status;
+    @Enumerated(EnumType.ORDINAL)
+    private User_status user_status;
+
+    @Enumerated(EnumType.ORDINAL)
+    private State state;
+
     @Column(nullable = false,length = 45)
-    private String username;
+    private String user_name;
+
     @Column(length = 45,nullable = false)
     private String password;
-    @Column
-    private String gender;
+
+
     @Column(nullable = false,unique = true,length = 45)
     private String email;
+
+    @Column
+    private String full_name;
+
+    @Column
+    private String gender;
+
     @Column
     private String phone;
+
     @Column
     private String address;
+
     @Column
     private String avatar;
 
-    /*@OneToMany(mappedBy = "user")
-    private Set<Blog> blog;*/
+    @OneToMany(mappedBy = "user")
+    private Set<Blog> blog;
 
     @OneToMany(mappedBy = "user")
     private Set<Order> order;
 
     @OneToMany(mappedBy = "sale")
-    private Set<Order> saleUser;
+    private Set<Order> sale_User;
+
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
+                "user_id=" + user_id +
+                ", role=" + role +
+                ", user_status=" + user_status +
+                ", state=" + state +
+                ", user_name='" + user_name + '\'' +
                 ", password='" + password + '\'' +
-                ", gender='" + gender + '\'' +
                 ", email='" + email + '\'' +
+                ", full_name='" + full_name + '\'' +
+                ", gender='" + gender + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", avatar='" + avatar + '\'' +

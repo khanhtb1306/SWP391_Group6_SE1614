@@ -1,23 +1,33 @@
 package com.SE1614.Group6.Model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name="blog")
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer blog_id;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="authorID",nullable=false)
-    private User user;*/
+    @ManyToOne
+    @JoinColumn(name="user_id",nullable=false)
+    private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Enumerated(EnumType.ORDINAL)
+    @JoinColumn(name="blog_status_id",nullable=false)
+    private Blog_status blog_status;
+
+    @ManyToOne
     @JoinColumn(name="category_id",nullable=false)
     private Category category;
 
@@ -28,10 +38,10 @@ public class Blog {
     private String views;
 
     @Column
-    private String updateDate;
+    private String update_Date;
 
     @Column
-    private String imageLink;
+    private String image_Link;
 
     @Column
     private String content;
