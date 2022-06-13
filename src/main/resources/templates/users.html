@@ -22,6 +22,8 @@
                     <th>Username</th>
                     <th>Password</th>
                     <th>Role</th>
+                    <th>Status</th>
+                    <th>State</th>
                     <th>Gender</th>
                     <th>Email</th>
                     <th>Phone</th>
@@ -34,9 +36,11 @@
             <th:block th:each="user : ${listUsers}">
                 <tr>
                     <td>[[${user.id}]]</td>
-                    <td>[[${user.username}]]</td>
+                    <td>[[${user.user_name}]]</td>
                     <td>[[${user.password}]]</td>
                     <td>[[${user.role}]]</td>
+                    <td>[[${user.user_status.displayValue}]]</td>
+                    <td>[[${user.state}]]</td>
                     <td>[[${user.gender}]]</td>
                     <td>[[${user.email}]]</td>
                     <td>[[${user.phone}]]</td>

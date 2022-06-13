@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer order_detail_id;
+    private Integer id;
     @ManyToOne
     @JoinColumn(name="order_id",nullable=false)
     private Order order;

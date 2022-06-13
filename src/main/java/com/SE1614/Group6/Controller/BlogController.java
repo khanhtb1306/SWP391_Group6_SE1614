@@ -7,6 +7,7 @@ import com.SE1614.Group6.Model.Category;
 import com.SE1614.Group6.Model.User;
 import com.SE1614.Group6.Service.BlogService;
 import com.SE1614.Group6.Service.CategoryService;
+import com.SE1614.Group6.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,9 @@ public class BlogController {
     @Autowired
     private CategoryService cateService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/blogs")
     public String showBlogList(Model model){
         List<Blog> listBlogs = service.listAll();
@@ -35,8 +39,10 @@ public class BlogController {
     @GetMapping("/blogs/new")
     public String showNewForm(Model model){
         List<Category> listCategories = cateService.listAll();
+        List<User> listUsers = userService.listAll();
         model.addAttribute("blog",new Blog());
         model.addAttribute("listCategories",listCategories);
+        model.addAttribute("listUsers",listUsers);
         model.addAttribute("pageTitle","Add New Blog");
         return "blog_form";
     }

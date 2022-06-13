@@ -18,7 +18,7 @@ import java.util.Set;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer order_id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name="user_Id",nullable=false)
@@ -35,12 +35,14 @@ public class Order {
     private String notes;
 
     @Column
-    private Date order_Date;
+    private Date order_date;
 
     @Column
     private String user_session;
+
     @OneToMany(mappedBy = "order")
+    private Set<OrderDetail> order_details;
 
-    private Set<OrderDetail> order_etails;
-
+    @Column
+    private int total_price;
 }

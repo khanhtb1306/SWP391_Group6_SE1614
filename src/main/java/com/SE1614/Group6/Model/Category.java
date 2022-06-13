@@ -17,7 +17,7 @@ import java.util.Set;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer categories_id;
+    private Integer id;
 
     @Column
     private String value;

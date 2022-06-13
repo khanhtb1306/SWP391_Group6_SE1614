@@ -20,10 +20,10 @@ import java.util.Set;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer product_id;
+    private Integer id;
 
     @Column
-    private String product_name;
+    private String name;
 
     @Column
     private Integer quantity;
@@ -37,6 +37,9 @@ public class Product {
 
     @Column
     private String Product_detail;
+
+    @Column
+    private String detail;
 
     @Column
     private String title;

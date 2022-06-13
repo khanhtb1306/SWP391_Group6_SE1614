@@ -15,15 +15,18 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer user_id;
+    private Integer id;
 
     @Enumerated(EnumType.ORDINAL)
+    @JoinColumn(name = "role_id",nullable = false)
     private Role role;
 
     @Enumerated(EnumType.ORDINAL)
+    @JoinColumn(name = "status_id",nullable = false)
     private User_status user_status;
 
     @Enumerated(EnumType.ORDINAL)
+    @JoinColumn(name = "state_id",nullable = false)
     private State state;
 
     @Column(nullable = false,length = 45)
@@ -64,7 +67,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "user_id=" + user_id +
+                "user_id=" + id +
                 ", role=" + role +
                 ", user_status=" + user_status +
                 ", state=" + state +

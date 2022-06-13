@@ -152,6 +152,7 @@
                 <th>Image Link</th>
                 <th>Category</th>
                 <th>Content</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -160,10 +161,14 @@
                     <td>[[${blog.id}]]</td>
                     <td>[[${blog.title}]]</td>
                     <td>[[${blog.views}]]</td>
-                    <td>[[${blog.updateDate}]]</td>
-                    <td>[[${blog.imageLink}]]</td>
+                    <td>[[${blog.update_Date}]]</td>
+                    <td>[[${blog.image_Link}]]</td>
                     <td>[[${blog.category}]]</td>
                     <td>[[${blog.content}]]</td>
+                    <td>
+                        <a class="h4 mr-3" th:href="@{'/blogs/edit/' + ${blog.id}}">Edit</a>
+                        <a class="h4" th:href="@{'/blogs/delete/' + ${blog.id}}">Delete</a>
+                    </td>
                 </tr>
             </th:block>
             </tbody>

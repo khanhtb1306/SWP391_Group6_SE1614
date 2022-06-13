@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer feedback_id;
+    private Integer id;
 
     @ManyToOne @JoinColumn(name ="product_id",nullable = false)
     private Product product;
@@ -23,8 +23,9 @@ public class Feedback {
 
     @Column
     private Integer star;
+
     @ManyToOne @JoinColumn(name = "user_id")
-    User user;
+    private User user;
 
 
 
