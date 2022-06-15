@@ -56,6 +56,10 @@ public class BlogController {
 
     @GetMapping("/blogs/edit/{id}")
     public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra){
+        List<Category> listCategories = cateService.listAll();
+        List<User> listUsers = userService.listAll();
+        model.addAttribute("listCategories",listCategories);
+        model.addAttribute("listUsers",listUsers);
         try {
             Blog blog = service.get(id);
             model.addAttribute("blog",blog);
@@ -76,5 +80,14 @@ public class BlogController {
             ra.addFlashAttribute("message",e.getMessage());
         }
         return "redirect:/blogs";
+    }
+
+    @GetMapping("/blog-details/{id}")
+    public String showBlogDetails(@PathVariable("id") Integer id,Model model) throws BlogNotFoundException {
+        Blog blog = service.get(id);
+        List<Category> listCategories = cateService.listAll();
+        model.addAttribute("listCategories",listCategories);
+        model.addAttribute("blog",blog);
+        return "blog-details";
     }
 }
