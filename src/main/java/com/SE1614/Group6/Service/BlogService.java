@@ -2,7 +2,6 @@ package com.SE1614.Group6.Service;
 
 
 import com.SE1614.Group6.Exception.BlogNotFoundException;
-import com.SE1614.Group6.Exception.UserNotFoundException;
 import com.SE1614.Group6.Model.Blog;
 import com.SE1614.Group6.Repo.BlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;

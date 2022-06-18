@@ -17,13 +17,17 @@ public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne @JoinColumn(name="orderid",nullable=false)
+    @ManyToOne
+    @JoinColumn(name="order_id",nullable=false)
     private Order order;
-    @ManyToOne @JoinColumn(name="productid",nullable=false)
+
+    @ManyToOne
+    @JoinColumn(name="product_id",nullable=false)
     private Product product;
+
     @Column
     private Integer quantity;
-    @Column
-    private Integer unitprice;
 
+    @Column
+    private Integer unit_price;
 }

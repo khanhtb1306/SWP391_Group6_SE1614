@@ -14,14 +14,18 @@ public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne @JoinColumn(name ="productid",nullable = false)
+
+    @ManyToOne @JoinColumn(name ="product_id",nullable = false)
     private Product product;
+
     @Column(nullable = false)
-    private char comment;
+    private String comment;
+
     @Column
     private Integer star;
-    @ManyToOne @JoinColumn(name = "userid")
-    User user;
+
+    @ManyToOne @JoinColumn(name = "user_id")
+    private User user;
 
 
 

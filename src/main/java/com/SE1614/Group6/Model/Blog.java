@@ -20,15 +20,15 @@ public class Blog {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name="authorID",nullable=false)
+    @JoinColumn(name="user_id",nullable=false)
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name="statusID",nullable=false)
-    private Status status;
+    @Enumerated(EnumType.ORDINAL)
+    @JoinColumn(name="blog_status_id",nullable=false)
+    private Blog_status blog_status;
 
     @ManyToOne
-    @JoinColumn(name="categoryID",nullable=false)
+    @JoinColumn(name="category_id",nullable=false)
     private Category category;
 
     @Column
@@ -38,6 +38,12 @@ public class Blog {
     private String views;
 
     @Column
-    private Date updateDate;
+    private String update_Date;
+
+    @Column
+    private String image_Link;
+
+    @Column
+    private String content;
 
 }

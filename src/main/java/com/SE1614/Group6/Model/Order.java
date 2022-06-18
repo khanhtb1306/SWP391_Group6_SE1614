@@ -21,25 +21,28 @@ public class Order {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name="userId",nullable=false)
+    @JoinColumn(name="user_Id",nullable=false)
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name="statusId",nullable=false)
-    private Status status;
+    @Enumerated(EnumType.ORDINAL)
+    private Order_status order_status;
 
     @ManyToOne
-    @JoinColumn(name="saleId",nullable=false)
+    @JoinColumn(name="sale_Id",nullable=false)
     private User sale;
 
     @Column
     private String notes;
 
     @Column
-    private Date orderDate;
+    private Date order_date;
 
     @Column
-    private String userSession;
+    private String user_session;
 
+    @OneToMany(mappedBy = "order")
+    private Set<OrderDetail> order_details;
 
+    @Column
+    private int total_price;
 }

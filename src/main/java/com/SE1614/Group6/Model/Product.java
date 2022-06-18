@@ -20,30 +20,38 @@ import java.util.Set;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer productid;
+    private Integer id;
+
     @Column
-    private char productname;
+    private String name;
+
     @Column
     private Integer quantity;
 
-
     @ManyToOne
-    @JoinColumn(name="categoryid",nullable=false)
+    @JoinColumn(name="category_id",nullable=false)
     private Category category;
+
     @Column
-    private Integer originalprice;
+    private Integer original_price;
+
     @Column
-    private char detail;
+    private String Product_detail;
+
     @Column
-    private char title;
+    private String detail;
+
     @Column
-    private Integer saleprice;
+    private String title;
+
     @Column
-    private char images;
+    private Integer sale_price;
+
+    @Column
+    private String images;
+
     @Column(nullable = false)
-    private Date updatedate;
-
-
+    private Date update_date;
 
 
 }
