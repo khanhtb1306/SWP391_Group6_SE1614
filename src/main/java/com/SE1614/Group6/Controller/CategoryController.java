@@ -34,4 +34,6 @@ public class CategoryController {
         service.save(category);
         return "redirect:/categories";
     }
+
+
 }

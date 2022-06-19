@@ -1,0 +1,60 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+  <title th:text="lmao"></title>
+  <th:block th:replace="fragments/meta_head :: meta_head"></th:block>
+  <div th:include="fragments/header:: header"></div>
+</head>
+
+<body>
+<!-- body wrap start -->
+<div class="body_wrap bg-white">
+  <div th:include="fragments/navbar:: blog_navbar"></div>
+
+  <main class="container py-5">
+    <div class="row">
+      <section class="blog spad col-md-8 pt-8">
+        <div class="container">
+          <div class="row">
+            <th:block th:each="blog : ${listBlogs}">
+              <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="blog__item">
+                  <div class="blog__item__pic set-bg" th:data-setbg="${blog.image_Link}"></div>
+                  <div class="blog__item__text">
+                    <span><img th:src="@{/img/icon/calendar.png}" alt=""> [[${blog.update_Date}]]</span>
+                    <h5>[[${blog.title}]]</h5>
+                    <a th:href="@{'/blog-details/' + ${blog.id}}">Read More</a>
+                  </div>
+                </div>
+              </div>
+            </th:block>
+          </div>
+        </div>
+      </section>
+      <div class="col-md-4 pt-4">
+        <div class="blog-sidebar rounded shadow-sm border pt-4 pb-5 px-4">
+          <h4 class="mb-3">Category</h4>
+          <ul class="list-group">
+            <a class="list-group-item" th:href="@{'/blog/category/' + ${category.id}}" th:each="category, iter : ${listCategories}" th:text="${category.value}" th:classappend="${category.id == activeId} ? 'active' : ''"></a>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+  </main>
+
+  <th:block th:replace="fragments/footer :: footer">
+
+  </th:block>
+
+</div>
+<!-- body wrap end -->
+
+<th:block th:replace="fragments/js_lib :: js_lib">
+</th:block>
+</body>
+
+</html>

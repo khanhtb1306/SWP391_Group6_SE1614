@@ -29,14 +29,6 @@ public class WedController {
     public String checkout() {
         return "checkout";
     }
-    @GetMapping("/blog_details")
-    public String blog_details() {
-        return "blog-details";
-    }
-    @GetMapping("/blog")
-    public String blog() {
-        return "blog";
-    }
     @GetMapping("/contact")
     public String contact() {
         return "contact";
