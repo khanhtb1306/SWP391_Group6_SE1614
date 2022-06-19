@@ -18,7 +18,8 @@ import java.util.List;
 @Controller
 public class FeedbackController {
     @Autowired private FeedbackService service;
-
+    @Autowired
+    private UserService userService;
     @GetMapping("/feedback")
     public String showFeedbackList(Model model){
         List<Feedback> listFeedback = service.listAllFeedback();
@@ -39,5 +40,4 @@ public class FeedbackController {
         ra.addFlashAttribute("message","feedback saved successfully!");
         return "redirect:/feedback";
     }
-
 }
