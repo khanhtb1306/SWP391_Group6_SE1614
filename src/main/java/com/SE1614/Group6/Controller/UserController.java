@@ -3,17 +3,17 @@ package com.SE1614.Group6.Controller;
 import com.SE1614.Group6.Exception.UserNotFoundException;
 import com.SE1614.Group6.Model.User;
 import com.SE1614.Group6.Service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 public class UserController {
     @Autowired private UserService service;
 
@@ -51,14 +51,14 @@ public class UserController {
         }
     }
 
-    @GetMapping("/users/delete/{id}")
-    public String deleteUser(@PathVariable("id") Integer id,RedirectAttributes ra){
-        try {
-            service.delete(id);
-            ra.addFlashAttribute("message","User Id " + id + " deleted successfully!");
-        } catch (UserNotFoundException e) {
-            ra.addFlashAttribute("message",e.getMessage());
-        }
-        return "redirect:/users";
-    }
+//    @GetMapping("/users/delete/{id}")
+//    public String deleteUser(@PathVariable("id") Integer id,RedirectAttributes ra){
+//        try {
+//            service.delete(id);
+//            ra.addFlashAttribute("message","User Id " + id + " deleted successfully!");
+//        } catch (UserNotFoundException e) {
+//            ra.addFlashAttribute("message",e.getMessage());
+//        }
+//        return "redirect:/users";
+//    }
 }
