@@ -17,11 +17,11 @@ public class WedController {
     public String shop() {
         return "shop";
     }
-    @GetMapping("/shop_details")
+    @GetMapping("/shop-details")
     public String shop_details() {
         return "shop-details";
     }
-    @GetMapping("/shopping_cart")
+    @GetMapping("/shopping-cart")
     public String shopping_cart() {
         return "shopping-cart";
     }
