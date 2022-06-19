@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Products</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div><h2>Manage Users</h2></div>
+    <div class="mr-2">
+        <a class="h3" th:href="@{/product/new}">Add New Product</a>
+    </div>
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>product_detail</th>
+                <th>detail</th>
+                <th>images</th>
+                <th>name</th>
+                <th>original_price</th>
+                <th>quantity</th>
+                <th>sale_price</th>
+                <th>title</th>
+                <th>update_date</th>
+                <th>category_id</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="product : ${listProduct}">
+                <tr>
+                    <td>[[${product.id}]]</td>
+                    <td>[[${product.product_detail}]]</td>
+                    <td>[[${product.detail}]]</td>
+                    <td>[[${product.images}]]</td>
+                    <td>[[${product.name}]]</td>
+                    <td>[[${product.original_price}]]</td>
+                    <td>[[${product.quantity}]]</td>
+                    <td>[[${product.sale_price}]]</td>
+                    <td>[[${product.title}]]</td>
+                    <td>[[${product.update_date}]]</td>
+                    <td>[[${product.category_id}]]</td>
+                    <td>
+                        <a class="h4 mr-3" th:href="@{'/product/edit/' + ${product.id}}">Edit</a>
+                        <a class="h4" th:href="@{'/product/delete/' + ${product.id}}">Delete</a>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
