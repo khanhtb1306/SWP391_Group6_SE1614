@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Manage Users</title>
+    <title>Manage Feedback</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
 </head>
 <body>
@@ -42,17 +36,12 @@
                     <td>[[${feedback.product_id}]]</td>
                     <td>[[${feedback.user_id}]]</td>
 
-                    <td>
-                        <a class="h4 mr-3" th:href="@{'/users/edit/' + ${user.id}}">Edit</a>
-                        <a class="h4" th:href="@{'/users/delete/' + ${user.id}}">Delete</a>
-                    </td>
+
                 </tr>
             </th:block>
             </tbody>
         </table>
     </div>
 </div>
-</body>
-</html>
 </body>
 </html>
