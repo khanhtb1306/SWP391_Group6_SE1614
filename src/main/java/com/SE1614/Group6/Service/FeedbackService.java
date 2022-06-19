@@ -16,4 +16,6 @@ public class FeedbackService {
         repo.save(feedback);
     }
     public List<Feedback> findFeedbackByUserId(int id){return (List<Feedback>) repo.findFeedbackByUserId(id);}
+
+    public List<Feedback> findFeedbackByProductId(int id){return (List<Feedback>) repo.findFeedbackByProductId(id);}
 }

@@ -23,7 +23,7 @@ public class FeedbackController {
     @GetMapping("/feedback")
     public String showFeedbackList(Model model){
         List<Feedback> listFeedback = service.listAllFeedback();
-        model.addAttribute("listFeedback",listFeedback);
+        model.addAttribute("",listFeedback);
         return "feedback";
     }
 

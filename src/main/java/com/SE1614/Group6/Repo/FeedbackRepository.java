@@ -18,4 +18,6 @@ public interface FeedbackRepository extends CrudRepository<Feedback, Integer>  {
     
     @Query(value = "SELECT * FROM Feedback WHERE user_id = ?1",nativeQuery = true)
     List<Feedback> findFeedbackByUserId(int id);
+    @Query(value = "SELECT * FROM Feedback WHERE product_id = ?1",nativeQuery = true)
+    List<Feedback> findFeedbackByProductId(int id);
 }
