@@ -3,26 +3,7 @@
 <html lang="zxx">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Male_Fashion Template">
-    <meta name="keywords" content="Male_Fashion, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Male-Fashion | Template</title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-        rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/elegant-icons.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/slicknav.min.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+    <th:block th:replace="fragments/meta_head :: meta_head"></th:block>
 </head>
 
 <body>
@@ -64,51 +45,7 @@
     <!-- Header Section Begin -->
     <div th:include="fragments/header:: header"></div>
     <!-- Header Section End -->
-    <div>
-        <a th:href="@{/categories}">List category</a>
-    </div>
-    <div>
-        <a th:href="@{/categories/new}">Create category</a>
-    </div>
-    <div>
-        <a th:href="@{/blogs}">List blog</a>
-    </div>
-    <div>
-        <a th:href="@{/blogs/new}">New blog</a>
-    </div>
-    <div>
-        <table class="table table-bordered">
-            <thead class="thead-dark">
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Views</th>
-                <th>Update Date</th>
-                <th>Image Link</th>
-                <th>Category</th>
-                <th>Content</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <th:block th:each="blog : ${listBlogs}">
-                <tr>
-                    <td>[[${blog.id}]]</td>
-                    <td>[[${blog.title}]]</td>
-                    <td>[[${blog.views}]]</td>
-                    <td>[[${blog.update_Date}]]</td>
-                    <td>[[${blog.image_Link}]]</td>
-                    <td>[[${blog.category.value}]]</td>
-                    <td>[[${blog.content}]]</td>
-                    <td>
-                        <a class="h4 mr-3" th:href="@{'/blogs/edit/' + ${blog.id}}">Edit</a>
-                        <a class="h4" th:href="@{'/blogs/delete/' + ${blog.id}}">Delete</a>
-                    </td>
-                </tr>
-            </th:block>
-            </tbody>
-        </table>
-    </div>
+
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-blog set-bg" data-setbg="img/breadcrumb-bg.jpg">
         <div class="container">

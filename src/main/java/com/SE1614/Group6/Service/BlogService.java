@@ -3,6 +3,7 @@ package com.SE1614.Group6.Service;
 
 import com.SE1614.Group6.Exception.BlogNotFoundException;
 import com.SE1614.Group6.Model.Blog;
+import com.SE1614.Group6.Model.Category;
 import com.SE1614.Group6.Repo.BlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,10 @@ public class BlogService {
 
     public List<Blog> listAll(){
         return (List<Blog>) repo.findAll();
+    }
+
+    public List<Blog> listAllWithCategory(Category id){
+        return (List<Blog>) repo.getBlogByCategory(id);
     }
 
     public void save(Blog blog) {
