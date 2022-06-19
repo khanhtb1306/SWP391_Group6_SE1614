@@ -21,4 +21,8 @@ public class CategoryService {
     public void save(Category category) {
         repo.save(category);
     }
+
+    public Category getByid(Integer id){
+        return repo.getByid(id);
+    }
 }

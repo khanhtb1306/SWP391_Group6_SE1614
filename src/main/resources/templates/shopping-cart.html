@@ -2,26 +2,7 @@
 <html lang="zxx">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Male_Fashion Template">
-    <meta name="keywords" content="Male_Fashion, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Male-Fashion | Template</title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-    rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/elegant-icons.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/slicknav.min.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+    <th:block th:replace="fragments/meta_head :: meta_head"></th:block>
 </head>
 
 <body>
@@ -99,86 +80,88 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr th:each="od : ${LIST_OD}">
                                     <td class="product__cart__item">
                                         <div class="product__cart__item__pic">
                                             <img src="img/shopping-cart/cart-1.jpg" alt="">
                                         </div>
-                                        <div class="product__cart__item__text">
-                                            <h6>T-shirt Contrast Pocket</h6>
-                                            <h5>$98.49</h5>
+                                        <th:block  th:each="p : ${LIST_P}">
+                                        <div class="product__cart__item__text" th:if="${od.product.id == p.id}">
+                                            <h6>[[${p.name}]]</h6>
+                                            <h5>[[${#numbers.formatCurrency(od.unit_price)}]]</h5>
                                         </div>
+                                        </th:block>
                                     </td>
                                     <td class="quantity__item">
                                         <div class="quantity">
-                                            <div class="pro-qty-2">
-                                                <input type="text" value="1">
+                                            <div class="pro-qty-2" th:text="${od.quantity}">
+                                                <input type="text" value="1" >
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="cart__price">$ 30.00</td>
+                                    <td class="cart__price">[[${#numbers.formatCurrency(od.unit_price * od.quantity)}]]</td>
                                     <td class="cart__close"><i class="fa fa-close"></i></td>
                                 </tr>
-                                <tr>
-                                    <td class="product__cart__item">
-                                        <div class="product__cart__item__pic">
-                                            <img src="img/shopping-cart/cart-2.jpg" alt="">
-                                        </div>
-                                        <div class="product__cart__item__text">
-                                            <h6>Diagonal Textured Cap</h6>
-                                            <h5>$98.49</h5>
-                                        </div>
-                                    </td>
-                                    <td class="quantity__item">
-                                        <div class="quantity">
-                                            <div class="pro-qty-2">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 32.50</td>
-                                    <td class="cart__close"><i class="fa fa-close"></i></td>
-                                </tr>
-                                <tr>
-                                    <td class="product__cart__item">
-                                        <div class="product__cart__item__pic">
-                                            <img src="img/shopping-cart/cart-3.jpg" alt="">
-                                        </div>
-                                        <div class="product__cart__item__text">
-                                            <h6>Basic Flowing Scarf</h6>
-                                            <h5>$98.49</h5>
-                                        </div>
-                                    </td>
-                                    <td class="quantity__item">
-                                        <div class="quantity">
-                                            <div class="pro-qty-2">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 47.00</td>
-                                    <td class="cart__close"><i class="fa fa-close"></i></td>
-                                </tr>
-                                <tr>
-                                    <td class="product__cart__item">
-                                        <div class="product__cart__item__pic">
-                                            <img src="img/shopping-cart/cart-4.jpg" alt="">
-                                        </div>
-                                        <div class="product__cart__item__text">
-                                            <h6>Basic Flowing Scarf</h6>
-                                            <h5>$98.49</h5>
-                                        </div>
-                                    </td>
-                                    <td class="quantity__item">
-                                        <div class="quantity">
-                                            <div class="pro-qty-2">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 30.00</td>
-                                    <td class="cart__close"><i class="fa fa-close"></i></td>
-                                </tr>
+<!--                                <tr>-->
+<!--                                    <td class="product__cart__item">-->
+<!--                                        <div class="product__cart__item__pic">-->
+<!--                                            <img src="img/shopping-cart/cart-2.jpg" alt="">-->
+<!--                                        </div>-->
+<!--                                        <div class="product__cart__item__text">-->
+<!--                                            <h6>Diagonal Textured Cap</h6>-->
+<!--                                            <h5>$98.49</h5>-->
+<!--                                        </div>-->
+<!--                                    </td>-->
+<!--                                    <td class="quantity__item">-->
+<!--                                        <div class="quantity">-->
+<!--                                            <div class="pro-qty-2">-->
+<!--                                                <input type="text" value="1">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </td>-->
+<!--                                    <td class="cart__price">$ 32.0</td>-->
+<!--                                    <td class="cart__close"><i class="fa fa-close"></i></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td class="product__cart__item">-->
+<!--                                        <div class="product__cart__item__pic">-->
+<!--                                            <img src="img/shopping-cart/cart-3.jpg" alt="">-->
+<!--                                        </div>-->
+<!--                                        <div class="product__cart__item__text">-->
+<!--                                            <h6>Basic Flowing Scarf</h6>-->
+<!--                                            <h5>$98.49</h5>-->
+<!--                                        </div>-->
+<!--                                    </td>-->
+<!--                                    <td class="quantity__item">-->
+<!--                                        <div class="quantity">-->
+<!--                                            <div class="pro-qty-2">-->
+<!--                                                <input type="text" value="1">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </td>-->
+<!--                                    <td class="cart__price">$ 47.00</td>-->
+<!--                                    <td class="cart__close"><i class="fa fa-close"></i></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td class="product__cart__item">-->
+<!--                                        <div class="product__cart__item__pic">-->
+<!--                                            <img src="img/shopping-cart/cart-4.jpg" alt="">-->
+<!--                                        </div>-->
+<!--                                        <div class="product__cart__item__text">-->
+<!--                                            <h6>Basic Flowing Scarf</h6>-->
+<!--                                            <h5>$98.49</h5>-->
+<!--                                        </div>-->
+<!--                                    </td>-->
+<!--                                    <td class="quantity__item">-->
+<!--                                        <div class="quantity">-->
+<!--                                            <div class="pro-qty-2">-->
+<!--                                                <input type="text" value="1">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </td>-->
+<!--                                    <td class="cart__price">$ 30.00</td>-->
+<!--                                    <td class="cart__close"><i class="fa fa-close"></i></td>-->
+<!--                                </tr>-->
                             </tbody>
                         </table>
                     </div>
@@ -206,10 +189,10 @@
                     <div class="cart__total">
                         <h6>Cart total</h6>
                         <ul>
-                            <li>Subtotal <span>$ 169.50</span></li>
-                            <li>Total <span>$ 169.50</span></li>
+                            <li>Subtotal <span th:text="${#numbers.formatCurrency(TOTAL)}"></span></li>
+                            <li>Total <span th:text="${#numbers.formatCurrency(TOTAL)}"></span></li>
                         </ul>
-                        <a href="#" class="primary-btn">Proceed to checkout</a>
+                        <a th:href="@{/checkout2}" class="primary-btn">Proceed to checkout</a>
                     </div>
                 </div>
             </div>

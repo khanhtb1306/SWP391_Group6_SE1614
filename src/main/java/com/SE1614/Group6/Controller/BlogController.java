@@ -36,6 +36,13 @@ public class BlogController {
         return "blogs";
     }
 
+    @GetMapping("/manage-blogs")
+    public String manageBlog(Model model){
+        List<Blog> listBlogs = service.listAll();
+        model.addAttribute("listBlogs",listBlogs);
+        return "manage-blogs";
+    }
+
     @GetMapping("/blogs/new")
     public String showNewForm(Model model){
         List<Category> listCategories = cateService.listAll();
@@ -51,7 +58,7 @@ public class BlogController {
     public String saveBlog(Blog blog, RedirectAttributes ra){
         service.save(blog);
         ra.addFlashAttribute("message","Blog saved successfully!");
-        return "redirect:/blogs";
+        return "redirect:/manage-blogs";
     }
 
     @GetMapping("/blogs/edit/{id}")
@@ -67,7 +74,7 @@ public class BlogController {
             return "blog_form";
         } catch (BlogNotFoundException e) {
             ra.addFlashAttribute("message",e.getMessage());
-            return "redirect:/blogs";
+            return "redirect:/manage-blogs";
         }
     }
 
@@ -79,7 +86,7 @@ public class BlogController {
         } catch (BlogNotFoundException e) {
             ra.addFlashAttribute("message",e.getMessage());
         }
-        return "redirect:/blogs";
+        return "redirect:/manage-blogs";
     }
 
     @GetMapping("/blog-details/{id}")
@@ -89,5 +96,16 @@ public class BlogController {
         model.addAttribute("listCategories",listCategories);
         model.addAttribute("blog",blog);
         return "blog-details";
+    }
+
+    @GetMapping("/blog/category/{id}")
+    public String showBlogWithCategory(@PathVariable("id") Integer id,Model model) throws BlogNotFoundException {
+        Category filter = cateService.getByid(id);
+        List<Blog> listBlogs = service.listAllWithCategory(filter);
+        List<Category> listCategories = cateService.listAll();
+        model.addAttribute("listCategories",listCategories);
+        model.addAttribute("listBlogs",listBlogs);
+        model.addAttribute("activeId",id);
+        return "blog-category";
     }
 }
