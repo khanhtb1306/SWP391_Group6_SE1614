@@ -22,7 +22,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(name = "name")
     private String name;
 
     @Column
@@ -52,6 +52,5 @@ public class Product {
 
     @Column(nullable = false)
     private Date update_date;
-
 
 }
