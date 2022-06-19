@@ -36,7 +36,7 @@ public class BlogController {
         return "blogs";
     }
 
-    @GetMapping("/manageBlogs")
+    @GetMapping("/manage-blogs")
     public String manageBlog(Model model){
         List<Blog> listBlogs = service.listAll();
         model.addAttribute("listBlogs",listBlogs);

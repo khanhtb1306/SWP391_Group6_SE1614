@@ -43,7 +43,7 @@ public class OrderService {
             Order idOrder1 = new Order();
             try {
                 order.setId(null);
-                User nUser = this.userRepository.findById(1).get();
+                User nUser = this.userRepository.findById(2).get();
                 order.setSale(nUser);
                 order.setUser(nUser);
                 idOrder1 = orderRepository.save(order);

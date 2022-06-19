@@ -30,12 +30,12 @@ public class CartService {
 
         Order order = new com.SE1614.Group6.Model.Order();
         Product product = new Product();
-        product.setId(5);
+        product.setId(4);
         Product product1 = new Product();
-        product1.setId(7);
+        product1.setId(5);
         Map<Integer, OrderDetail> map =new HashMap<>();
-        map.put(5,new OrderDetail(null,order,product,2,10000));
-        map.put(7,new OrderDetail(null,order,product1,3,20000));
+        map.put(4,new OrderDetail(null,order,product,2,10000));
+        map.put(5,new OrderDetail(null,order,product1,3,20000));
         session.setAttribute(ATT_CART_NAME,map);
         Object obj = session.getAttribute(ATT_CART_NAME);
         Map<Integer, OrderDetail> map1 = (Map<Integer, OrderDetail>) obj;
