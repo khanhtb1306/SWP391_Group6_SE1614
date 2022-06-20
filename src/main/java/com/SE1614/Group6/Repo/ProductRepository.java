@@ -42,4 +42,5 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
 
     @Override
     void deleteAll();
+    Long countById(Integer id);
 }
