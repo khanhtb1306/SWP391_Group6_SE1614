@@ -1,10 +1,12 @@
 package com.SE1614.Group6.Controller;
 
 import com.SE1614.Group6.Exception.ProductNotFoundException;
+import com.SE1614.Group6.Model.Category;
 import com.SE1614.Group6.Model.Feedback;
 import com.SE1614.Group6.Model.Product;
 import com.SE1614.Group6.Model.User;
 import com.SE1614.Group6.Repo.ProductRepository;
+import com.SE1614.Group6.Service.CategoryService;
 import com.SE1614.Group6.Service.FeedbackService;
 import com.SE1614.Group6.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService service;
+    @Autowired
+    private CategoryService serviceC;
+
 
     @GetMapping("/product")//get mapping là để chỉ dẫn đường link đến url product
     public String showProductList(Model model){// hàm show product
@@ -35,6 +40,8 @@ public class ProductController {
     public String showNewForm(Model model){
         model.addAttribute("product",new Product());
         model.addAttribute("pageTitle","Add New Product");
+        List<Category> listCategories = serviceC.listAll();
+        model.addAttribute("listCategories",listCategories);
         return "product_form";
     }
 

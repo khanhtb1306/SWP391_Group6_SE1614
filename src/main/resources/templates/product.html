@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="container-fluid text-center">
-    <div><h2>Manage Users</h2></div>
+    <div><h2>Manage Products</h2></div>
     <div class="mr-2">
         <a class="h3" th:href="@{/product/new}">Add New Product</a>
     </div>
@@ -45,7 +45,7 @@
                     <td>[[${product.sale_price}]]</td>
                     <td>[[${product.title}]]</td>
                     <td>[[${product.update_date}]]</td>
-                    <td>[[${product.category_id}]]</td>
+                    <td>[[${product.category}]]</td>
                     <td>
                         <a class="h4 mr-3" th:href="@{'/product/edit/' + ${product.id}}">Edit</a>
                         <a class="h4" th:href="@{'/product/delete/' + ${product.id}}">Delete</a>

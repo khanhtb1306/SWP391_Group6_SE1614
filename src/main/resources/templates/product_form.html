@@ -68,7 +68,15 @@
 					<input type="date" th:field="*{update_date}" class="form-control" required maxlength="45" minlength="2"/>
 				</div>
 			</div>
-			<input type="hidden" th:field="*{category}"/>
+			<div class="form-group row">
+				<label class="col-sm-4 col-form-label">Categories:</label>
+				<div class="col-sm-8">
+					<select name="category" th:field="*{category}">
+						<option th:each="category : ${listCategories}"
+								th:value="${category.id}" th:text="${category.value}"></option>
+					</select>
+				</div>
+			</div>
 			<div class="text-center">
 				<button  type="submit" class="btn btn-primary m-2">Save</button>
 				<button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
