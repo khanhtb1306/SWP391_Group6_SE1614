@@ -1,58 +1,294 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <title>Register</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-----------------------------------Roboto Font--------------------------------->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <!-------------------------------------------------------------------------------->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+
+    <!-------------------------------------------------------------------------------->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 </head>
+<style>
+
+    body{
+        height: 100vh;
+        background: #007bff !important;
+        display: flex;
+    }
+
+    .container{
+        margin-top: 3rem;
+    }
+    .card{
+        overflow: hidden;
+        border: 0 !important;
+        border-radius: 20px !important;
+        box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+    }
+
+
+    .img-left{
+        width: 45%;
+        background-size: cover;
+    }
+
+    .card-body{
+        padding: 2rem;
+    }
+
+    .title{
+        margin-bottom: 2rem;
+        font-family: 'Poppins', sans-serif;
+        font-size: 2rem !important;
+    }
+
+    .form-input{
+        position: relative;
+    }
+
+    .form-input input{
+        width: 100%;
+        height: 45px;
+        padding-left: 40px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+        box-shadow: none;
+        border: 1px solid #00000020;
+        border-radius: 50px;
+        outline: none;
+        background: transparent;
+    }
+
+    .form-input span{
+        position: absolute;
+        top: 10px;
+        padding-left: 15px;
+        color: #007bff;
+    }
+
+    .form-input input::placeholder{
+        color: black;
+        padding-left: 0px;
+    }
+
+    .form-input input:focus, .form-input input:valid{
+        border: 2px solid #007bff;
+    }
+
+    .form-input input:focus::placeholder{
+        color: #454b69;
+    }
+
+    .form-radio{
+        position: relative;
+    }
+
+    .form-radio input{
+        width: 5%;
+        height: 15px;
+        padding-left: 40px;
+        margin-bottom: 20px;
+        margin-left: 40px;
+        box-sizing: border-box;
+        box-shadow: none;
+        border: 1px solid #00000020;
+        border-radius: 50px;
+        outline: none;
+        background: transparent;
+    }
+
+    .form-radio span{
+        position: absolute;
+        top: 0px;
+        padding-left: 15px;
+        color: #007bff;
+    }
+
+    .form-radio input::placeholder{
+        color: black;
+        padding-left: 0px;
+    }
+
+    .form-radio input:focus, .form-radio input:valid{
+        border: 2px solid #007bff;
+    }
+
+    .form-radio input:focus::placeholder{
+        color: #454b69;
+    }
+
+    .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before{
+        background-color: #007bff !important;
+        border: 0px;
+    }
+
+    .form-box button[type="submit"]{
+        margin-top: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 50px;
+        background: #007bff;
+        color: #fff;
+        font-size: 90%;
+        font-weight: bold;
+        letter-spacing: .1rem;
+        transition: 0.5s;
+        padding: 12px;
+    }
+
+    .form-box button[type="submit"]:hover{
+        background: #0069d9;
+    }
+
+    .forget-link, .register-link{
+        color: #007bff;
+        font-weight: bold;
+    }
+
+    .forget-link:hover, .register-link:hover{
+        color: #0069d9;
+        text-decoration: none;
+    }
+
+    .alert {
+        padding: 5px;
+        background-color: white;
+        color: #f44336;
+    }
+
+    .closebtn {
+        margin-left: 15px;
+        color: #f44336;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .closebtn:hover {
+        color: black;
+    }
+</style>
 <body>
-<div class="mainn">
-    <div class="main col-xs-10 col-sm-7 col-md-4 col-lg-4">
+<div class="container">
+    <div class="row px-3 ">
+        <div class="col-lg-10 col-xl-9 card flex-row mx-auto px-0">
 
-        <div>
-            <ul class="nav nav-tabs">
-                <li><a href="/login" data-toggle="tab">Login</a></li>
-                <li class="active"><a href="/sign-up" data-toggle="tab">Sign Up</a></li>
-                <li><a href="/forgotpassword" data-toggle="tab">Forgot password</a></li>
-            </ul>
+            <div class="card-body ml-2">
+                <h4 class="title text-center mt-4">
+                    Register
+                </h4>
+                <form class="form-box px-3 pl-5" id="myForm">
+                    <div class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        Indicates a dangerous or potentially negative action.
+                    </div>
+                    <div class="form-input">
+                        <span><i class="fa fa-user"></i></span>
+                        <input type="text" name="first_name"  id="first_name"  placeholder="First Name" tabindex="10" required>
+                    </div>
+                    <div class="form-input">
+                        <span><i class="fa fa-user"></i></span>
+                        <input type="text" name="last_name" id="last_name"  placeholder="Last Name" tabindex="10" required>
+                    </div>
+                    <div class="form-input">
+                        <span><i class="fa fa-envelope-o"></i></span>
+                        <input type="email" name="email"  id="email" placeholder="Email Address" tabindex="10" required>
+                    </div>
+                    <div class="form-input">
+                        <span><i class="fa fa-key"></i></span>
+                        <input type="password" name="password" id="password" placeholder="Password" required>
+                    </div>
+                    <!--                    <div class="form-input">-->
+                    <!--                        <span><i class="fa fa-key"></i></span>-->
+                    <!--                        <input type="password" name="re-password" placeholder="Confirm Password" required>-->
+                    <!--                    </div>-->
+
+                    <!--                    <div class="form-radio">-->
+                    <!--                        <span><i class="fa fa-transgender"></i></span>-->
+                    <!--                        <input type="radio" name="gender" placeholder="Gender" tabindex="10" required> Male-->
+                    <!--                        <input type="radio" name="gender" placeholder="Gender" tabindex="10" required> Female-->
+                    <!--                    </div>-->
+
+
+
+                    <div class="mb-3">
+                        <button type="Submit"  class="btn btn-block text-uppercase">
+                            Register
+                        </button>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="text-center mb-2">
+                        If you have account?
+                        <a href="/login" class="register-link">
+                            Login here
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
-
-        <div class="tab-content">
-<div class="tab-pane fade in active" id="signup">
-
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label class="control-label col-sm-3" for="email">Name:</label>
-            <div class="col-sm-9 col-md-9 col-lg-9">
-                <input type="text" class="form-control" id="name" placeholder="Enter Name">
-            </div>
-        </div>
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label class="control-label col-sm-3" for="email">Email:</label>
-                <div class="col-sm-9 col-md-9 col-lg-9">
-                    <input type="email" class="form-control" id="email" placeholder="Enter email">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-3" for="pwd">Password:</label>
-                <div class="col-sm-9 col-md-9 col-lg-9">
-                    <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-3" for="pwd">Confirm Password:</label>
-                <div class="col-sm-9 col-md-9 col-lg-9">
-                    <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-6">
-                    <button type="submit" class="btn btn-default">Register</button>
-                </div>
-            </div>
-        </form>
+    </div>
 </div>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $( document ).ready(function() {
+// SUBMIT FORM
+        $("#myForm").submit(function(event) {
+            // Prevent the form from submitting via the browser.
+            event.preventDefault();
+            ajaxPost();
+        });
+
+
+        function ajaxPost(){
+            console.log("Register success");
+
+            // PREPARE FORM DATA
+            var formData = {
+                "first_name" : $("#first_name").val(),
+                "last_name" :  $("#last_name").val(),
+                "email" :  $("#email").val(),
+                "password" :  $("#password").val(),
+            }
+
+            // DO POST
+            $.ajax({
+                type : "POST",
+                contentType : "application/json",
+                url : "/api/v1/registration",
+                data : JSON.stringify(formData),
+                dataType : 'json',
+            });
+
+            // Reset FormData after Posting
+            resetData();
+
+        }
+
+        function resetData(){
+            $("#firstname").val("");
+            $("#lastname").val("");
+            $("#email").val();
+            $("#password").val();
+        }
+    });
+</script>
+
+
 </html>

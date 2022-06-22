@@ -1,6 +1,7 @@
 package com.SE1614.Group6.Controller;
 
 import com.SE1614.Group6.Exception.UserNotFoundException;
+import com.SE1614.Group6.Model.RegistrationRequest;
 import com.SE1614.Group6.Model.User;
 import com.SE1614.Group6.Service.UserService;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,12 @@ import java.util.List;
 @AllArgsConstructor
 public class UserController {
     @Autowired private UserService service;
+
+    @GetMapping("/sign-up")
+    public String signup() {
+        return "sign-up";
+    }
+
 
     @GetMapping("/users")
     public String showUserList(Model model){

@@ -1,10 +1,15 @@
 package com.SE1614.Group6.Controller;
 
+import com.SE1614.Group6.Model.RegistrationRequest;
+import com.SE1614.Group6.Model.User;
+import com.SE1614.Group6.Repo.UserRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class WedController {
+    private UserRepository userRepository;
     @GetMapping("/home")
     private String home(){
         return "index";
@@ -44,10 +49,6 @@ public class WedController {
     @GetMapping("/login")
     public String login() {
         return "login";
-    }
-    @GetMapping("/sign-up")
-    public String signup() {
-        return "sign-up";
     }
     @GetMapping("/forgotpassword")
     public String forgotpassword() {

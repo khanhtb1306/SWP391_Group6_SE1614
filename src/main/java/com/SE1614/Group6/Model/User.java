@@ -24,11 +24,11 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     @JoinColumn(name = "role_id",nullable = false)
     private Role role;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     @JoinColumn(name = "status_id",nullable = false)
     private User_status user_status;
 

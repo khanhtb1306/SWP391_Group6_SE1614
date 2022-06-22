@@ -24,11 +24,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/v*/registration/**")
-                .permitAll()
+                .antMatchers("/api/v*/registration/**").permitAll()
+                .antMatchers("/sign-up/**").permitAll()
+                //.antMatchers("/login/**").permitAll()
                 .anyRequest()
                 .authenticated().and()
-                .formLogin();
+                .formLogin().loginPage("/login").permitAll()
+                .defaultSuccessUrl("/login?success=True")
+                .failureUrl("/login?success=false")
+                .loginProcessingUrl("/dologin")
+                .usernameParameter("email")
+                .passwordParameter("password");
+
     }
 
     @Override
