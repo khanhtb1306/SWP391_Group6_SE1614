@@ -57,6 +57,8 @@ public class ProductController {
             Product product = service.getProductById(id);
             model.addAttribute("product",product);
             model.addAttribute("pageTitle","Edit Product ID: "+id);
+            List<Category> listCategories = serviceC.listAll();
+            model.addAttribute("listCategories",listCategories);
             return "product_form";
         } catch (ProductNotFoundException e) {
             ra.addFlashAttribute("message",e.getMessage());
