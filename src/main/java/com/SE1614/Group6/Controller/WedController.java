@@ -1,10 +1,23 @@
 package com.SE1614.Group6.Controller;
 
+import com.SE1614.Group6.Model.Category;
+import com.SE1614.Group6.Model.Product;
+import com.SE1614.Group6.Service.CategoryService;
+import com.SE1614.Group6.Service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Controller
 public class WedController {
+    @Autowired
+    private ProductService serviceP;
+    @Autowired
+    private CategoryService serviceC;
+
     @GetMapping("/home")
     private String home(){
         return "index";
@@ -14,9 +27,14 @@ public class WedController {
         return "about";
     }
     @GetMapping("/shop")
-    public String shop() {
+    public String Shop(Model model){
+        List<Product> listProduct = serviceP.listAllProduct();
+        model.addAttribute("listProduct",listProduct);
+        List<Category> listCategories = serviceC.listAll();
+        model.addAttribute("listCategories",listCategories);
         return "shop";
     }
+
     @GetMapping("/shop-details")
     public String shop_details() {
         return "shop-details";
