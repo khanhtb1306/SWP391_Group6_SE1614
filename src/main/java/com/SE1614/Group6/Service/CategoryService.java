@@ -1,5 +1,7 @@
 package com.SE1614.Group6.Service;
 
+import com.SE1614.Group6.Exception.BlogNotFoundException;
+import com.SE1614.Group6.Exception.CategoryNotFoundException;
 import com.SE1614.Group6.Model.Category;
 import com.SE1614.Group6.Model.User;
 import com.SE1614.Group6.Repo.CategoryRepository;
@@ -22,7 +24,15 @@ public class CategoryService {
         repo.save(category);
     }
 
-    public Category getByid(Integer id){
-        return repo.getByid(id);
+    public Category getById(Integer id){
+        return repo.getById(id);
+    }
+
+    public void delete(Integer id) throws CategoryNotFoundException {
+        Long count = repo.countById(id);
+        if(count == null || count == 0){
+            throw new CategoryNotFoundException("Could not find any category with ID " + id);
+        }
+        repo.deleteById(id);
     }
 }

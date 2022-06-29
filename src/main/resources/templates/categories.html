@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <title>Manage Users</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+    <th:block th:replace="fragments/meta_head :: meta_head"></th:block>
 </head>
 <body>
 <div class="container-fluid text-center">
+    <div th:include="fragments/header:: header"></div>
     <div><h2>Category List</h2></div>
     <div>
-        <a th:href="@{/categories/new}">New Category</a>
+        <div><a th:href="@{/categories/new}">New Category</a></div>
+        <div><a th:href="@{/manage-blogs}">Back to Manage Blogs</a></div>
     </div>
     <div>
         <table class="table table-bordered">
@@ -17,6 +20,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Value</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +28,9 @@
                     <tr>
                         <td>[[${category.id}]]</td>
                         <td>[[${category.value}]]</td>
+                        <td>
+                            <a class="h4" th:href="@{'/categories/delete/' + ${category.id}}">Delete</a>
+                        </td>
                     </tr>
                 </th:block>
             </tbody>

@@ -4,9 +4,16 @@
   <meta charset="UTF-8">
   <title>Manage Users</title>
   <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+  <th:block th:replace="fragments/meta_head :: meta_head"></th:block>
 </head>
 <body>
 <div class="container-fluid text-center">
+  <!-- Offcanvas Menu Begin -->
+  <!-- Offcanvas Menu End -->
+
+  <!-- Header Section Begin -->
+  <div th:include="fragments/header:: header"></div>
+  <!-- Header Section End -->
   <div><h2>Create new Blog</h2></div>
 
   <form th:action="@{/blogs/save}" th:object="${blog}" method="post" style="max-width: 600px;margin : 0 auto;">
@@ -71,11 +78,17 @@
           <input type="text" th:field="*{content}" class="form-control" required/>
         </div>
       </div>
-      <div class="">
-        <button type="submit" class="btn btn-primary"> Save </button>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary m-2">Save</button>
+        <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
       </div>
     </div>
   </form>
 </div>
+<script type= "text/javascript">
+  function cancelForm(){
+    window.location="[[@{/manage-blogs}]]"
+  }
+</script>
 </body>
 </html>
