@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>[[${pageTitle}]]</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+		  rel="stylesheet"
+		  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+		  crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid">
+	<div class="text-center"><h2>[[${pageTitle}]]</h2></div>
+	<form th:action="@{/product/save}" method="post" th:object="${product}" style="margin: 0 auto;max-width: 500px;">
+		<input type="hidden" th:field="*{id}"/>
+		<div class="border border-secondary rounded p-3">
+			<div class="form-group row">
+				<label class="col-sm-4 col-form-label">Product_detail:</label>
+				<div class="col-sm-8">
+					<input type="text" th:field="*{product_detail}" class="form-control" required maxlength="45" minlength="8"/>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-4 col-form-label">Detail:</label>
+				<div class="col-sm-8">
+					<input type="text" th:field="*{detail}" class="form-control" required maxlength="45" minlength="8"/>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-4 col-form-label">Images:</label>
+				<div class="col-sm-8">
+					<input type="text" th:field="*{images}" class="form-control" required maxlength="45" minlength="8"/>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-4 col-form-label">Name:</label>
+				<div class="col-sm-8">
+					<input type="text" th:field="*{name}" class="form-control" required maxlength="45" minlength="8"/>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-4 col-form-label">original_price:</label>
+				<div class="col-sm-8">
+					<input type="number" th:field="*{original_price}" class="form-control" required maxlength="45" minlength="2"/>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-4 col-form-label">quantity:</label>
+				<div class="col-sm-8">
+					<input type="number" th:field="*{quantity}" class="form-control" required maxlength="45" minlength="8"/>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-4 col-form-label">sale_price:</label>
+				<div class="col-sm-8">
+					<input type="number" th:field="*{sale_price}" class="form-control" required maxlength="45" minlength="8"/>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-4 col-form-label">title:</label>
+				<div class="col-sm-8">
+					<input type="text" th:field="*{title}" class="form-control" required maxlength="45" minlength="8"/>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-4 col-form-label">update_date:</label>
+				<div class="col-sm-8">
+					<input type="date" th:field="*{update_date}" class="form-control" required maxlength="45" minlength="8"/>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-4 col-form-label">Category:</label>
+				<div class="col-sm-8">
+					<select name="category" th:field="*{category}">
+						<option th:each="category : ${listCategories}"
+								th:value="${category.id}" th:text="${category.value}"></option>
+					</select>
+				</div>
+			</div>
+			<div class="text-center">
+				<button type="submit" class="btn btn-primary m-2">Save</button>
+				<button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
+			</div>
+		</div>
+	</form>
+</div>
+<script type= "text/javascript">
+	function cancelForm(){
+		window.location="[[@{/product}]]"
+	}
+</script>
+</body>
+</html>

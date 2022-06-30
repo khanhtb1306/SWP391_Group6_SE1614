@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -36,7 +36,7 @@ public class Product {
     private Integer original_price;
 
     @Column
-    private String Product_detail;
+    private String product_detail;
 
     @Column
     private String detail;
