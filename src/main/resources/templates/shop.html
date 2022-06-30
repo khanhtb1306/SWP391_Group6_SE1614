@@ -70,8 +70,8 @@
                 <div class="col-lg-3">
                     <div class="shop__sidebar">
                         <div class="shop__sidebar__search">
-                            <form action="#">
-                                <input type="text" placeholder="Search...">
+                            <form th:action="@{/shop/search?name=${name}}" method="get">
+                                <input type="text" placeholder="Search..." id="name" name="name" size="50" th:value="${name}">
                                 <button type="submit"><span class="icon_search"></span></button>
                             </form>
                         </div>

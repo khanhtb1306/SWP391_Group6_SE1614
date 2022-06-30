@@ -8,10 +8,15 @@ import com.SE1614.Group6.Service.CategoryService;
 import com.SE1614.Group6.Service.FeedbackService;
 import com.SE1614.Group6.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -49,4 +54,18 @@ import java.util.List;
             return "redirect:/product";
         }
 
+
+        @GetMapping("/shop/search")
+        public String search(Model model, @RequestParam(name = "name", required = false) String name) {
+            List<Product> search = null;
+            if (StringUtils.hasText(name)) {
+                search = service.search(name);
+            } else {
+                search = service.listAllProduct();
+            }
+            model.addAttribute("listProduct", search);
+            List<Category> listCategories = serviceC.listAll();
+            model.addAttribute("listCategories",listCategories);
+            return "shop";
+        }
     }
