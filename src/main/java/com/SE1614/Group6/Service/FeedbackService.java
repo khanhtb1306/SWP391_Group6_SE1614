@@ -12,11 +12,10 @@ public class FeedbackService {
         return (List<Feedback>) repo.findAll();
     }
 
-    public void save(Feedback feedback) {
+    public void saveFeedback(Feedback feedback) {
         repo.save(feedback);
     }
+    public List<Feedback> findFeedbackByUserId(int id){return (List<Feedback>) repo.findFeedbackByUserId(id);}
 
-
-
-
+    public List<Feedback> findFeedbackByProductId(int id){return (List<Feedback>) repo.findFeedbackByProductId(id);}
 }

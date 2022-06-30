@@ -19,15 +19,15 @@ import java.util.List;
 
 @Controller
 public class CategoryController {
-    @Autowired
-    private CategoryService service;
+        @Autowired
+        private CategoryService service;
 
-    @GetMapping("/categories")
-    public String listCategories(Model model){
-        List<Category> listCategories = service.listAll();
-        model.addAttribute("listCategories",listCategories);
-        return "categories";
-    }
+        @GetMapping("/categories")
+        public String listCategories(Model model){
+            List<Category> listCategories = service.listAll();
+            model.addAttribute("listCategories",listCategories);
+            return "categories";
+        }
 
     @GetMapping("/categories/new")
     public String showCategoryNewForm(Model model){

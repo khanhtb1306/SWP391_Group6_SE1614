@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Feedback</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div><h2>Manage Feedback</h2></div>
+    <div class="mr-2">
+        <a class="h3" th:href="@{/feedback/new}">Add New Feedback</a>
+    </div>
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>comment</th>
+                <th>star</th>
+                <th>product</th>
+                <th>user</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="feedback : ${listFeedback}">
+                <tr>
+                    <td>[[${feedback.id}]]</td>
+                    <td>[[${feedback.comment}]]</td>
+                    <td>[[${feedback.star}]]</td>
+                    <td>[[${feedback.Product.name}]]</td>
+                    <td>[[${feedback.User.user_name}]]</td>
+
+
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
