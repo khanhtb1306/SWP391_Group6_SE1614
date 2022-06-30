@@ -18,22 +18,22 @@ import java.util.Optional;
 public class UserRepositoryTest {
     @Autowired private UserRepository repo;
 
-//    @Test
-//    public void testAddUser(){
-//        User user=new User();
-//        user.setAddress("Moon");
-//        user.setAvatar("http://localhost");
-//        user.setEmail("lmaolmado@gmail.com");
-//        user.setGender("nam");
-//        user.setPassword("lmao");
-//        user.setPhone("1234567890");
-//        user.setUsername("lmao");
-//
-//        User savedUser=repo.save(user);
-//
-//        Assertions.assertThat(savedUser).isNotNull();
-//        Assertions.assertThat(savedUser.getId()).isGreaterThan(0);
-//    }
+    @Test
+    public void testAddUser(){
+        User user=new User();
+        user.setAddress("Moon");
+        user.setAvatar("http://localhost");
+        user.setEmail("lmaolmado@gmail.com");
+        user.setGender("nam");
+        user.setPassword("lmao");
+        user.setPhone("1234567890");
+        user.setUser_name("lmao");
+        user.setFull_name("LvanMao");
+        User savedUser=repo.save(user);
+
+        Assertions.assertThat(savedUser).isNotNull();
+        Assertions.assertThat(savedUser.getId()).isGreaterThan(0);
+    }
 
     @Test
     public void testListAll(){
