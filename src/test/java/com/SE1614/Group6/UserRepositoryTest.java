@@ -21,13 +21,14 @@ public class UserRepositoryTest {
 //    @Test
 //    public void testAddUser(){
 //        User user=new User();
-//        user.setAddress("Moon");
-//        user.setAvatar("http://localhost");
-//        user.setEmail("lmaolmado@gmail.com");
-//        user.setGender("nam");
-//        user.setPassword("lmao");
-//        user.setPhone("1234567890");
-//        user.setUsername("lmao");
+//        user.setAddress("HL");
+//        user.setAvatar("1.png");
+//        user.setEmail("khanhbao@gmail.com");
+//        user.getFirst_name("Trinh");
+//        user.getLast_name("Bao");
+//        user.getPassword("12345678");
+//        user.getPhone("0123456");
+//
 //
 //        User savedUser=repo.save(user);
 //
@@ -47,7 +48,7 @@ public class UserRepositoryTest {
 
     @Test
     public void testUpdate(){
-        Integer id=3;
+        Integer id=8;
         Optional<User> optionalUser = repo.findById(id);
         User user=optionalUser.get();
         user.setPassword("you have been changed");
@@ -59,7 +60,7 @@ public class UserRepositoryTest {
 
     @Test
     public void testGet(){
-        Integer id=4;
+        Integer id=8;
         Optional<User> optionalUser = repo.findById(id);
         Assertions.assertThat(optionalUser).isPresent();
         System.out.println(optionalUser);
@@ -67,7 +68,7 @@ public class UserRepositoryTest {
 
     @Test
     public void testDelete(){
-        Integer id=3;
+        Integer id=8;
         repo.deleteById(id);
         Optional<User> optionalUser = repo.findById(id);
         Assertions.assertThat(optionalUser).isNotPresent();

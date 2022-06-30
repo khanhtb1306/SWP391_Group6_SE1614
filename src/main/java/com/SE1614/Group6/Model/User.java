@@ -50,8 +50,8 @@ public class User implements UserDetails {
     @Column
     private Boolean enabled = false;
 
-    @Column
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender Gender;
 
     @Column
     private String phone;
@@ -70,6 +70,13 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "sale")
     private Set<Order> sale_User;
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (avatar == null || id == null) return null;
+
+        return "/user_avatar/" + id + "/" + avatar;
+    }
 
     public User( String first_name, String last_name, String password, String email, Role role) {
         this.first_name = first_name;
@@ -98,10 +105,6 @@ public class User implements UserDetails {
 
     public String getFirst_name() {
         return first_name;
-    }
-
-    public String getLast_name() {
-        return last_name;
     }
 
     @Override

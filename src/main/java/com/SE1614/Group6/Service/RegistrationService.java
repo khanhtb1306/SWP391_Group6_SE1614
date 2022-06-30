@@ -1,7 +1,6 @@
 package com.SE1614.Group6.Service;
 
 import com.SE1614.Group6.Email.EmailValidator;
-import com.SE1614.Group6.Email.email.EmailSender;
 import com.SE1614.Group6.Email.email.EmailService;
 import com.SE1614.Group6.Email.token.ConfirmationToken;
 import com.SE1614.Group6.Email.token.ConfirmationTokenService;

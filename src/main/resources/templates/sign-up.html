@@ -1,250 +1,105 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en">
 <head>
-    <title>Register</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <title>Register | Hyper - Responsive Bootstrap 5 Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <!-- App favicon -->
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-----------------------------------Roboto Font--------------------------------->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
-    <!-------------------------------------------------------------------------------->
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+    <!-- App css -->
+    <link th:href="@{/assets/css/icons.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/app.min.css}"  rel="stylesheet" type="text/css" id="light-style">
+    <link th:href="@{/assets/css/app-dark.min.css}"  rel="stylesheet" type="text/css" id="dark-style">
 
-    <!-------------------------------------------------------------------------------->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 </head>
-<style>
 
-    body{
-        height: 100vh;
-        background: #007bff !important;
-        display: flex;
-    }
+<body class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
 
-    .container{
-        margin-top: 3rem;
-    }
-    .card{
-        overflow: hidden;
-        border: 0 !important;
-        border-radius: 20px !important;
-        box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-    }
-
-
-    .img-left{
-        width: 45%;
-        background-size: cover;
-    }
-
-    .card-body{
-        padding: 2rem;
-    }
-
-    .title{
-        margin-bottom: 2rem;
-        font-family: 'Poppins', sans-serif;
-        font-size: 2rem !important;
-    }
-
-    .form-input{
-        position: relative;
-    }
-
-    .form-input input{
-        width: 100%;
-        height: 45px;
-        padding-left: 40px;
-        margin-bottom: 20px;
-        box-sizing: border-box;
-        box-shadow: none;
-        border: 1px solid #00000020;
-        border-radius: 50px;
-        outline: none;
-        background: transparent;
-    }
-
-    .form-input span{
-        position: absolute;
-        top: 10px;
-        padding-left: 15px;
-        color: #007bff;
-    }
-
-    .form-input input::placeholder{
-        color: black;
-        padding-left: 0px;
-    }
-
-    .form-input input:focus, .form-input input:valid{
-        border: 2px solid #007bff;
-    }
-
-    .form-input input:focus::placeholder{
-        color: #454b69;
-    }
-
-    .form-radio{
-        position: relative;
-    }
-
-    .form-radio input{
-        width: 5%;
-        height: 15px;
-        padding-left: 40px;
-        margin-bottom: 20px;
-        margin-left: 40px;
-        box-sizing: border-box;
-        box-shadow: none;
-        border: 1px solid #00000020;
-        border-radius: 50px;
-        outline: none;
-        background: transparent;
-    }
-
-    .form-radio span{
-        position: absolute;
-        top: 0px;
-        padding-left: 15px;
-        color: #007bff;
-    }
-
-    .form-radio input::placeholder{
-        color: black;
-        padding-left: 0px;
-    }
-
-    .form-radio input:focus, .form-radio input:valid{
-        border: 2px solid #007bff;
-    }
-
-    .form-radio input:focus::placeholder{
-        color: #454b69;
-    }
-
-    .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before{
-        background-color: #007bff !important;
-        border: 0px;
-    }
-
-    .form-box button[type="submit"]{
-        margin-top: 10px;
-        border: none;
-        cursor: pointer;
-        border-radius: 50px;
-        background: #007bff;
-        color: #fff;
-        font-size: 90%;
-        font-weight: bold;
-        letter-spacing: .1rem;
-        transition: 0.5s;
-        padding: 12px;
-    }
-
-    .form-box button[type="submit"]:hover{
-        background: #0069d9;
-    }
-
-    .forget-link, .register-link{
-        color: #007bff;
-        font-weight: bold;
-    }
-
-    .forget-link:hover, .register-link:hover{
-        color: #0069d9;
-        text-decoration: none;
-    }
-
-    .alert {
-        padding: 5px;
-        background-color: white;
-        color: #f44336;
-    }
-
-    .closebtn {
-        margin-left: 15px;
-        color: #f44336;
-        font-weight: bold;
-        float: right;
-        font-size: 22px;
-        line-height: 20px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .closebtn:hover {
-        color: black;
-    }
-</style>
-<body>
-<div class="container">
-    <div class="row px-3 ">
-        <div class="col-lg-10 col-xl-9 card flex-row mx-auto px-0">
-
-            <div class="card-body ml-2">
-                <h4 class="title text-center mt-4">
-                    Register
-                </h4>
-                <form class="form-box px-3 pl-5" id="myForm">
-                    <div class="alert">
-                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                        Indicates a dangerous or potentially negative action.
-                    </div>
-                    <div class="form-input">
-                        <span><i class="fa fa-user"></i></span>
-                        <input type="text" name="first_name"  id="first_name"  placeholder="First Name" tabindex="10" required>
-                    </div>
-                    <div class="form-input">
-                        <span><i class="fa fa-user"></i></span>
-                        <input type="text" name="last_name" id="last_name"  placeholder="Last Name" tabindex="10" required>
-                    </div>
-                    <div class="form-input">
-                        <span><i class="fa fa-envelope-o"></i></span>
-                        <input type="email" name="email"  id="email" placeholder="Email Address" tabindex="10" required>
-                    </div>
-                    <div class="form-input">
-                        <span><i class="fa fa-key"></i></span>
-                        <input type="password" name="password" id="password" placeholder="Password" required>
-                    </div>
-                    <!--                    <div class="form-input">-->
-                    <!--                        <span><i class="fa fa-key"></i></span>-->
-                    <!--                        <input type="password" name="re-password" placeholder="Confirm Password" required>-->
-                    <!--                    </div>-->
-
-                    <!--                    <div class="form-radio">-->
-                    <!--                        <span><i class="fa fa-transgender"></i></span>-->
-                    <!--                        <input type="radio" name="gender" placeholder="Gender" tabindex="10" required> Male-->
-                    <!--                        <input type="radio" name="gender" placeholder="Gender" tabindex="10" required> Female-->
-                    <!--                    </div>-->
-
-
-
-                    <div class="mb-3">
-                        <button type="Submit"  class="btn btn-block text-uppercase">
-                            Register
-                        </button>
-                    </div>
-
-                    <hr class="my-4">
-
-                    <div class="text-center mb-2">
-                        If you have account?
-                        <a href="/login" class="register-link">
-                            Login here
+<div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xxl-4 col-lg-5">
+                <div class="card">
+                    <!-- Logo-->
+                    <div class="card-header pt-4 pb-4 text-center bg-primary">
+                        <a href="index.html">
+                            <span><img src="#" alt="" height="18"></span>
                         </a>
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-</body>
 
+                    <div class="card-body p-4">
+
+                        <div class="text-center w-75 m-auto">
+                            <h4 class="text-dark-50 text-center mt-0 fw-bold">Free Sign Up</h4>
+                            <p class="text-muted mb-4">Don't have an account? Create your account, it takes less than a minute </p>
+                        </div>
+
+                        <form id="myForm">
+
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label">First Name</label>
+                                <input class="form-control" type="text" name="first_name"  id="first_name" placeholder="Enter your first name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="last_name" class="form-label">Last Name</label>
+                                <input class="form-control" type="text" name="last_name"  id="last_name"placeholder="Enter your last name" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <input class="form-control" type="email" id="email" name="email" required placeholder="Enter your email">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="input-group input-group-merge">
+                                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password">
+                                    <div class="input-group-text" data-password="false">
+                                        <span class="password-eye"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="checkbox-signup">
+                                    <label class="form-check-label" for="checkbox-signup">I accept <a href="#" class="text-muted">Terms and Conditions</a></label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 text-center">
+                                <button class="btn btn-primary" type="submit"> Sign Up </button>
+                            </div>
+
+                        </form>
+                    </div> <!-- end card-body -->
+                </div>
+                <!-- end card -->
+
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <p class="text-muted">Already have account? <a th:href="@{login}" class="text-muted ms-1"><b>Log In</b></a></p>
+                    </div> <!-- end col-->
+                </div>
+                <!-- end row -->
+
+            </div> <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+</div>
+<!-- end page -->
+
+<footer class="footer footer-alt">
+
+</footer>
+
+<!-- bundle -->
+<script src="assets/js/vendor.min.js"></script>
+<script src="assets/js/app.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     $( document ).ready(function() {
@@ -274,7 +129,10 @@
                 url : "/api/v1/registration",
                 data : JSON.stringify(formData),
                 dataType : 'json',
+
             });
+
+            window.location = "http://localhost:8080/pages-confirm-mail";
 
             // Reset FormData after Posting
             resetData();
@@ -290,5 +148,5 @@
     });
 </script>
 
-
+</body>
 </html>

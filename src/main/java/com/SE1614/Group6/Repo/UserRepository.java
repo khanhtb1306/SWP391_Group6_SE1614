@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-//    public Long countById(Integer id);
+    public Long countById(Integer id);
     Optional<User> findByEmail(String email);
 
     @Transactional
