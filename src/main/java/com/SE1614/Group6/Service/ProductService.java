@@ -1,6 +1,7 @@
 package com.SE1614.Group6.Service;
 
 import com.SE1614.Group6.Exception.ProductNotFoundException;
+import com.SE1614.Group6.Model.Blog;
 import com.SE1614.Group6.Model.Feedback;
 
 import com.SE1614.Group6.Model.Product;
@@ -46,11 +47,18 @@ public class ProductService {
         repo.deleteById(id);
     }
 
-    @Query(value = "select * from Product where " +
+    /*@Query(value = "select * from Product where " +
             "MATCH(name,original_price) " +
             "AGAINST (?1)", nativeQuery = true)
     public List<Product> search(String keyword) {
         return repo.search(keyword);
+    }*/
+
+    public List<Product> searchByName(String name){
+        if(name !=null){
+            return repo.findProductByNameContaining(name);
+        }
+        return (List<Product>) repo.findAll();
     }
 
     public List<Product> findByCategoryContaining(String category) {

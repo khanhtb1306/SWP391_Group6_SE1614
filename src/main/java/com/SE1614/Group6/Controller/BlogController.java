@@ -97,7 +97,7 @@ public class BlogController {
     }
 
     @GetMapping("/blog/category/{id}")
-    public String showBlogWithCategory(@PathVariable("id") Integer id,Model model) throws BlogNotFoundException {
+    public String showBlogWithCategory(@PathVariable("id") Integer id,Model model){
         Category filter = cateService.getById(id);
         List<Blog> listBlogs = service.listAllWithCategory(filter);
         List<Category> listCategories = cateService.listAll();
@@ -108,7 +108,7 @@ public class BlogController {
     }
 
     @GetMapping("/blog/search")
-    public String showBlogWithCategory(@RequestParam("title") String title, Model model) throws BlogNotFoundException {
+    public String showBlogWithCategory(@RequestParam("title") String title, Model model) {
         List<Blog> listBlogs = service.searchByTitle(title);
         List<Category> listCategories = cateService.listAll();
         model.addAttribute("listCategories",listCategories);

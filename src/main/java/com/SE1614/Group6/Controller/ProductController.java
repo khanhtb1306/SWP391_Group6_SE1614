@@ -53,7 +53,7 @@ import java.util.List;
 
     @PostMapping("/product/save")
     public String saveProduct(Product product,RedirectAttributes ra){
-        service.save(product);
+        service.saveProduct(product);
         ra.addFlashAttribute("message","product saved successfully!");
         return "redirect:/product";
     }
@@ -85,13 +85,8 @@ import java.util.List;
 
     @GetMapping("/shop/search")
     public String search(Model model, @RequestParam(name = "name", required = false) String name) {
-        List<Product> search = null;
-        if (StringUtils.hasText(name)) {
-            search = service.search(name);
-        } else {
-            search = service.listAllProduct();
-        }
-        model.addAttribute("listProduct", search);
+        List<Product> listProduct = service.searchByName(name);
+        model.addAttribute("listProduct",listProduct);
         List<Category> listCategories = serviceC.listAll();
         model.addAttribute("listCategories",listCategories);
         return "shop";
