@@ -11,9 +11,6 @@ import java.util.List;
 @Repository
 public interface BlogRepository extends CrudRepository<Blog, Integer> {
     public Long countById(Integer id);
-
     public List<Blog> getBlogByCategory(Category cat);
-
-
     public List<Blog> findBlogByTitleContaining(String keyword);
 }
