@@ -152,7 +152,7 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="checkout__order">
                                 <h4 class="order__title">Your order</h4>
-                                <div class="checkout__order__products">Product <span>Total</span></div>
+                                <div class="checkout__order__products">Quantity Product <span th:text="${session.quantity}"></span></div>
                                 <ul th:each="o : ${LIST_OD}" class="checkout__total__products">
                                     <th:block th:each="p :${LIST_P}">
 
@@ -164,8 +164,8 @@
 <!--                                    <li>04. Cluten free mini dozen <span>$ 110.0</span></li>-->
                                 </ul>
                                 <ul class="checkout__total__all">
-                                    <li>Subtotal <span th:text="${#numbers.formatCurrency(TOTAL)}"></span></li>
-                                    <li>Total <span th:text="${#numbers.formatCurrency(TOTAL)}"></span></li>
+                                    <li>Subtotal <span th:text="${#numbers.formatCurrency(session.total)}"></span></li>
+                                    <li>Total <span th:text="${#numbers.formatCurrency(session.total)}"></span></li>
                                 </ul>
                                 <div class="checkout__input__checkbox">
                                     <label for="acc-or">
