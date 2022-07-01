@@ -487,8 +487,8 @@
                                                 </td>
 
                                                 <td>
-                                                    <span class="badge badge-success-lighten" th:if = "${user.locked} == 'False'" th:text="Active" />
-                                                    <span class="badge badge-danger-lighten" th:unless = "${user.locked} == 'False'" th:text="Blocked" />
+                                                    <span class="badge badge-success-lighten" th:if = "${user.locked} == false" th:text="Active" />
+                                                    <span class="badge badge-danger-lighten" th:unless = "${user.locked} == false " th:text="Blocked" />
                                                 </td>
 
                                                 <td>

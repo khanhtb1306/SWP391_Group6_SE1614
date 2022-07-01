@@ -6,6 +6,7 @@ import com.SE1614.Group6.Model.User;
 import com.SE1614.Group6.Service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -50,6 +51,11 @@ public class UserController {
     @PostMapping("/admin/admin_customers/save")
     public String SaveCustomer(@ModelAttribute(name="customer") User user, RedirectAttributes ra,
                                @RequestParam("fileImage")MultipartFile multipartFile) throws IOException {
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encodedPassword = encoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         user.setAvatar(fileName);
         User user1 = service.save(user);
