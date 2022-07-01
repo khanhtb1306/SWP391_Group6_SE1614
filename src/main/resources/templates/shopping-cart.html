@@ -82,11 +82,12 @@
                             <tbody>
                                 <tr th:each="od : ${LIST_OD}">
                                     <td class="product__cart__item">
-                                        <div class="product__cart__item__pic">
-                                            <img src="img/shopping-cart/cart-1.jpg" alt="">
-                                        </div>
+
                                         <th:block  th:each="p : ${LIST_P}">
                                         <div class="product__cart__item__text" th:if="${od.product.id == p.id}">
+                                            <div class="product__cart__item__pic">
+                                                <img th:src="${p.images}" alt="" width="90" height="90">
+                                            </div>
                                             <h6>[[${p.name}]]</h6>
                                             <h5>[[${#numbers.formatCurrency(od.unit_price)}]]</h5>
                                         </div>
