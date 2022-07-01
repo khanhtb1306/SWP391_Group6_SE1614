@@ -14,26 +14,9 @@ import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)//test real database
-/*@Rollback(false)*///let data not update in database
+
 public class UserRepositoryTest {
     @Autowired private UserRepository repo;
-
-    /*@Test
-    public void testAddUser(){
-        User user=new User();
-        user.setAddress("Moon");
-        user.setAvatar("http://localhost");
-        user.setEmail("lmaolmado@gmail.com");
-        user.setGender("nam");
-        user.setPassword("lmao");
-        user.setPhone("1234567890");
-        user.setUser_name("lmao");
-        user.setFull_name("LvanMao");
-        User savedUser=repo.save(user);
-
-        Assertions.assertThat(savedUser).isNotNull();
-        Assertions.assertThat(savedUser.getId()).isGreaterThan(0);
-    }*/
 
     @Test
     public void testListAll(){
@@ -75,4 +58,26 @@ public class UserRepositoryTest {
         Optional<User> optionalUser = repo.findById(id);
         Assertions.assertThat(optionalUser).isNotPresent();
     }
+
+//    @Test
+//    public void testAddUser(){
+//        User user=new User();
+//        user.setAddress("HL");
+//        user.setAvatar("1.png");
+//        user.setEmail("khanhbao@gmail.com");
+//        user.getFirst_name("Trinh");
+//        user.getLast_name("Bao");
+//        user.getPassword("12345678");
+//        user.getPhone("0123456");
+//
+//
+//        User savedUser=repo.save(user);
+//
+//        Assertions.assertThat(savedUser).isNotNull();
+//        Assertions.assertThat(savedUser.getId()).isGreaterThan(0);
+//    }
+
+
+
+
 }

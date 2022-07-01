@@ -29,12 +29,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/forgot_pass/**").permitAll()
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/home", "/css/**", "/js/**", "/img/**", "/fonts/**", "/sass/**", "/Source/**").permitAll()
-                //.antMatchers("/login/**").permitAll()
+                .antMatchers("/login/**").permitAll()
+//                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+
                 .anyRequest()
                 .authenticated().and()
                 .formLogin().loginPage("/login").permitAll()
-                .defaultSuccessUrl("/login?success=True")
-                .failureUrl("/login?success=false")
+//                .defaultSuccessUrl("/login?success=True")
+//                .failureUrl("/login?success=false")
                 .loginProcessingUrl("/dologin")
                 .usernameParameter("email")
                 .passwordParameter("password");
