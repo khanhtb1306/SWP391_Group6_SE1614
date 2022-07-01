@@ -25,25 +25,25 @@ public class User implements UserDetails {
     private Integer id;
 
     @Enumerated(EnumType.STRING)
-    @JoinColumn(name = "role_id",nullable = false)
+    @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
     @Enumerated(EnumType.STRING)
-    @JoinColumn(name = "status_id",nullable = false)
+    @JoinColumn(name = "status_id", nullable = false)
     private User_status user_status;
 
 
-    @Column(nullable = false,length = 45)
+    @Column(nullable = false, length = 45)
     private String first_name;
 
-    @Column(nullable = false,length = 45)
+    @Column(nullable = false, length = 45)
     private String last_name;
 
-    @Column(length = 255,nullable = false)
+    @Column(length = 255, nullable = false)
     private String password;
 
 
-    @Column(nullable = false,unique = true,length = 45)
+    @Column(nullable = false, unique = true, length = 45)
     private String email;
 
     @Column
@@ -79,7 +79,7 @@ public class User implements UserDetails {
         return "/user_avatar/" + id + "/" + avatar;
     }
 
-    public User( String first_name, String last_name, String password, String email, Role role) {
+    public User(String first_name, String last_name, String password, String email, Role role) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.password = password;
@@ -126,4 +126,5 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
 }
