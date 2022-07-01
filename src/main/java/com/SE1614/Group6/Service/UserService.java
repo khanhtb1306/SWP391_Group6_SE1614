@@ -17,8 +17,9 @@ public class UserService {
         return (List<User>) repo.findAll();
     }
 
-    public void save(User user) {
-        repo.save(user);
+    public User save(User user) {
+        User user1 = repo.save(user);
+        return user1;
     }
 
     public User get(Integer id) throws UserNotFoundException {

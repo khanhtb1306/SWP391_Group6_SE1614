@@ -18,7 +18,7 @@ import java.util.Optional;
 public class UserRepositoryTest {
     @Autowired private UserRepository repo;
 
-    @Test
+    /*@Test
     public void testAddUser(){
         User user=new User();
         user.setAddress("Moon");
@@ -33,17 +33,18 @@ public class UserRepositoryTest {
 
         Assertions.assertThat(savedUser).isNotNull();
         Assertions.assertThat(savedUser.getId()).isGreaterThan(0);
-    }
+    }*/
 
     @Test
     public void testListAll(){
         Iterable<User> users = repo.findAll();
         Assertions.assertThat(users).hasSizeGreaterThan(0);
+
     }
 
     @Test
     public void testUpdate(){
-        Integer id=4;
+        Integer id=3;
         Optional<User> optionalUser = repo.findById(id);
         User user=optionalUser.get();
         user.setPassword("you have been changed");

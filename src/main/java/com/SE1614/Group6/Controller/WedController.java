@@ -55,10 +55,6 @@ public class WedController {
     public String login() {
         return "login";
     }
-    @GetMapping("/sign-up")
-    public String signup() {
-        return "sign-up";
-    }
     @GetMapping("/forgotpassword")
     public String forgotpassword() {
         return "forgotpassword";
