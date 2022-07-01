@@ -1,15 +1,23 @@
 package com.SE1614.Group6.Controller;
 
-import com.SE1614.Group6.Model.RegistrationRequest;
-import com.SE1614.Group6.Model.User;
-import com.SE1614.Group6.Repo.UserRepository;
+import com.SE1614.Group6.Model.Category;
+import com.SE1614.Group6.Model.Product;
+import com.SE1614.Group6.Service.CategoryService;
+import com.SE1614.Group6.Service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 @Controller
 public class WedController {
-    private UserRepository userRepository;
+    @Autowired
+    private ProductService serviceP;
+    @Autowired
+    private CategoryService serviceC;
+
     @GetMapping("/home")
     private String home(){
         return "index";
@@ -19,28 +27,25 @@ public class WedController {
         return "about";
     }
     @GetMapping("/shop")
-    public String shop() {
+    public String Shop(Model model){
+        List<Product> listProduct = serviceP.listAllProduct();
+        model.addAttribute("listProduct",listProduct);
+        List<Category> listCategories = serviceC.listAll();
+        model.addAttribute("listCategories",listCategories);
         return "shop";
     }
-    @GetMapping("/shop_details")
+
+    @GetMapping("/shop-details")
     public String shop_details() {
         return "shop-details";
     }
-    @GetMapping("/shopping_cart")
+    @GetMapping("/shopping-cart")
     public String shopping_cart() {
         return "shopping-cart";
     }
     @GetMapping("/checkout")
     public String checkout() {
         return "checkout";
-    }
-    @GetMapping("/blog_details")
-    public String blog_details() {
-        return "blog-details";
-    }
-    @GetMapping("/blog")
-    public String blog() {
-        return "blog";
     }
     @GetMapping("/contact")
     public String contact() {

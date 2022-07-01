@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +22,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(name = "name")
     private String name;
 
     @Column
@@ -36,7 +36,7 @@ public class Product {
     private Integer original_price;
 
     @Column
-    private String Product_detail;
+    private String product_detail;
 
     @Column
     private String detail;
@@ -52,6 +52,5 @@ public class Product {
 
     @Column(nullable = false)
     private Date update_date;
-
 
 }

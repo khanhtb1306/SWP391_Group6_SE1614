@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)//test real database
+
 public class UserRepositoryTest {
     @Autowired private UserRepository repo;
 
@@ -22,14 +23,11 @@ public class UserRepositoryTest {
         Iterable<User> users = repo.findAll();
         Assertions.assertThat(users).hasSizeGreaterThan(0);
 
-        for(User user:users){
-            System.out.println(user);
-        }
     }
 
     @Test
     public void testUpdate(){
-        Integer id=8;
+        Integer id=3;
         Optional<User> optionalUser = repo.findById(id);
         User user=optionalUser.get();
         user.setPassword("you have been changed");
@@ -38,16 +36,24 @@ public class UserRepositoryTest {
         User updatedUser=repo.findById(id).get();
         Assertions.assertThat(updatedUser.getPassword()).isEqualTo("you have been changed");
     }
+
     @Test
     public void testGet(){
-        Integer id=8;
+        Integer id=1;
         Optional<User> optionalUser = repo.findById(id);
         Assertions.assertThat(optionalUser).isPresent();
-        System.out.println(optionalUser);
     }
+
+    @Test
+    public void testGetNotExist(){
+        Integer id=100;
+        Optional<User> optionalUser = repo.findById(id);
+        Assertions.assertThat(optionalUser).isNotPresent();
+    }
+
     @Test
     public void testDelete(){
-        Integer id=8;
+        Integer id=4;
         repo.deleteById(id);
         Optional<User> optionalUser = repo.findById(id);
         Assertions.assertThat(optionalUser).isNotPresent();

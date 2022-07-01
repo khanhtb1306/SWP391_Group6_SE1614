@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+}
+.menu-bar{
+    background-image: linear-gradient(90deg, #f2fcfe, #1c92d2);
+}
+.nav-link{
+    font-size: 16px;
+    margin: 3px;
+    color: #fff !important;
+    font-weight: 500;
+}
+.navbar-nav{
+    text-align: right;
+    margin-right: 20px;
+}
+.menu-bar .navbar-toggler{
+    padding-right: 20px;
+    outline: none!important;
+    border: none!important;
+}
+.navbar .fa{
+    color: #ffffff;
+    font-size: 30px;
+}
+.nav-link:hover {
+    font-weight: 600;
+    border-bottom: 1px solid #fff;
+}
+.navbar-brand img {
+    width: 150px;
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+body{
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: auto;
+}
+
+.home_content{
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 78px);
+    left: 78px;
+    transition: all 0.5s ease;
+}
+/*Custom*/
+.main-color-bg{
+    background-color: #517dde !important;
+    color: #ffffff;
+}
+/*Header*/
+#header{
+    background: #333333;
+    color: #ffffff;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+/*Breadcumb*/
+.breadcrumb{
+    background: #cccccc;
+    color: #333333;
+}
+.breadcrumb a{
+    color: #333333;
+}
+.dash-box{
+    text-align: center;
+}
+
+
+@media only screen and (max-width: 1000px) {
+    .nav-link:hover {
+        border-bottom: none!important;
+    }
+}
