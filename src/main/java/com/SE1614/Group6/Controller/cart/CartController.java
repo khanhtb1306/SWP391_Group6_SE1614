@@ -26,6 +26,10 @@ public class CartController {
     @Autowired
     private ProductService iItemsDao;
 
+    @GetMapping("/orderdetails")
+    public String showOrderDetails(Model model) {
+        return "orderdetails";
+    }
     @GetMapping("/shopping-cart2")
     public String getCart(Model model){
       int total =0;
