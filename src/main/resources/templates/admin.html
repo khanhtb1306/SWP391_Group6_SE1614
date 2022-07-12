@@ -24,63 +24,7 @@
         <!-- Begin page -->
         <div class="wrapper">
             <!-- ========== Left Sidebar Start ========== -->
-            <div class="leftside-menu">
-
-                <div class="h-100" id="leftside-menu-container" data-simplebar="">
-
-                    <!--- Sidemenu -->
-                    <ul class="side-nav">
-
-                        <li class="side-nav-title side-nav-item">Navigation</li>
-
-
-                        <li class="side-nav-title side-nav-item">Apps</li>
-
-                        <li class="side-nav-item">
-                            <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
-                                <i class="uil-store"></i>
-                                <span> Ecommerce </span>
-                                <span class="menu-arrow"></span>
-                            </a>
-                            <div class="collapse" id="sidebarEcommerce">
-                                <ul class="side-nav-second-level">
-                                    <li>
-                                        <a th:href="@{/product}">Products</a>
-                                    </li>
-                                    <li>
-                                        <a th:href="@{/product}">Products Details</a>
-                                    </li>
-                                    <li>
-                                        <a href="apps-ecommerce-orders.html">Orders</a>
-                                    </li>
-                                    <li>
-                                        <a href="apps-ecommerce-orders-details.html">Order Details</a>
-                                    </li>
-                                    <li>
-                                        <a th:href="@{/admin/admin_customers}">Customers</a>
-                                    </li>
-                                    <li>
-                                        <a href="apps-ecommerce-shopping-cart.html">Shopping Cart</a>
-                                    </li>
-                                    <li>
-                                        <a href="apps-ecommerce-checkout.html">Checkout</a>
-                                    </li>
-                                    <li>
-                                        <a href="apps-ecommerce-sellers.html">Sellers</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <!-- End Sidebar -->
-
-                    <div class="clearfix"></div>
-
-                </div>
-                <!-- Sidebar -left -->
-
-            </div>
+            <div th:include="fragments/admin_left_side:: admin_left_side"></div>
             <!-- Left Sidebar End -->
 
             <!-- ============================================================== -->

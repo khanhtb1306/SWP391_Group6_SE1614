@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <title>Manage Products</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+    <th:block th:replace="fragments/meta_head :: meta_head"></th:block>
 </head>
 <body>
 <div class="container-fluid text-center">
+    <div th:include="fragments/header:: header"></div>
     <div><h2>Manage Users</h2></div>
     <div class="mr-2">
         <a class="h3" th:href="@{/product/new}">Add New Product</a>

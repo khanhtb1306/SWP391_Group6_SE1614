@@ -108,7 +108,7 @@ public class BlogController {
     }
 
     @GetMapping("/blog/search")
-    public String showBlogWithCategory(@RequestParam("title") String title, Model model) {
+    public String searchBlogWithTitle(@RequestParam("title") String title, Model model) {
         List<Blog> listBlogs = service.searchByTitle(title);
         List<Category> listCategories = cateService.listAll();
         model.addAttribute("listCategories",listCategories);

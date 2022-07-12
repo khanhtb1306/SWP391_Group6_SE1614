@@ -21,19 +21,18 @@ public class BlogRepositoryTest {
     @Autowired
     private BlogRepository repo;
 
-    @Test
+    /*@Test
     public void testAddBlog(){
         Blog blog=new Blog();
         blog.setTitle("This is new blog");
         blog.setImage_Link("/img/blog/1.jpg");
         blog.setUpdate_Date("22/09/2012");
         blog.setViews("12312423");
-        blog.setCategory(new Category());
         Blog savedUser=repo.save(blog);
 
         Assertions.assertThat(savedUser).isNotNull();
         Assertions.assertThat(savedUser.getId()).isGreaterThan(0);
-    }
+    }*/
 
     @Test
     public void testListAll(){
@@ -43,7 +42,7 @@ public class BlogRepositoryTest {
 
     @Test
     public void testUpdate(){
-        Integer id=6;
+        Integer id=1;
         Optional<Blog> optionalUser = repo.findById(id);
         Blog blog=optionalUser.get();
         blog.setTitle("New title");
@@ -69,9 +68,29 @@ public class BlogRepositoryTest {
 
     @Test
     public void testDelete(){
-        Integer id=5;
+        Integer id=1;
         repo.deleteById(id);
         Optional<Blog> optionalBlog = repo.findById(id);
         Assertions.assertThat(optionalBlog).isNotPresent();
+    }
+
+    /*@Test
+    public void testDeleteNotSuccess(){
+        Integer id=100;
+        repo.deleteById(id);
+        Optional<Blog> optionalBlog = repo.findById(id);
+        Assertions.assertThat(optionalBlog).isNotPresent();
+    }*/
+
+    @Test
+    public void testGetBlogByCategory(){
+        Iterable<Blog> listBlog = repo.findBlogByTitleContaining("cve");
+        Assertions.assertThat(listBlog).hasSizeGreaterThan(0);
+    }
+
+    @Test
+    public void testGetBlogByCategoryNotExist(){
+        Iterable<Blog> listBlog = repo.findBlogByTitleContaining("not exist");
+        Assertions.assertThat(listBlog).hasSize(0);
     }
 }

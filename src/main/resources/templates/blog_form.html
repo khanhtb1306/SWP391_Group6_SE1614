@@ -30,7 +30,7 @@
         <div class="col-sm-8">
           <select th:field="*{user}" class="form-control" required>
             <th:block th:each="userX : ${listUsers}">
-              <option th:text="${userX.user_name}" th:value="${userX.id}"/>
+              <option th:text="${userX.last_name}" th:value="${userX.id}"/>
             </th:block>
           </select>
         </div>
