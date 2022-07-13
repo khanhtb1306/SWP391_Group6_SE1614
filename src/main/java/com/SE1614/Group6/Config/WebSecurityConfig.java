@@ -1,5 +1,6 @@
 package com.SE1614.Group6.Config;
 
+import com.SE1614.Group6.Model.Role;
 import com.SE1614.Group6.Service.UserDetailService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -30,16 +31,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/home", "/css/**", "/js/**", "/img/**", "/fonts/**", "/sass/**", "/Source/**").permitAll()
                 .antMatchers("/login/**").permitAll()
-//                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/pages-profile/**").permitAll()
 
                 .anyRequest()
                 .authenticated().and()
                 .formLogin().loginPage("/login").permitAll()
-//                .defaultSuccessUrl("/login?success=True")
-//                .failureUrl("/login?success=false")
                 .loginProcessingUrl("/dologin")
                 .usernameParameter("email")
-                .passwordParameter("password");
+                .passwordParameter("password")
+//                .defaultSuccessUrl("/login?success=True")
+//                .failureUrl("/login?success=false")
+                .and()
+                .logout().permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/403");
 
     }
 

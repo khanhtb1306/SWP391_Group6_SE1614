@@ -1,6 +1,8 @@
 package com.SE1614.Group6;
 
+import com.SE1614.Group6.Model.Role;
 import com.SE1614.Group6.Model.User;
+import com.SE1614.Group6.Model.User_status;
 import com.SE1614.Group6.Repo.UserRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -59,23 +61,26 @@ public class UserRepositoryTest {
         Assertions.assertThat(optionalUser).isNotPresent();
     }
 
-//    @Test
-//    public void testAddUser(){
-//        User user=new User();
-//        user.setAddress("HL");
-//        user.setAvatar("1.png");
-//        user.setEmail("khanhbao@gmail.com");
-//        user.getFirst_name("Trinh");
-//        user.getLast_name("Bao");
-//        user.getPassword("12345678");
-//        user.getPhone("0123456");
-//
-//
-//        User savedUser=repo.save(user);
-//
-//        Assertions.assertThat(savedUser).isNotNull();
-//        Assertions.assertThat(savedUser.getId()).isGreaterThan(0);
-//    }
+    @Test
+    public void testAddUser(){
+        User user=new User();
+        user.setAddress("HL");
+        user.setAvatar("1.png");
+        user.setEmail("khanhbao@gmail.com");
+        user.setFirst_name("Trinh");
+        user.setLast_name("Bao");
+        user.setPassword("12345678");
+        user.setPhone("0123456");
+        user.setRole(Role.ADMIN);
+        user.setUser_status(User_status.customer_new);
+
+
+
+        User savedUser=repo.save(user);
+
+        Assertions.assertThat(savedUser).isNotNull();
+        Assertions.assertThat(savedUser.getId()).isGreaterThan(0);
+    }
 
 
 
