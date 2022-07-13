@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -106,6 +107,12 @@ public class User implements UserDetails {
 
     public String getFirst_name() {
         return first_name;
+    }
+    public String getLast_name() {
+        return last_name;
+    }
+    public String getAvatar() {
+        return avatar;
     }
 
     @Override

@@ -55,7 +55,7 @@
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <div class="input-group input-group-merge">
-                                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password">
+                                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
                                     <div class="input-group-text" data-password="false">
                                         <span class="password-eye"></span>
                                     </div>
@@ -129,10 +129,14 @@
                 url : "/api/v1/registration",
                 data : JSON.stringify(formData),
                 dataType : 'json',
-
+                success:function(data) {
+                    //window.location = "http://localhost:8080/pages-confirm-mail";
+                    return data;
+                    console.log("Register success");
+                }
             });
 
-            window.location = "http://localhost:8080/pages-confirm-mail";
+
 
             // Reset FormData after Posting
             resetData();
