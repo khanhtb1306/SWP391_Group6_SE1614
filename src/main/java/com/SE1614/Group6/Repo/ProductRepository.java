@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 
+import java.util.Optional;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,16 +22,38 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
     Optional<Product> findById(Integer integer);
 
     @Override
+    boolean existsById(Integer integer);
+
+    @Override
     Iterable<Product> findAll();
+
+    @Override
+    Iterable<Product> findAllById(Iterable<Integer> integers);
+
+    @Override
+    long count();
+
+    @Override
+    void deleteById(Integer integer);
+
+    @Override
+    void delete(Product entity);
+
+    @Override
+    void deleteAllById(Iterable<? extends Integer> integers);
+
+    @Override
+    void deleteAll(Iterable<? extends Product> entities);
+
+    @Override
+    void deleteAll();
+    Long countById(Integer id);
+
 
     @Query(value="select * from Product where name = ?1",nativeQuery = true)
     List<Product> search(String keyword);
     List<Product> findByNameContaining(String name);
     List<Product> findByCategoryContaining(String category);
 
-    @Override
-    long count();
-
-
-
+    List<Product> findProductByNameContaining(String title);
 }
