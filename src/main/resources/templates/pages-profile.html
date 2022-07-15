@@ -281,11 +281,10 @@
                             <li class="dropdown notification-list">
                                 <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                     <span class="account-user-avatar"> 
-                                        <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                                        <img th:src="@{${#httpServletRequest.userPrincipal.principal.getPhotosImagePath()}}" alt="user-image" class="rounded-circle">
                                     </span>
                                     <span>
-                                        <span class="account-user-name">Soeng Souy</span>
-                                        <span class="account-position">Founder</span>
+                                        <span class="account-user-name">[[${#httpServletRequest.userPrincipal.principal.first_name}]] [[${#httpServletRequest.userPrincipal.principal.last_name}]]</span>
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
@@ -427,13 +426,13 @@
                                                 <div class="row align-items-center">
                                                     <div class="col-auto">
                                                         <div class="avatar-lg">
-                                                            <img src="assets/images/users/avatar-2.jpg" alt="" class="rounded-circle img-thumbnail">
+                                                            <img th:src="@{${#httpServletRequest.userPrincipal.principal.getPhotosImagePath()}}" alt="" class="rounded-circle img-thumbnail">
                                                         </div>
                                                     </div>
                                                     <div class="col">
                                                         <div>
-                                                            <h4 class="mt-1 mb-1 text-white">Michael Franklin</h4>
-                                                            <p class="font-13 text-white-50"> Authorised Brand Seller</p>
+                                                            <h4 class="mt-1 mb-1 text-white">[[${#httpServletRequest.userPrincipal.principal.first_name}]] [[${#httpServletRequest.userPrincipal.principal.last_name}]]</h4>
+                                                            <p class="font-13 text-white-50" >[[${#httpServletRequest.userPrincipal.principal.authorities}]]</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -493,7 +492,7 @@
                                 <!-- Personal-Information -->
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="header-title mt-0 mb-3">Seller Information</h4>
+                                        <h4 class="header-title mt-0 mb-3">[[${#httpServletRequest.userPrincipal.principal.authorities}]] Information</h4>
                                         <p class="text-muted font-13">
                                             Hye, I’m Michael Franklin residing in this beautiful world. I create websites and mobile apps with great UX and UI design. I have done work with big companies like Nokia, Google and Yahoo. Meet me or Contact me for any queries. One Extra line for filling space. Fill as many you want.
                                         </p>
@@ -501,17 +500,19 @@
                                         <hr>
 
                                         <div class="text-start">
-                                            <p class="text-muted"><strong>Full Name :</strong> <span class="ms-2">Michael A. Franklin</span></p>
+                                            <p class="text-muted"><strong>Full Name :</strong> <span class="ms-2">[[${#httpServletRequest.userPrincipal.principal.first_name}]] [[${#httpServletRequest.userPrincipal.principal.last_name}]]</span></p>
 
-                                            <p class="text-muted"><strong>Mobile :</strong><span class="ms-2">(+12) 123 1234 567</span></p>
+                                            <p class="text-muted"><strong>Mobile :</strong><span class="ms-2">[[${#httpServletRequest.userPrincipal.principal.phone}]]</span></p>
 
-                                            <p class="text-muted"><strong>Email :</strong> <span class="ms-2">coderthemes@gmail.com</span></p>
+                                            <p class="text-muted"><strong>Address :</strong> <span class="ms-2">[[${#httpServletRequest.userPrincipal.principal.Gender}]]</span></p>
 
-                                            <p class="text-muted"><strong>Location :</strong> <span class="ms-2">USA</span></p>
+                                            <p class="text-muted"><strong>Email :</strong> <span class="ms-2">[[${#httpServletRequest.userPrincipal.principal.email}]]</span></p>
 
-                                            <p class="text-muted"><strong>Languages :</strong>
-                                                <span class="ms-2"> English, German, Spanish </span>
-                                            </p>
+                                            <p class="text-muted"><strong>Address :</strong> <span class="ms-2">[[${#httpServletRequest.userPrincipal.principal.address}]]</span></p>
+                                            <p class="text-muted"><strong>Id :</strong> <span class="ms-2">[[${#httpServletRequest.userPrincipal.principal.id}]]</span></p>
+
+
+
                                             <p class="text-muted mb-0" id="tooltip-container"><strong>Elsewhere :</strong>
                                                 <a class="d-inline-block ms-2 text-muted" data-bs-container="#tooltip-container" data-bs-placement="top" data-bs-toggle="tooltip" href="" title="Facebook"><i class="mdi mdi-facebook"></i></a>
                                                 <a class="d-inline-block ms-2 text-muted" data-bs-container="#tooltip-container" data-bs-placement="top" data-bs-toggle="tooltip" href="" title="Twitter"><i class="mdi mdi-twitter"></i></a>

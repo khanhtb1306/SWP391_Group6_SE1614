@@ -67,5 +67,8 @@ public class UserDetailService implements UserDetailsService {
     public int enableUser(String email) {
         return userRepository.enableUser(email);
     }
+    public int lockedUser(String email) {
+        return userRepository.lockedUser(email);
+    }
 
 }

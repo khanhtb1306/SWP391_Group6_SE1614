@@ -29,7 +29,7 @@ public class UserRepositoryTest {
 
     @Test
     public void testUpdate(){
-        Integer id=3;
+        Integer id=1;
         Optional<User> optionalUser = repo.findById(id);
         User user=optionalUser.get();
         user.setPassword("you have been changed");
@@ -55,7 +55,7 @@ public class UserRepositoryTest {
 
     @Test
     public void testDelete(){
-        Integer id=4;
+        Integer id=1;
         repo.deleteById(id);
         Optional<User> optionalUser = repo.findById(id);
         Assertions.assertThat(optionalUser).isNotPresent();

@@ -1,6 +1,8 @@
 package com.SE1614.Group6.Model;
 
 import javax.persistence.*;
+
+import com.SE1614.Group6.Email.token.ConfirmationToken;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -49,6 +51,7 @@ public class User implements UserDetails {
 
     @Column
     private Boolean locked = false;
+
     @Column
     private Boolean enabled = false;
 
@@ -72,6 +75,7 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "sale")
     private Set<Order> sale_User;
+
 
     @Transient
     public String getPhotosImagePath() {
@@ -107,6 +111,9 @@ public class User implements UserDetails {
 
     public String getFirst_name() {
         return first_name;
+    }
+    public int getId() {
+        return id;
     }
     public String getLast_name() {
         return last_name;

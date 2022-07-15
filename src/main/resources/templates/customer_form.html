@@ -96,24 +96,25 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Active</label>
+                <label class="col-sm-4 col-form-label">Locked</label>
                 <div class="col-sm-8">
-                    <div>
-                        <input type="checkbox" id="switch7" th:field="*{locked}" checked data-switch="success"/>
-                        <label for="switch7" data-on-label="Yes" data-off-label="No" class="mb-0 d-block"></label>
-                    </div>
+                    <input type="checkbox" th:field="*{locked}" />
+<!--                    <div>-->
+<!--                        <input type="checkbox"  id="switch7"  checked data-switch="success"/>-->
+<!--                        <label for="switch7" data-on-label="Yes" data-off-label="No" class="mb-0 d-block"></label>-->
+<!--                    </div>-->
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Active</label>
+                <label class="col-sm-4 col-form-label">Enabled</label>
                 <div class="col-sm-8">
-                    <div>
-                        <input type="checkbox" id="switch8" th:field="*{enabled}" checked data-switch="success"/>
-                        <label for="switch7" data-on-label="Yes" data-off-label="No" class="mb-0 d-block"></label>
-                    </div>
+                    <input type="checkbox" th:field="*{enabled}" />
+<!--                    <div>-->
+<!--                        <input type="checkbox" th:field="*{enabled}" id="switch20"  checked data-switch="success"/>-->
+<!--                        <label for="switch20" data-on-label="Yes" data-off-label="No" class="mb-0 d-block"></label>-->
+<!--                    </div>-->
                 </div>
             </div>
-
             <div class="text-center">
                 <button type="submit" class="btn btn-primary m-2">Save</button>
                 <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>

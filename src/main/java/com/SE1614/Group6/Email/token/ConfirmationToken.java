@@ -28,6 +28,7 @@ public class ConfirmationToken {
             nullable = false,
             name = "user_id"
     )
+
     private User user;
 
     public ConfirmationToken(String token,
