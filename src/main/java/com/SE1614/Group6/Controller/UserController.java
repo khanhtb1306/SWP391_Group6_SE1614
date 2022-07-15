@@ -6,6 +6,7 @@ import com.SE1614.Group6.Model.User;
 import com.SE1614.Group6.Service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +28,10 @@ import java.util.List;
 public class UserController {
     @Autowired private UserService service;
 
+    @GetMapping("/pages-profile")
+    public String pages_profile() {
+        return "pages-profile";
+    }
     @GetMapping("/admin")
     public String adminHomePage() {
         return "admin";
