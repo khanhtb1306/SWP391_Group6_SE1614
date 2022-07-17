@@ -99,7 +99,7 @@ public class User implements UserDetails {
     public String getUsername() {
         return email;
     }
-
+    public int getId(){return id;}
 
     public String getPassword() {
         return password;

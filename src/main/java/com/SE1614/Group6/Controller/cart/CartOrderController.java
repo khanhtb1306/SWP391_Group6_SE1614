@@ -1,17 +1,19 @@
 package com.SE1614.Group6.Controller.cart;
 
+import com.SE1614.Group6.Exception.UserNotFoundException;
 import com.SE1614.Group6.Model.*;
 import com.SE1614.Group6.Repo.OrderDetailRepository;
 import com.SE1614.Group6.Repo.OrderRepository;
 import com.SE1614.Group6.Repo.UserRepository;
-import com.SE1614.Group6.Service.OrderDetailService;
-import com.SE1614.Group6.Service.OrderService;
 import com.SE1614.Group6.Service.ProductService;
 import com.SE1614.Group6.Service.UserService;
+import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,14 +38,18 @@ public class CartOrderController {
 
     @Autowired
     private OrderDetailRepository orderDetailsDao;
-
-    @GetMapping("addtoorder")
-    public String addOrder(@RequestParam(name = "address") String address, String first_name, String last_name, String notes, String phone, String email) {
+    @Autowired
+    private UserService userService1;
+    @GetMapping("addtoorder/{email}")
+    public String addOrder(@RequestParam(name = "address") String address, String first_name, String last_name, String notes, String phone, String email,@PathVariable("email") String email1) throws UserNotFoundException {
         Order orderSession = (Order) session.getAttribute("order");
         if (orderSession != null) {
             //Bao gio set thi xoa dong 47 di mo cmt lai donng 46
 //            User user= (User) session.getAttribute("user");
-            User user = this.userRepository.findById(11).get();
+
+            User user = userService1.get(email1);
+            System.out.println(email1);
+           //User user = this.userRepository.findById(11).get();
             User usersale = this.userRepository.findById(1).get();
             List<OrderDetail> listOrder = orderSession.getOrder_details();
             List<Product> itemsList = itemsDao.listAllProduct();
