@@ -40,7 +40,7 @@
                         <div class="blog__item">
                             <div class="blog__item__pic set-bg" th:data-setbg="${blog.image_Link}"></div>
                             <div class="blog__item__text">
-                                <span><img th:src="@{/img/icon/calendar.png}" alt=""> [[${blog.update_Date}]]</span>
+                                <span><img th:src="@{/img/icon/calendar.png}" alt=""> [[${blog.updateDate}]]</span>
                                 <h5>[[${blog.title}]]</h5>
                                 <a th:href="@{'/blog-details/' + ${blog.id}}">Read More</a>
                             </div>

@@ -38,7 +38,7 @@ public class Blog {
     private String views;
 
     @Column
-    private String update_Date;
+    private String updateDate;
 
     @Column
     private String image_Link;

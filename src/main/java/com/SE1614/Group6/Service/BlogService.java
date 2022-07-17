@@ -30,9 +30,9 @@ public class BlogService {
         return (List<Blog>) repo.findAll();
     }
 
-    /*public List<Blog> listSortedBlogByDate(){
-        return repo.aaaaaaaaaaa();
-    }*/
+    public List<Blog> listSortedBlogByDate(){
+        return repo.findFirst3ByOrderByUpdateDateDesc();
+    }
 
     public void save(Blog blog) {
         repo.save(blog);

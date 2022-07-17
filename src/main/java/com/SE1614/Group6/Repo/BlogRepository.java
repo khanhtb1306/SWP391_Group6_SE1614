@@ -14,6 +14,5 @@ public interface BlogRepository extends CrudRepository<Blog, Integer> {
     public List<Blog> getBlogByCategory(Category cat);
     public List<Blog> findBlogByTitleContaining(String keyword);
 
-    /*@Query(value = "SELECT * FROM blog", nativeQuery=true)
-    public List<Blog> aaaaaaaaaaa();*/
+    public List<Blog> findFirst3ByOrderByUpdateDateDesc();
 }

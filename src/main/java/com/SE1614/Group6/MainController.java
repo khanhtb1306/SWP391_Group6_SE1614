@@ -17,7 +17,7 @@ public class MainController {
 
     @GetMapping("")
     public String showHomePage(Model model){
-        List<Blog> listBlogs = service.listAll();
+        List<Blog> listBlogs = service.listSortedBlogByDate();
         model.addAttribute("listBlogs",listBlogs);
         return "index";
     }

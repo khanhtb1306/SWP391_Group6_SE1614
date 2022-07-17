@@ -35,15 +35,6 @@ public class WedController {
         model.addAttribute("listCategories",listCategories);
         return "shop";
     }
-    @GetMapping("/shop/search")
-    public String searchProductWithName(@RequestParam("name") String name, Model model) {
-        List<Product> listProduct = serviceP.searchByName(name);
-        List<Category> listCategories = serviceC.listAll();
-        model.addAttribute("listCategories",listCategories);
-        model.addAttribute("listProduct",listProduct);
-        return "shop";
-
-    }
     @GetMapping("/shop-details")
     public String shop_details() {
         return "shop-details";
