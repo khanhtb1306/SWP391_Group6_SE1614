@@ -41,7 +41,7 @@ public class CartOrderController {
     @Autowired
     private UserService userService1;
     @GetMapping("addtoorder/{email}")
-    public String addOrder(@RequestParam(name = "address") String address, String first_name, String last_name, String notes, String phone, String email,@PathVariable("email") String email1) throws UserNotFoundException {
+    public String addOrder(@RequestParam(name = "") String address, String first_name, String last_name, String notes, String phone, String email,@PathVariable("email") String email1) throws UserNotFoundException {
         Order orderSession = (Order) session.getAttribute("order");
         if (orderSession != null) {
             //Bao gio set thi xoa dong 47 di mo cmt lai donng 46
