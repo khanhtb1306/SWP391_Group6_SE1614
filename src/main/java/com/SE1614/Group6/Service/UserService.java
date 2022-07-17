@@ -30,6 +30,14 @@ public class UserService {
         throw new UserNotFoundException("Could not find any users with ID " + id);
     }
 
+    public User get(String email) throws UserNotFoundException {
+        Optional<User> result = repo.findByEmail(email);
+        if(result.isPresent()){
+            return result.get();
+        }
+        throw new UserNotFoundException("Could not find any users with ID " + email);
+    }
+
     public void delete(Integer id) throws UserNotFoundException {
 
         Long count = repo.countById(id);

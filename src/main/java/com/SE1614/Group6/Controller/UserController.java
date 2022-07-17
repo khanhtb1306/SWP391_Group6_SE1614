@@ -1,12 +1,11 @@
 package com.SE1614.Group6.Controller;
 
 import com.SE1614.Group6.Exception.UserNotFoundException;
-import com.SE1614.Group6.Model.RegistrationRequest;
 import com.SE1614.Group6.Model.User;
 import com.SE1614.Group6.Service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -28,9 +28,57 @@ import java.util.List;
 public class UserController {
     @Autowired private UserService service;
 
-    @GetMapping("/pages-profile")
-    public String pages_profile() {
-        return "pages-profile";
+    @Controller
+    public class DefaultController {
+        @RequestMapping("/default")
+        public String defaultAfterLogin(HttpServletRequest request) {
+            if (request.isUserInRole("ADMIN")) {
+                return "redirect:/admin/";
+            }
+            return "redirect:/";
+        }
+    }
+
+    @GetMapping("/pages-profile/{email}")
+    public String pages_profile(@PathVariable("email") String email, Model model) {
+        try {
+            System.out.println("da den day");
+            User user = service.get(email);
+            model.addAttribute("user",user);
+            return "pages-profile";
+        } catch (UserNotFoundException e) {
+            return "redirect:/pages-profile";
+        }
+    }
+    @PostMapping("/pages-profile/save")
+    public String SaveProfile(@ModelAttribute(name="user") User user, RedirectAttributes ra,
+                               @RequestParam("fileImage")MultipartFile multipartFile) throws IOException {
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encodedPassword = encoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        user.setAvatar(fileName);
+        User user1 = service.save(user);
+
+        String uploadDir = "./user_avatar/" + user1.getId();
+        Path uploadPath = Paths.get(uploadDir);
+
+        if(!Files.exists(uploadPath)){
+            Files.createDirectories(uploadPath);
+        }
+
+        try(InputStream inputStream = multipartFile.getInputStream()){
+            Path filePath = uploadPath.resolve(fileName);
+            System.out.println(filePath.toFile().getAbsolutePath());
+            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+        }catch (IOException e){
+            throw  new IOException("Could not save uploaded file" + fileName);
+        }
+
+        ra.addFlashAttribute("message", "User saved successfully!");
+        return "redirect:/pages_profile";
     }
     @GetMapping("/admin")
     public String adminHomePage() {
@@ -47,12 +95,14 @@ public class UserController {
         return "sign-up";
     }
 
+
     @GetMapping("/admin/admin_customers/add")
     public String showAddCustomerForm(Model model){
         model.addAttribute("customer", new User());
         model.addAttribute("pageTitle", "Add New Customer");
         return "customer_form";
     }
+
     @PostMapping("/admin/admin_customers/save")
     public String SaveCustomer(@ModelAttribute(name="customer") User user, RedirectAttributes ra,
                                @RequestParam("fileImage")MultipartFile multipartFile) throws IOException {
@@ -83,6 +133,7 @@ public class UserController {
         ra.addFlashAttribute("message", "Customer saved successfully!");
         return "redirect:/admin/admin_customers";
     }
+
 
     @GetMapping("/admin/admin_customers/edit/{id}")
     public String showEditFormCustomer(@PathVariable("id") Integer id, Model model,RedirectAttributes ra){

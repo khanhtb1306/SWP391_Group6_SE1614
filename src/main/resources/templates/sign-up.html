@@ -129,12 +129,9 @@
                 url : "/api/v1/registration",
                 data : JSON.stringify(formData),
                 dataType : 'json',
-                success:function(data) {
-                    //window.location = "http://localhost:8080/pages-confirm-mail";
-                    return data;
-                    console.log("Register success");
-                }
+
             });
+            window.location = "http://localhost:8080/pages-confirm-mail";
 
 
 

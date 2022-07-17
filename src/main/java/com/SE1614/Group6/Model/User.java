@@ -92,7 +92,6 @@ public class User implements UserDetails {
         this.role = role;
     }
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.name());
@@ -112,9 +111,7 @@ public class User implements UserDetails {
     public String getFirst_name() {
         return first_name;
     }
-    public int getId() {
-        return id;
-    }
+
     public String getLast_name() {
         return last_name;
     }
