@@ -27,29 +27,29 @@ import java.util.List;
 
 
 
-    @Controller
-    public class ProductController {
-        @Autowired
-        private ProductService service;
-        @Autowired
-        private CategoryService serviceC;
+@Controller
+public class ProductController {
+    @Autowired
+    private ProductService service;
+    @Autowired
+    private CategoryService serviceC;
 
 
-        @GetMapping("/product")
-        public String showProductList(Model model){
-            List<Product> listProduct = service.listAllProduct();
-            model.addAttribute("listProduct",listProduct);
-            return "product";
-        }
+    @GetMapping("/product")
+    public String showProductList(Model model){
+        List<Product> listProduct = service.listAllProduct();
+        model.addAttribute("listProduct",listProduct);
+        return "product";
+    }
 
-        @GetMapping("/product/new")
-        public String showNewForm(Model model){
-            model.addAttribute("product",new Product());
-            model.addAttribute("pageTitle","Add New Product");
-            List<Category> listCategories = serviceC.listAll();
-            model.addAttribute("listCategories",listCategories);
-            return "product_form";
-        }
+    @GetMapping("/product/new")
+    public String showNewForm(Model model){
+        model.addAttribute("product",new Product());
+        model.addAttribute("pageTitle","Add New Product");
+        List<Category> listCategories = serviceC.listAll();
+        model.addAttribute("listCategories",listCategories);
+        return "product_form";
+    }
 
     @PostMapping("/product/save")
     public String saveProduct(Product product,RedirectAttributes ra){
@@ -83,12 +83,4 @@ import java.util.List;
         return "redirect:/product";
     }
 
-    @GetMapping("/shop/search")
-    public String search(Model model, @RequestParam(name = "name", required = false) String name) {
-        List<Product> listProduct = service.searchByName(name);
-        model.addAttribute("listProduct",listProduct);
-        List<Category> listCategories = serviceC.listAll();
-        model.addAttribute("listCategories",listCategories);
-        return "shop";
-    }
-}
+   }
