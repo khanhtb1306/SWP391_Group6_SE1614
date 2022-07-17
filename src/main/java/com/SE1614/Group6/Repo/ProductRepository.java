@@ -1,14 +1,12 @@
 package com.SE1614.Group6.Repo;
 
 
-import com.SE1614.Group6.Model.Blog;
 import com.SE1614.Group6.Model.Product;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 
-import java.util.Optional;
 import java.util.List;
 import java.util.Optional;
 

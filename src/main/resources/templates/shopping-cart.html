@@ -80,13 +80,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="od : ${LIST_OD}">
+                                <tr th:each="od : ${session.order.order_details}">
                                     <td class="product__cart__item">
-                                        <div class="product__cart__item__pic">
-                                            <img src="img/shopping-cart/cart-1.jpg" alt="">
-                                        </div>
+
                                         <th:block  th:each="p : ${LIST_P}">
                                         <div class="product__cart__item__text" th:if="${od.product.id == p.id}">
+                                            <div class="product__cart__item__pic">
+                                                <img th:src="${p.images}" alt="" width="90" height="90">
+                                                <!--<img th:src="${od.product.images}" alt="">-->
+                                            </div>
                                             <h6>[[${p.name}]]</h6>
                                             <h5>[[${#numbers.formatCurrency(od.unit_price)}]]</h5>
                                         </div>
@@ -94,13 +96,14 @@
                                     </td>
                                     <td class="quantity__item">
                                         <div class="quantity">
-                                            <div class="pro-qty-2" th:text="${od.quantity}">
-                                                <input type="text" value="1" >
-                                            </div>
-                                        </div>
+                                            <a class="" th:href="@{'/shop/cart/minus?id='+${od.product.id}}"><</a>
+                                            <a class="" th:text="${od.quantity}">
+                                            </a>
+                                                <a  class="" th:href="@{'/shop/cart/plus?id='+${od.product.id}}">></a>
+                                        </a>
                                     </td>
                                     <td class="cart__price">[[${#numbers.formatCurrency(od.unit_price * od.quantity)}]]</td>
-                                    <td class="cart__close"><i class="fa fa-close"></i></td>
+                                    <td class="cart__close"><a th:href="@{'/shop/removecart?id='+${od.product.id}}"><i class="fa fa-close"></i></a></td>
                                 </tr>
 <!--                                <tr>-->
 <!--                                    <td class="product__cart__item">-->
@@ -168,7 +171,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn">
-                                <a href="#">Continue Shopping</a>
+                                <a th:href="@{/shop}">Continue Shopping</a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
@@ -189,8 +192,8 @@
                     <div class="cart__total">
                         <h6>Cart total</h6>
                         <ul>
-                            <li>Subtotal <span th:text="${#numbers.formatCurrency(TOTAL)}"></span></li>
-                            <li>Total <span th:text="${#numbers.formatCurrency(TOTAL)}"></span></li>
+                            <li>Subtotal <span th:text="${#numbers.formatCurrency(session.total)}"></span></li>
+                            <li>Total <span th:text="${#numbers.formatCurrency(session.total)}"></span></li>
                         </ul>
                         <a th:href="@{/checkout2}" class="primary-btn">Proceed to checkout</a>
                     </div>

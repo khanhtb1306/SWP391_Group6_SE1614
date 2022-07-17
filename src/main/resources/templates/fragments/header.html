@@ -18,7 +18,7 @@
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
                             <div class="header__top__links">
-                                <a href="#">Sign in</a>
+                                <a th:href="@{/login}">Sign in</a>
                                 <a href="#">FAQs</a>
                             </div>
                             <div class="header__top__hover">
@@ -50,7 +50,7 @@
                                 <ul class="dropdown">
                                     <li><a th:href="@{/about}">About Us</a></li>
                                     <li><a th:href="@{/shop-details}">Shop Details</a></li>
-                                    <li><a th:href="@{/shopping-cart2}">Shopping Cart</a></li>
+                                    <li><a th:href="@{/shop/cart}">Shopping Cart</a></li>
                                     <li><a th:href="@{/checkout}">Check Out</a></li>
                                     <li><a th:href="@{/blog-details}">Blog Details</a></li>
                                 </ul>
@@ -62,10 +62,16 @@
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
-                        <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                        <a href="#"><img src="img/icon/heart.png" alt=""></a>
-                        <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-                        <div class="price">$0.00</div>
+                        <form class="d-flex rounded border" th:action="@{/blog/search}">
+                            <span class="input-group-text bg-white border-0" id="basic-addon1"><i
+                                    class="fa fa-search form-control-feedback"></i></span>
+                            <input class="form-control me-2 border-0 search-box" type="text"
+                                   placeholder="Search any blogs..." aria-label="Search" name="title">
+                        </form>
+                        <!--<a th:href="@{/blog/search}" class="search-switch"><img th:src="@{/img/icon/search.png}" alt=""></a>
+                        <a href="#"><img th:src="@{/img/icon/heart.png}" alt=""></a>
+                        <a href="#"><img th:src="@{/img/icon/cart.png}" alt=""> <span>0</span></a>-->
+                        <!--<div class="price">$0.00</div>-->
                     </div>
                 </div>
             </div>

@@ -23,6 +23,17 @@ public class BlogService {
         return (List<Blog>) repo.getBlogByCategory(id);
     }
 
+    public List<Blog> searchByTitle(String title){
+        if(title !=null){
+            return repo.findBlogByTitleContaining(title);
+        }
+        return (List<Blog>) repo.findAll();
+    }
+
+    /*public List<Blog> listSortedBlogByDate(){
+        return repo.aaaaaaaaaaa();
+    }*/
+
     public void save(Blog blog) {
         repo.save(blog);
     }

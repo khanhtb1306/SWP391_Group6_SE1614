@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <title>Manage Users</title>
   <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+  <th:block th:replace="fragments/meta_head :: meta_head"></th:block>
 </head>
 <body>
 <div class="container-fluid text-center">
+  <div th:include="fragments/header:: header"></div>
   <div><h2>Create new Category List</h2></div>
 
   <form th:action="@{/categories/save}" th:object="${category}" method="post" style="max-width: 600px;margin : 0 auto;">
@@ -19,9 +21,15 @@
       </div>
       <div class="">
           <button type="submit" class="btn btn-primary"> Save </button>
+          <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
       </div>
     </div>
   </form>
 </div>
+<script type= "text/javascript">
+  function cancelForm(){
+    window.location="[[@{/categories}]]"
+  }
+</script>
 </body>
 </html>

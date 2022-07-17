@@ -20,15 +20,15 @@ public class Blog {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name="user_id",nullable=false)
+    @JoinColumn(name="user_id",nullable=true)
     private User user;
 
     @Enumerated(EnumType.ORDINAL)
-    @JoinColumn(name="blog_status_id",nullable=false)
+    @JoinColumn(name="blog_status_id",nullable=true)
     private Blog_status blog_status;
 
     @ManyToOne
-    @JoinColumn(name="category_id",nullable=false)
+    @JoinColumn(name="category_id",nullable=true)
     private Category category;
 
     @Column

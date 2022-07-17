@@ -4,27 +4,23 @@
     <meta charset="UTF-8">
     <title>Manage Blogs</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+    <th:block th:replace="fragments/meta_head :: meta_head"></th:block>
 </head>
 <body>
 <div class="container-fluid text-center">
+    <div th:include="fragments/header:: header"></div>
     <div><h2>Manage Blogs</h2></div>
-    <div class="mr-2">
-        <a class="h3" th:href="@{/blogs/new}">Add New Blog</a>
-    </div>
     <div th:if="${message}" class="alert alert-success text-center">
         [[${message}]]
+    </div>
+    <div class="mr-2">
+        <a th:href="@{/blogs/new}">Add New Blog</a>
     </div>
     <div>
         <a th:href="@{/categories}">List category</a>
     </div>
     <div>
         <a th:href="@{/categories/new}">Create category</a>
-    </div>
-    <div>
-        <a th:href="@{/blogs}">List blog</a>
-    </div>
-    <div>
-        <a th:href="@{/blogs/new}">New blog</a>
     </div>
     <div>
         <table class="table table-bordered">
@@ -34,7 +30,7 @@
                 <th>Title</th>
                 <th>Views</th>
                 <th>Update Date</th>
-                <th>Image Link</th>
+                <th>Image</th>
                 <th>Category</th>
                 <th>Content</th>
                 <th></th>
@@ -47,7 +43,7 @@
                     <td>[[${blog.title}]]</td>
                     <td>[[${blog.views}]]</td>
                     <td>[[${blog.update_Date}]]</td>
-                    <td>[[${blog.image_Link}]]</td>
+                    <td><img th:src="${blog.image_Link}"></td>
                     <td>[[${blog.category.value}]]</td>
                     <td>[[${blog.content}]]</td>
                     <td>

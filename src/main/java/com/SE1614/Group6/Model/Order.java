@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -40,8 +41,9 @@ public class Order {
     @Column
     private String user_session;
 
+    //edit Set => List
     @OneToMany(mappedBy = "order")
-    private Set<OrderDetail> order_details;
+    private List<OrderDetail> order_details;
 
     @Column
     private int total_price;

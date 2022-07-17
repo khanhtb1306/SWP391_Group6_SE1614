@@ -32,15 +32,15 @@ public class OrderController {
     @Autowired
     ProductRepository productRepository;
 
-    @GetMapping("/shopping-cart2")
-    public String index(Model model){
-        List<OrderDetail> orderDetails = cartService.data();
-        model.addAttribute("LIST_OD",orderDetails);
-        model.addAttribute("LIST_P",this.productRepository.findAll());
-        model.addAttribute("TOTAL",cartService.total());
-        System.out.println(cartService.total());
-        return "shopping-cart";
-    }
+//    @GetMapping("/shopping-cart2")
+//    public String index(Model model){
+//        List<OrderDetail> orderDetails = cartService.data();
+//        model.addAttribute("LIST_OD",orderDetails);
+//        model.addAttribute("LIST_P",this.productRepository.findAll());
+//        model.addAttribute("TOTAL",cartService.total());
+//        System.out.println(cartService.total());
+//        return "shopping-cart";
+//    }
     @GetMapping("/checkout2")
     public String add(Model model){
         Order order = orderService.add();
