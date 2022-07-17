@@ -83,11 +83,4 @@ public class ProductController {
         return "redirect:/product";
     }
 
-    @GetMapping("/shop/search")
-    public String search(Model model, @RequestParam(name = "name", required = false) String name) {
-        List<Product> listProduct = service.searchByName(name);
-        model.addAttribute("listProduct",listProduct);
-        List<Category> listCategories = serviceC.listAll();
-        model.addAttribute("listCategories",listCategories);
-        return "shop";
-    }}
+   }

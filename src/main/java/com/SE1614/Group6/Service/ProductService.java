@@ -28,9 +28,7 @@ public class ProductService {
         repo.save(product);
     }
 
-    public List<Product> findByNameContaining(String name) {
-        return repo.findByNameContaining(name);
-    }
+
     public Product getProductById(Integer id) throws ProductNotFoundException {
         Optional<Product> result = repo.findById(id);
         if(result.isPresent()){
@@ -61,7 +59,5 @@ public class ProductService {
         return (List<Product>) repo.findAll();
     }
 
-    public List<Product> findByCategoryContaining(String category) {
-        return repo.findByCategoryContaining(category);
-    }
+
 }
