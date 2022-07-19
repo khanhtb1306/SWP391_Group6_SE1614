@@ -3,11 +3,14 @@ package com.SE1614.Group6.Service;
 
 import com.SE1614.Group6.Exception.BlogNotFoundException;
 import com.SE1614.Group6.Model.Blog;
+import com.SE1614.Group6.Model.Blog_status;
 import com.SE1614.Group6.Model.Category;
 import com.SE1614.Group6.Repo.BlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +22,10 @@ public class BlogService {
         return (List<Blog>) repo.findAll();
     }
 
+    public List<Blog> listAllActiveBlog(){
+        return (List<Blog>) repo.getBlogByBlogStatus(Blog_status.ACTIVE);
+    }
+
     public List<Blog> listAllWithCategory(Category id){
         return (List<Blog>) repo.getBlogByCategory(id);
     }
@@ -28,6 +35,16 @@ public class BlogService {
             return repo.findBlogByTitleContaining(title);
         }
         return (List<Blog>) repo.findAll();
+    }
+
+    public List<Blog> listSortedBlogByDateAndActive(){
+        List<Blog> blog = (List<Blog>) repo.getBlogByBlogStatus(Blog_status.ACTIVE);
+        blog.sort(Comparator.comparing(Blog::getUpdateDate).reversed());
+        List<Blog> newblog = new ArrayList<Blog>();
+        for(int i=0;i<Math.min(3,blog.size());i++) {
+            newblog.add(blog.get(i));
+        }
+        return newblog;
     }
 
     public List<Blog> listSortedBlogByDate(){

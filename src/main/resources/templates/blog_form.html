@@ -48,7 +48,7 @@
       <div class="form-group row">
         <label class="col-sm-4 col-form-label">Blog Status:</label>
         <div class="col-sm-8">
-          <select name="status" th:field="*{blog_status}">
+          <select name="status" th:field="*{blogStatus}">
             <option th:each="status : ${T(com.SE1614.Group6.Model.Blog_status).values()}"
                     th:value="${status}" th:text="${status}"></option>
           </select>

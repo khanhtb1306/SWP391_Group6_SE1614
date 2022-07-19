@@ -29,8 +29,11 @@ public class Product {
     private Integer quantity;
 
     @ManyToOne
-    @JoinColumn(name="category_id",nullable=false)
+    @JoinColumn(name="category_id",nullable=true)
     private Category category;
+
+    @OneToMany(mappedBy = "product",cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Set<OrderDetail> orderDetail;
 
     @Column
     private Integer original_price;

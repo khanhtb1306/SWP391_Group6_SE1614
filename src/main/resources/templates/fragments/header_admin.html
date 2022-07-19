@@ -38,7 +38,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                     <!-- item-->
-                    <a th:href="@{/pages-profile}" class="dropdown-item notify-item">
+                    <a th:href="@{'/pages-profile/'+${#httpServletRequest.userPrincipal.principal.email}}" class="dropdown-item notify-item">
                         <i class="mdi mdi-account-circle me-1"></i>
                         <span>My Account</span>
                     </a>
@@ -48,7 +48,7 @@
                         <span>Settings</span>
                     </a>
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <a th:href="@{/logout}" class="dropdown-item notify-item">
                         <i class="mdi mdi-logout me-1"></i>
                         <span>Logout</span>
                     </a>

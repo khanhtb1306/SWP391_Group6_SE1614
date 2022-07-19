@@ -50,6 +50,6 @@ public class CategoryController {
         } catch (CategoryNotFoundException e) {
             ra.addFlashAttribute("message",e.getMessage());
         }
-        return "redirect:/manage-blogs";
+        return "redirect:/categories";
     }
 }

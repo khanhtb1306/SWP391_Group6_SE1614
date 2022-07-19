@@ -29,7 +29,7 @@ public class BlogController {
 
     @GetMapping("/blogs")
     public String showBlogList(Model model){
-        List<Blog> listBlogs = service.listAll();
+        List<Blog> listBlogs = service.listAllActiveBlog();
         model.addAttribute("listBlogs",listBlogs);
         return "blogs";
     }
