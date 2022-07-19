@@ -1,6 +1,7 @@
 package com.SE1614.Group6.Controller;
 
 import com.SE1614.Group6.Exception.FeedBackNotFoundException;
+import com.SE1614.Group6.Exception.ProductNotFoundException;
 import com.SE1614.Group6.Exception.UserNotFoundException;
 import com.SE1614.Group6.Model.Category;
 import com.SE1614.Group6.Model.Feedback;
@@ -33,14 +34,18 @@ public class FeedbackController {
         return "feedback";
     }
 
-    @GetMapping("/feedback/new")
-    public String showNewForm(Model model){
+    @GetMapping("/feedback/new/{id}")
+    public String showNewForm(@PathVariable("id")Integer id,Model model){
+       try {
+
+
         model.addAttribute("feedback",new Feedback());
-        model.addAttribute("pageTitle","Add New Feedback");
+        model.addAttribute("pageTitle","Your Comment");
         List<User> listUsers = serviceU.listAll();
         model.addAttribute("listUsers",listUsers);
-        List<Product> listProduct = serviceP.listAllProduct();
-        model.addAttribute("listProduct",listProduct);
+        Product listProduct = serviceP.getProductById(id);
+        model.addAttribute("listProduct",listProduct);}
+       catch (ProductNotFoundException e){}
         return "feedback_form";
     }
 
@@ -48,7 +53,7 @@ public class FeedbackController {
     public String saveFeedback(Feedback feedback, RedirectAttributes ra){
         service.saveFeedback(feedback);
         ra.addFlashAttribute("message","feedback saved successfully!");
-        return "redirect:/feedback";
+        return "redirect:/shop";
     }
     @GetMapping("/feedback/edit/{id}")
     public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra){
@@ -67,7 +72,7 @@ public class FeedbackController {
     }
 
     @GetMapping("/feedback/delete/{id}")
-    public String deleteProduct(@PathVariable("id") Integer id,RedirectAttributes ra){
+    public String deleteFeedback(@PathVariable("id") Integer id,RedirectAttributes ra){
         try {
             service.delete(id);
             ra.addFlashAttribute("message","Feedback Id " + id + " deleted successfully!");

@@ -5,6 +5,7 @@ import com.SE1614.Group6.Model.Feedback;
 import com.SE1614.Group6.Model.Product;
 import com.SE1614.Group6.Repo.FeedbackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -36,5 +37,9 @@ public class FeedbackService {
             throw new FeedBackNotFoundException("Could not find any feedback with ID " + id);
         }
         repo.deleteById(id);
+    }
+    public List<Feedback> FindFeedBackbyProductByID(Integer id)throws FeedBackNotFoundException{
+        List<Feedback> feedback = repo.findFeedbackByProductId(id);
+        return feedback;
     }
 }

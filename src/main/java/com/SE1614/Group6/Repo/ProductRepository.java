@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 
+import javax.persistence.Id;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,7 +50,11 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
     Long countById(Integer id);
 
     public List<Product> findProductByNameContaining(String name);
+    public List<Product> findProductByCategoryIdContaining(Integer id);
 
-
+    @Query(value = "select * from Product as p ORDER BY p.original_price DESC",nativeQuery = true)
+    List<Product> OrderbyDesc();
+    @Query(value = "select * from Product as p ORDER BY p.original_price ASC",nativeQuery = true)
+    List<Product> OrderbyASC();
 
 }

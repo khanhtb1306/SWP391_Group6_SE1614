@@ -28,7 +28,7 @@ public class ProductRepositoryTest {
        String t1 = "2000-06-02";
 
        temp1.setProduct_detail("good product");
-       temp1.setDetail("good");
+       temp1.setDetail("good product");
        temp1.setImages("cho.jpg");
        temp1.setName("anh con cho");
        temp1.setQuantity(12);
@@ -81,8 +81,8 @@ public class ProductRepositoryTest {
     }
     public void testSearch(){
        String name = "tranh";
-       repo.search(name);
-       Iterable<Product> optionalProduct = repo.search(name);
+       repo.findProductByNameContaining(name);
+       Iterable<Product> optionalProduct = repo.findProductByNameContaining(name);
         Assertions.assertThat(optionalProduct.equals(optionalProduct));
     }
 }

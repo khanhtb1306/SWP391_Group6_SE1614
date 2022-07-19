@@ -35,10 +35,7 @@ public class WedController {
         model.addAttribute("listCategories",listCategories);
         return "shop";
     }
-    @GetMapping("/shop-details")
-    public String shop_details() {
-        return "shop-details";
-    }
+
     @GetMapping("/shopping-cart")
     public String shopping_cart() {
         return "shopping-cart";

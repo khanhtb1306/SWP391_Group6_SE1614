@@ -9,6 +9,9 @@ import com.SE1614.Group6.Model.Product;
 import com.SE1614.Group6.Model.User;
 import com.SE1614.Group6.Repo.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.data.jpa.repository.Query;
@@ -45,13 +48,14 @@ public class ProductService {
         repo.deleteById(id);
     }
 
-    /*@Query(value = "select * from Product where " +
-            "MATCH(name,original_price) " +
-            "AGAINST (?1)", nativeQuery = true)
-    public List<Product> search(String keyword) {
-        return repo.search(keyword);
-    }*/
-
+    @Query(value = "select * from Product ORDER BY p.original_price DESC",nativeQuery = true)
+    public List<Product> OrderbyDesc() {
+       return  repo.OrderbyDesc();
+    }
+    @Query(value = "select * from Product ORDER BY p.original_price ASC ",nativeQuery = true)
+    public List<Product> OrderbyASC() {
+        return  repo.OrderbyASC();
+    }
     public List<Product> searchByName(String name){
         if(name !=null){
             return repo.findProductByNameContaining(name);
@@ -59,5 +63,9 @@ public class ProductService {
         return (List<Product>) repo.findAll();
     }
 
+    public List<Product> getProductbyCategory(Integer id){
 
+            return repo.findProductByCategoryIdContaining(id);
+
+    }
 }
