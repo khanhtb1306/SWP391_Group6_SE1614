@@ -41,7 +41,7 @@
                     <td>[[${order.total_price}]]</td>
                     <td>[[${order.notes}]]</td>
                         <td>
-                    <th:block th:if="${order.order_status==status.get(0)}">
+                    <th:block th:if="${order.order_status==status.get(4)}">
                         <a class="btn btn-success" th:href="@{'/admin/order/confirm/' + ${order.id}}">Confirm</a>
                         <a class="btn btn-danger" th:href="@{'/admin/order/cancel/' + ${order.id}}">Cancel</a>
                     </th:block>
