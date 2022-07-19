@@ -51,6 +51,7 @@
                             <th:block th:if="${order.order_status==status.get(3)}">
                                 <span style="color: red">Đã hủy</span>
                             </th:block>
+
                     </td>
                     <td>
                         <a class="h4 mr-3" th:href="@{'/admin/order/orderdetail/' + ${order.id}}">Detail</a>
