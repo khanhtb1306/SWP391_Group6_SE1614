@@ -41,13 +41,14 @@ public class CartOrderController {
     @Autowired
     private UserService userService1;
     @GetMapping("addtoorder/{email}")
-    public String addOrder(@RequestParam(name = "address") String address, String first_name, String last_name, String notes, String phone, String email,@PathVariable("email") String email1) throws UserNotFoundException {
+    public String addOrder(@RequestParam(name = "") String address, String first_name, String last_name, String notes, String phone, String email,@PathVariable("email") String email1) throws UserNotFoundException {
         Order orderSession = (Order) session.getAttribute("order");
         if (orderSession != null) {
             //Bao gio set thi xoa dong 47 di mo cmt lai donng 46
-//            User user= (User) session.getAttribute("user");
-
             User user = userService1.get(email1);
+            session.setAttribute("user",user);
+
+
             System.out.println(email1);
            //User user = this.userRepository.findById(11).get();
             User usersale = this.userRepository.findById(1).get();

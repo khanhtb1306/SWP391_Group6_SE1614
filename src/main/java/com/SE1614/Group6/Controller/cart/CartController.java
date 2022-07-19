@@ -3,6 +3,7 @@ package com.SE1614.Group6.Controller.cart;
 import com.SE1614.Group6.Model.Order;
 import com.SE1614.Group6.Model.OrderDetail;
 import com.SE1614.Group6.Model.Product;
+import com.SE1614.Group6.Repo.OrderRepository;
 import com.SE1614.Group6.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,10 +27,6 @@ public class CartController {
     @Autowired
     private ProductService iItemsDao;
 
-    @GetMapping("/orderdetails")
-    public String showOrderDetails(Model model) {
-        return "orderdetails";
-    }
     @GetMapping("/shopping-cart2")
     public String getCart(Model model){
       int total =0;

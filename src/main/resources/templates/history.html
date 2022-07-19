@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage orders</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+
+                <th>Mã HD</th>
+                <th>Order_Date</th>
+                <th>Recipient's name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Total</th>
+                <th>Notes</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="order : ${listOrder}">
+                <tr>
+                    <td>HD [[${order.id}]]</td>
+                    <td>[[${order.order_date}]]</td>
+                    <td>[[${order.first_name} + ' ' + ${order.last_name}]]</td>
+                    <td>[[${order.email}]]</td>
+                    <td>[[${order.phone}]]</td>
+                    <td>[[${order.address}]]</td>
+                    <td>[[${order.total_price}]]</td>
+                    <td>[[${order.notes}]]</td>
+                    <td>
+                        <th:block th:if="${order.order_status==status.get(0)}">
+                            <span style="color: #0c2b4b">Chờ xác nhận</span>
+                        </th:block>
+                        <th:block th:if="${order.order_status==status.get(2)}">
+                            <span style="color: green">Đã xác nhận</span>
+                        </th:block>
+                        <th:block th:if="${order.order_status==status.get(3)}">
+                            <span style="color: red">Đã hủy</span>
+                        </th:block>
+                    </td>
+                </tr>
+            </th:block>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage os</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+</head>
+<body>
+<div class="container-fluid text-center">
+  <div><h2>Manage Users</h2></div>
+  <div class="mr-2">
+    <a class="h3" th:href="@{/o/new}">Add New o</a>
+  </div>
+  <div th:if="${message}" class="alert alert-success text-center">
+    [[${message}]]
+  </div>
+
+  <div>
+    <table class="table table-boed">
+      <thead class="thead-dark">
+      <tr>
+        <th>Mã HD</th>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+        <th><a class="h4 mr-3" th:href="@{'/admin/order'}">Back</a>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <th:block th:each="o : ${orderDetail}">
+        <tr>
+          <td>HD[[${o.id}]]</td>
+          <td>[[${o.product.images}]]</td>
+          <td>[[${o.product.name}]]</td>
+          <td>[[${o.quantity}]]</td>
+          <td>[[${o.unit_price}]]</td>
+          <td>[[${o.unit_price} * ${o.quantity}]]</td>
+
+        </tr>
+      </th:block>
+
+
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>
