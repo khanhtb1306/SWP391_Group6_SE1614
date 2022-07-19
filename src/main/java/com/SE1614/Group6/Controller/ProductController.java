@@ -44,50 +44,52 @@ public class ProductController {
     private UserService serviceU;
     @Autowired
     private FeedbackService serviceF;
+
     @GetMapping("/product")
-    public String showProductList(Model model){
+    public String showProductList(Model model) {
         List<Product> listProduct = service.listAllProduct();
-        model.addAttribute("listProduct",listProduct);
+        model.addAttribute("listProduct", listProduct);
         return "product";
     }
 
     @GetMapping("/product/new")
-    public String showNewForm(Model model){
-        model.addAttribute("product",new Product());
-        model.addAttribute("pageTitle","Add New Product");
+    public String showNewForm(Model model) {
+        model.addAttribute("product", new Product());
+        model.addAttribute("pageTitle", "Add New Product");
         List<Category> listCategories = serviceC.listAll();
-        model.addAttribute("listCategories",listCategories);
+        model.addAttribute("listCategories", listCategories);
         return "product_form";
     }
 
     @PostMapping("/product/save")
-    public String saveProduct(Product product,RedirectAttributes ra){
+    public String saveProduct(Product product, RedirectAttributes ra) {
         service.saveProduct(product);
-        ra.addFlashAttribute("message","product saved successfully!");
+        ra.addFlashAttribute("message", "product saved successfully!");
         return "redirect:/product";
     }
+
     @GetMapping("/product/edit/{id}")
-    public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra){
+    public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
         try {
             Product product = service.getProductById(id);
-            model.addAttribute("product",product);
-            model.addAttribute("pageTitle","Edit Product ID: "+id);
+            model.addAttribute("product", product);
+            model.addAttribute("pageTitle", "Edit Product ID: " + id);
             List<Category> listCategories = serviceC.listAll();
-            model.addAttribute("listCategories",listCategories);
+            model.addAttribute("listCategories", listCategories);
             return "product_form";
         } catch (ProductNotFoundException e) {
-            ra.addFlashAttribute("message",e.getMessage());
+            ra.addFlashAttribute("message", e.getMessage());
             return "redirect:/product";
         }
     }
 
     @GetMapping("/product/delete/{id}")
-    public String deleteProduct(@PathVariable("id") Integer id,RedirectAttributes ra){
+    public String deleteProduct(@PathVariable("id") Integer id, RedirectAttributes ra) {
         try {
             service.delete(id);
-            ra.addFlashAttribute("message","Product Id " + id + " deleted successfully!");
+            ra.addFlashAttribute("message", "Product Id " + id + " deleted successfully!");
         } catch (ProductNotFoundException e) {
-            ra.addFlashAttribute("message",e.getMessage());
+            ra.addFlashAttribute("message", e.getMessage());
         }
         return "redirect:/product";
     }
@@ -96,58 +98,54 @@ public class ProductController {
     public String searchProductWithName(@RequestParam("name") String name, Model model) {
         List<Product> listProduct = service.searchByName(name);
         List<Category> listCategories = serviceC.listAll();
-        model.addAttribute("listCategories",listCategories);
-        model.addAttribute("listProduct",listProduct);
+        model.addAttribute("listCategories", listCategories);
+        model.addAttribute("listProduct", listProduct);
         return "shop";
 
     }
+
     @GetMapping("/product/detail")
-    public String ProductDetail(@RequestParam(name="id")Integer id,Model model){
-      try {
-          Product listProduct = service.getProductById(id);
-          List<Category> listCategories = serviceC.listAll();
-          List<Feedback> listFeedback = serviceF.FindFeedBackbyProductByID(id);
-          model.addAttribute("listCategories",listCategories);
-          model.addAttribute("listProduct",listProduct);
-          model.addAttribute("listFeedback",listFeedback);
-      }catch (FeedBackNotFoundException e) {
+    public String ProductDetail(@RequestParam(name = "id") Integer id, Model model) {
+        try {
+            Product listProduct = service.getProductById(id);
+            List<Category> listCategories = serviceC.listAll();
+            List<Feedback> listFeedback = serviceF.FindFeedBackbyProductByID(id);
+            model.addAttribute("listCategories", listCategories);
+            model.addAttribute("listProduct", listProduct);
+            model.addAttribute("listFeedback", listFeedback);
+        } catch (FeedBackNotFoundException e) {
 
         } catch (ProductNotFoundException e) {
-          throw new RuntimeException(e);
-      }
+            throw new RuntimeException(e);
+        }
         return "shop-details";
     }
-@GetMapping("/product/sort/desc")
-    public String ProductSort1( Model model){
 
-
-
-    List<Product> listProduct = service.OrderbyDesc();
-
-
-
-    List<Category> listCategories = serviceC.listAll();
-    model.addAttribute("listCategories",listCategories);
-    model.addAttribute("listProduct",listProduct);
-    return "shop";
-}
-    @GetMapping("/product/sort/asc")
-    public String ProductSort2(Model model){
-
-
-
-        List<Product>  listProduct = service.OrderbyASC();
-
+    @GetMapping("/product/sort/desc")
+    public String ProductSort1(Model model) {
+        List<Product> listProduct = service.OrderbyDesc();
         List<Category> listCategories = serviceC.listAll();
-        model.addAttribute("listCategories",listCategories);
-        model.addAttribute("listProduct",listProduct);
-        return "shop";}
-        @GetMapping("/product/choose/{id}")
-    public String ProductCategory(@PathVariable("id") Integer id,Model model){
-        List<Product> listProduct = service.getProductbyCategory(id);
-        List<Category> listCategories = serviceC.listAll();
-        model.addAttribute("listCategories",listCategories);
-        model.addAttribute("listProduct",listProduct);
-        return "redirect:/shop";
+        model.addAttribute("listCategories", listCategories);
+        model.addAttribute("listProduct", listProduct);
+        return "shop";
     }
-   }
+
+    @GetMapping("/product/sort/asc")
+    public String ProductSort2(Model model) {
+        List<Product> listProduct = service.OrderbyASC();
+        List<Category> listCategories = serviceC.listAll();
+        model.addAttribute("listCategories", listCategories);
+        model.addAttribute("listProduct", listProduct);
+        return "shop";
+    }
+
+    @GetMapping("/product/choose/{id}")
+    public String ProductCategory(@PathVariable("id") Integer id, Model model) {
+        Category cat = serviceC.getById(id);
+        List<Product> listProduct = service.getProductByCategory(cat);
+        List<Category> listCategories = serviceC.listAll();
+        model.addAttribute("listCategories", listCategories);
+        model.addAttribute("listProduct", listProduct);
+        return "shop";
+    }
+}

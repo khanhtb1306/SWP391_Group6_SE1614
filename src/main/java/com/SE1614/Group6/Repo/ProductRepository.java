@@ -1,6 +1,7 @@
 package com.SE1614.Group6.Repo;
 
 
+import com.SE1614.Group6.Model.Category;
 import com.SE1614.Group6.Model.Product;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -50,7 +51,7 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
     Long countById(Integer id);
 
     public List<Product> findProductByNameContaining(String name);
-    public List<Product> findProductByCategoryIdContaining(Integer id);
+    public List<Product> getProductByCategory(Category cat);
 
     @Query(value = "select * from Product as p ORDER BY p.original_price DESC",nativeQuery = true)
     List<Product> OrderbyDesc();
