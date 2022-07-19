@@ -66,7 +66,7 @@ public class CartOrderController {
             order.setEmail(email);
             order.setNotes(notes);
 
-            order.setOrder_status(Order_status.UNSUBMITTED);
+            order.setOrder_status(Order_status.SHIPPING);
             int total = (int) session.getAttribute("total");
             order.setTotal_price(total);
             try {
