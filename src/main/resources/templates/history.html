@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <title>Manage orders</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+    <th:block th:replace="fragments/meta_head :: meta_head"></th:block>
 </head>
 <body>
 <div class="container-fluid text-center">
+    <div><h2>Purchase History</h2></div>
     <div>
         <table class="table table-bordered">
             <thead class="thead-dark">
             <tr>
 
                 <th>Mã HD</th>
-                <th>Order_Date</th>
+                <th>Order Date</th>
                 <th>Recipient's name</th>
                 <th>Email</th>
                 <th>Phone</th>

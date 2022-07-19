@@ -55,6 +55,10 @@ public class BlogService {
         repo.save(blog);
     }
 
+    public Blog saveAndReturn(Blog blog) {
+        return repo.save(blog);
+    }
+
     public Blog get(Integer id) throws BlogNotFoundException {
         Optional<Blog> result = repo.findById(id);
         if(result.isPresent()){
