@@ -37,6 +37,7 @@ public class UserDetailService implements UserDetailsService {
 
         if(userExists){
             throw new IllegalAccessException("email already taken");
+
         }
 
         String encodedPassword = bCryptPasswordEncoder

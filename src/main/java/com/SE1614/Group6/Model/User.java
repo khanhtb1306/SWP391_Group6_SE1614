@@ -7,11 +7,11 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -45,6 +45,8 @@ public class User implements UserDetails {
     @Column(length = 255, nullable = false)
     private String password;
 
+    @Column(name = "reset_password",length = 255)
+    private String resetPassword;
 
     @Column(nullable = false, unique = true, length = 45)
     private String email;
@@ -66,6 +68,7 @@ public class User implements UserDetails {
 
     @Column
     private String avatar;
+
 
     @OneToMany(mappedBy = "user")
     private Set<Blog> blog;
@@ -97,6 +100,7 @@ public class User implements UserDetails {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.name());
         return Collections.singleton(authority);
     }
+
 
     @Override
     public String getUsername() {

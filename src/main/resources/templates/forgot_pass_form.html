@@ -22,31 +22,31 @@
                 <div class="row justify-content-center">
                     <div class="col-xxl-4 col-lg-5">
                         <div class="card">
-                            <!-- Logo -->
-                            <div class="card-header pt-4 pb-4 text-center bg-primary">
-                                <a href="admin.html">
-                                    <span><img src="#" alt="" height="18"></span>
-                                </a>
-                            </div>
                             
                             <div class="card-body p-4">
                                 
                                 <div class="text-center w-75 m-auto">
-                                    <h4 class="text-dark-50 text-center mt-0 fw-bold">Reset Password</h4>
-                                    <p class="text-muted mb-4">Enter your email address and we'll send you an email with instructions to reset your password.</p>
+                                    <h4 class="text-dark-50 text-center mt-0 fw-bold">Reset Your Password</h4>
                                     <div th:if="${message}">
                                         <p class="text-warning">[[${message}]]</p>
                                     </div>
                                 </div>
 
-                                <form th:action="@{/forgot_pass}" method="post">
+                                <form th:action="@{/reset_password}" method="post">
+                                <input type="hidden" name="token" th:value="${token}"/>
                                     <div class="mb-3">
-                                        <label for="emailaddress" class="form-label">Email address</label>
-                                        <input class="form-control" name="email" type="email" id="emailaddress" required="" placeholder="Enter your email">
+                                        <label for="NewPass" class="form-label">New Password</label>
+                                        <input autofocus class="form-control" name="password"  type="password" id="NewPass" required placeholder="Enter your new password">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="ConfirmPass" class="form-label">Comfirm password</label>
+                                        <input autofocus class="form-control" type="password" id="ConfirmPass" required placeholder="Comfirm your new password"
+                                        oninput="checkPasswordMatch(this)">
                                     </div>
 
                                     <div class="mb-0 text-center">
-                                        <button class="btn btn-primary" type="submit">Reset Password</button>
+                                        <button class="btn btn-primary" type="submit">Change Password</button>
                                     </div>
                                 </form>
                             </div> <!-- end card-body-->
@@ -75,6 +75,16 @@
         <!-- bundle -->
         <script src="assets/js/vendor.min.js"></script>
         <script src="assets/js/app.min.js"></script>
+    <script type="text/javascript">
+        function checkPasswordMatch(fieldConfirmPassword){
+            if (fieldConfirmPassword.value != $("#NewPass").val()){
+                fieldConfirmPassword.setCustomValidity("Password do not match!");
+            }else{
+                fieldConfirmPassword.setCustomValidity("");
+
+            }
+        }
+    </script>
         
     </body>
 </html>
