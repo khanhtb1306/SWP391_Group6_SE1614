@@ -47,6 +47,4 @@ public class Blog {
     @Column
     @Lob
     private String content;
-    /*alter table blog
-alter column content varchar(8000) to increase size content of blog*/
 }

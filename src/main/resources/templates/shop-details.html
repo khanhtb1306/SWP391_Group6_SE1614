@@ -86,34 +86,27 @@
                     <div class="col-lg-8">
                         <div class="product__details__text">
                             <th:block th:each="product : ${listProduct}" >
-                            <h4>[[${product.name}]]</h4>
-                                </th:block>
-                            <div class="rating">
-                                <th:block>
-                                <i class="fa fa-star-o" ></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                </th:block>
-                            </div>
-                            <th:block th:each="product : ${listProduct}" >
-                            <h3>[[${product.sale_price}]] $<span>[[${product.original_price}]]</span></h3>
-                            <p></p>
-                            </th:block>
-
-                            <div class="product__details__cart__option">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
-                                    </div>
+                                <h4>[[${product.name}]]</h4>
+                                <div class="rating">
+                                    <i class="fa fa-star-o" ></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
                                 </div>
-                                <a href="#" class="primary-btn">add to cart</a>
-                            </div>
-                            <div class="product__details__btns__option">
-                                <a href="#"><i class="fa fa-heart"></i> add to wishlist</a>
-                                <a href="#"><i class="fa fa-exchange"></i> Add To Compare</a>
-                            </div>
+                                <h3>[[${product.sale_price}]] $<span>[[${product.original_price}]]</span></h3>
+                                <p></p>
+
+
+                                <div class="product__details__cart__option">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <input type="text" value="1">
+                                        </div>
+                                    </div>
+                                    <a th:href="@{'/shop/addtocart?id='+${product.id}}" class="primary-btn">Add to cart</a>
+                                </div>
+                            </th:block>
                             <div class="product__details__last__option">
                                 <h5><span>Guaranteed Safe Checkout</span></h5>
                                 <img  th:src="@{img/shop-details/details-payment.png}" alt="">
