@@ -1,61 +1,177 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="zxx">
+
 <head>
-    <meta charset="UTF-8">
-    <title>[[${pageTitle}]]</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-          crossorigin="anonymous">
+    <th:block th:replace="fragments/meta_head :: meta_head"></th:block>
 </head>
+
 <body>
-<div class="container-fluid">
-    <div class="text-center"><h2>[[${pageTitle}]]</h2></div>
-    <form th:action="@{/feedback/save}" method="post" th:object="${feedback}" style="margin: 0 auto;max-width: 500px;">
-        <input type="hidden" th:field="*{id}"/>
-        <div class="border border-secondary rounded p-3">
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Comment:</label>
-                <div class="col-sm-8">
-                    <input type="text" th:field="*{comment}" class="form-control" required maxlength="45" minlength="8"/>
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+
+<!-- Offcanvas Menu Begin -->
+<!-- Offcanvas Menu End -->
+
+<!-- Header Section Begin -->
+<div th:include="fragments/header:: header"></div>
+<!-- Header Section End -->
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Shop</h4>
+                    <div class="breadcrumb__links">
+                        <a href="./index.html">Home</a>
+                        <span>Shop</span>
+                    </div>
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Star:</label>
-                <div class="col-sm-8">
-                    <input type="number" th:field="*{star}" class="form-control" required maxlength="45" minlength="8"/>
+        </div>
+    </div>
+</section>
+<section class="shop spad">
+    <div class="container">
+
+
+        </div>
+<form th:action="@{/feedback/save}" method="post" th:object="${feedback}" style="margin: 0 auto;max-width: 500px;">
+    <input type="hidden" th:field="*{id}"/>
+
+        <h5>Your Comment:</h5>
+        <div class="checkout__input">
+            <input type="text" name="comment" th:field="*{comment}" required  minlength="8"
+                   placeholder="comment here...">
+
+            <div class="rating">
+                <div class="row">
+                <div class="col-sm-6">
+                Your Vote: <input type="number" th:field="*{star}" required maxlength="45" minlength="8"/>
+                </div>
+                <div class="col-sm-6"><i class="fa fa-star" style="padding-top: 40px"></i></div>
                 </div>
             </div>
 
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Product:</label>
-                <div class="col-sm-8">
-            <select name="product" th:field="*{product}">
-                <option th:each="product : ${listProduct}"
-                        th:value="${product.id}" th:text="${product.name}"></option>
-            </select>
+        </div>
+
+
+                <th:block name="product" th:field="*{product}"  >
+                    <p th:each="product : ${listProduct}"
+                       style="display: none"   th:value="${product.id}" th:text="${product.name}"></p>
+                </th:block>
+
+
+
+
+
+                <th:block name="user" th:field="*{user}" >
+                    <p th:each="users : ${listUsers}"
+                       style="display: none"  th:value="${users.id}" th:text="${users.last_name}"></p>
+                </th:block>
+
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary m-2">Save</button>
+            <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
+        </div>
+    </div>
+</form>
+
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="footer__about">
+                    <div class="footer__logo">
+                        <a href="#"><img th:src="@{img/footer-logo.png}" alt=""></a>
+                    </div>
+                    <p>The customer is at the heart of our unique business model, which includes design.</p>
+                    <a href="#"><img th:src="@{/img/payment.png}" alt=""></a>
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">User:</label>
-                <div class="col-sm-8">
-                    <select name="user" th:field="*{user}">
-                        <option th:each="users : ${listUsers}"
-                                th:value="${users.id}" th:text="${users.user_name}"></option>
-                    </select>
+            <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                <div class="footer__widget">
+                    <h6>Shopping</h6>
+                    <ul>
+                        <li><a href="#">Clothing Store</a></li>
+                        <li><a href="#">Trending Shoes</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Sale</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary m-2">Save</button>
-                <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
+            <div class="col-lg-2 col-md-3 col-sm-6">
+                <div class="footer__widget">
+                    <h6>Shopping</h6>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Payment Methods</a></li>
+                        <li><a href="#">Delivary</a></li>
+                        <li><a href="#">Return & Exchanges</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                <div class="footer__widget">
+                    <h6>NewLetter</h6>
+                    <div class="footer__newslatter">
+                        <p>Be the first to know about new arrivals, look books, sales & promos!</p>
+                        <form action="#">
+                            <input type="text" placeholder="Your email">
+                            <button type="submit"><span class="icon_mail_alt"></span></button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-    </form>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="footer__copyright__text">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <p>Copyright ©
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>2020
+                        All rights reserved | This template is made with <i class="fa fa-heart-o"
+                                                                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    </p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->
+
+<!-- Search Begin -->
+<div class="search-model">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-switch">+</div>
+        <form class="search-model-form">
+            <input type="text" id="search-input" placeholder="Search here.....">
+        </form>
+    </div>
 </div>
-<script type= "text/javascript">
-    function cancelForm(){
-        window.location="[[@{/feedback}]]"
-    }
-</script>
+<!-- Search End -->
+
+<!-- Js Plugins -->
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.nice-select.min.js}"></script>
+<script th:src="@{/js/jquery.nicescroll.min.js}"></script>
+<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/js/jquery.countdown.min.js}"></script>
+<script th:src="@{/js/jquery.slicknav.js}"></script>
+<script th:src="@{/js/mixitup.min.js}"></script>
+<script th:src="@{/js/owl.carousel.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+<script> function cancelForm(){
+    window.location="[[@{/shop}]]"
+}</script>
 </body>
 </html>

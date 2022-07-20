@@ -1,6 +1,7 @@
 package com.SE1614.Group6.Repo;
 
 import com.SE1614.Group6.Model.Feedback;
+import com.SE1614.Group6.Model.Product;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -27,4 +28,9 @@ public interface FeedbackRepository extends CrudRepository<Feedback, Integer>  {
     List<Feedback> findFeedbackByUserId(int id);
     @Query(value = "SELECT * FROM Feedback WHERE product_id = ?1",nativeQuery = true)
     List<Feedback> findFeedbackByProductId(int id);
+    Long countById(Integer id);
+    @Override
+    void delete(Feedback entity);
+    @Override
+    void deleteById(Integer integer);
 }

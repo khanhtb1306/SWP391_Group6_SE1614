@@ -50,6 +50,11 @@
                         <form class="dropdown-item notify-item header__top__links" th:action="@{/logout}" method="post" th:hidden="true">
                             <input type="submit" value="Logout"/>
                         </form>
+                    <!-- item-->
+                    <a th:href="@{/logout}" class="dropdown-item notify-item">
+                        <i class="mdi mdi-logout me-1"></i>
+                        <span>Logout</span>
+                    </a>
                 </div>
             </li>
         </ul>

@@ -10,6 +10,7 @@ import com.SE1614.Group6.Repo.ProductRepository;
 import com.SE1614.Group6.Repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -32,6 +33,8 @@ public class OrderService {
     OrderDetailRepository orderDetailRepository;
     @Autowired
     ProductRepository productRepository;
+
+
     public Order add() {
         HttpSession session = request.getSession();
         //lấy danh sách sản phẩm về

@@ -13,7 +13,7 @@
 
   <main class="container py-5">
     <div class="row">
-      <section class="blog spad col-md-8 pt-8">
+      <section class="blog spad col-md-9 pt-8">
         <div class="container">
           <div class="row">
             <th:block th:each="blog : ${listBlogs}">
@@ -21,7 +21,7 @@
                 <div class="blog__item">
                   <div class="blog__item__pic set-bg" th:data-setbg="${blog.image_Link}"></div>
                   <div class="blog__item__text">
-                    <span><img th:src="@{/img/icon/calendar.png}" alt=""> [[${blog.update_Date}]]</span>
+                    <span><img th:src="@{/img/icon/calendar.png}" alt=""> [[${blog.updateDate}]]</span>
                     <h5>[[${blog.title}]]</h5>
                     <a th:href="@{'/blog-details/' + ${blog.id}}">Read More</a>
                   </div>
@@ -31,7 +31,7 @@
           </div>
         </div>
       </section>
-      <div class="col-md-4 pt-4">
+      <div class="col-md-3 pt-4">
         <div class="blog-sidebar rounded shadow-sm border pt-4 pb-5 px-4">
           <h4 class="mb-3">Category</h4>
           <ul class="list-group">

@@ -22,9 +22,9 @@ public class Category {
     @Column
     private String value;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category",cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Blog> blog;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category",cascade = CascadeType.REMOVE, orphanRemoval = true)
     private  Set<Product> products;
 }

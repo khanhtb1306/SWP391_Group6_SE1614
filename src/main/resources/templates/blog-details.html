@@ -12,14 +12,14 @@
 
     <main class="container py-5">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <h1 th:text="${blog.title}" class="mb-3 mt-3"></h1>
                 <i class="fa fa-user text-muted"></i> <span class="small-blog-post-author me-3 text-muted" th:text="${blog.user.last_name}"></span> <i class="fa fa-tag text-muted"></i> <span class="small-blog-post-category text-muted" th:text="${blog.category.value}"></span>
                 <hr class="mt-0 mb-5">
                 <img th:src="${blog.image_Link}" class="float-start me-4 img-fluid">
                 <p th:text="${blog.content}"></p>
             </div>
-            <div class="col-md-4 pt-4">
+            <div class="col-md-3 pt-4">
                 <div class="blog-sidebar rounded shadow-sm border pt-4 pb-5 px-4">
                     <h4 class="mb-3">Category</h4>
                     <ul class="list-group">

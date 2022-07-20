@@ -33,6 +33,21 @@ public class Order {
     private User sale;
 
     @Column
+    private String first_name;
+
+    @Column
+    private String last_name;
+
+    @Column
+    private String address;
+
+    @Column
+    private String phone;
+
+    @Column
+    private String email;
+
+    @Column
     private String notes;
 
     @Column
@@ -47,4 +62,5 @@ public class Order {
 
     @Column
     private int total_price;
+
 }

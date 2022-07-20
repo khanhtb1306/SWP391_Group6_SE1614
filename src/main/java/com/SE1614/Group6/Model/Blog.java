@@ -25,7 +25,7 @@ public class Blog {
 
     @Enumerated(EnumType.ORDINAL)
     @JoinColumn(name="blog_status_id",nullable=true)
-    private Blog_status blog_status;
+    private Blog_status blogStatus;
 
     @ManyToOne
     @JoinColumn(name="category_id",nullable=true)
@@ -38,7 +38,7 @@ public class Blog {
     private String views;
 
     @Column
-    private String update_Date;
+    private String updateDate;
 
     @Column
     private String image_Link;
