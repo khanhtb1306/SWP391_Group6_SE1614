@@ -61,6 +61,16 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Confirm Password</label>
+                                <div class="input-group input-group-merge">
+                                    <input type="password" id="newpass" name="password" class="form-control" placeholder="Enter your password" required oninput="checkPasswordMatch(this)">
+                                    <div class="input-group-text" data-password="false">
+                                        <span class="password-eye"></span>
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <div class="mb-3">
                                 <div class="form-check">
@@ -147,6 +157,16 @@
             $("#password").val();
         }
     });
+</script>
+
+<script type="text/javascript">
+    function checkPasswordMatch(fieldConfirmPassword){
+        if (fieldConfirmPassword.value != $("#password").val()){
+            fieldConfirmPassword.setCustomValidity("Password do not match!");
+        }else{
+            fieldConfirmPassword.setCustomValidity("");
+        }
+    }
 </script>
 
 </body>

@@ -12,7 +12,10 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
     public Long countById(Integer id);
+
     Optional<User> findByEmail(String email);
+
+    public User findByResetPassword(String token);
 
     @Transactional
     @Modifying
@@ -24,4 +27,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("UPDATE User a " +
             "SET a.locked = True WHERE a.email = ?1")
     int lockedUser(String email);
+
+
 }

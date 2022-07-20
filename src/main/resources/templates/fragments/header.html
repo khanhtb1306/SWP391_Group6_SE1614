@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -21,8 +24,9 @@
                                 <a th:href="@{/login}">Sign in</a>
                                 <a th:href="@{'/pages-profile/'+ ${#httpServletRequest.userPrincipal.principal.email}}">Profile</a>
                             </div>
+
                             <div class="header__top__hover">
-                                    <form class="header__top__links" th:action="@{/logout}" method="post">
+                                    <form class="header__top__links"  th:action="@{/logout}" method="post">
                                         <input type="submit" value="Logout"/>
                                     </form>
                                 </ul>
