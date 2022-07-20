@@ -121,7 +121,7 @@
 
 
                         <div class="row">
-                            <div class="col-xl-4">
+                            <div class="col-xl-3">
                                 <!-- Personal-Information -->
                                 <div class="card">
                                     <div class="card-body">
@@ -157,7 +157,7 @@
                                 <!-- Personal-Information -->
 
                             </div> <!-- end col-->
-                                <div class="col-xl-8 col-lg-7">
+                                <div class="col-xl-9 col-lg-7">
                                     <div class="card">
                                         <div class="card-body">
                                             <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
@@ -182,25 +182,46 @@
                                                 <div class="tab-pane" id="aboutme">
                                                     <div class="table-responsive">
                                                         <table class="table table-borderless table-nowrap mb-0">
-                                                            <thead class="table-light">
+                                                            <thead class="thead-dark">
                                                             <tr>
-                                                                <th>#</th>
-                                                                <th>Clients</th>
-                                                                <th>Project Name</th>
-                                                                <th>Start Date</th>
-                                                                <th>Due Date</th>
+
+                                                                <th>Mã HD</th>
+                                                                <th>Order Date</th>
+
+                                                                <th>Email</th>
+                                                                <th>Phone</th>
+                                                                <th>Address</th>
+                                                                <th>Total</th>
+
                                                                 <th>Status</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td><img src="assets/images/users/avatar-2.jpg" alt="table-user" class="me-2 rounded-circle" height="24"> Halette Boivin</td>
-                                                                <td>App design and development</td>
-                                                                <td>01/01/2015</td>
-                                                                <td>10/15/2018</td>
-                                                                <td><span class="badge badge-info-lighten">Work in Progress</span></td>
-                                                            </tr>
+                                                            <th:block th:each="order : ${listOrder}">
+                                                                <tr>
+                                                                    <td>HD [[${order.id}]]</td>
+                                                                    <td>[[${order.order_date}]]</td>
+
+                                                                    <td>[[${order.email}]]</td>
+                                                                    <td>[[${order.phone}]]</td>
+                                                                    <td>[[${order.address}]]</td>
+                                                                    <td>[[${order.total_price}]]</td>
+
+                                                                    <td>
+                                                                        <th:block th:if="${order.order_status==status.get(4)}">
+                                                                            <span style="color: #0c2b4b">Chờ xác nhận</span>
+                                                                        </th:block>
+                                                                        <th:block th:if="${order.order_status==status.get(2)}">
+                                                                            <span style="color: green">Đã xác nhận</span>
+                                                                        </th:block>
+                                                                        <th:block th:if="${order.order_status==status.get(3)}">
+                                                                            <span style="color: red">Đã hủy</span>
+                                                                        </th:block>
+                                                                    </td>
+                                                                </tr>
+                                                            </th:block>
+
+
                                                             </tbody>
                                                         </table>
                                                     </div>

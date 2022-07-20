@@ -2,7 +2,9 @@ package com.SE1614.Group6.Controller;
 
 import com.SE1614.Group6.Email.Utility;
 import com.SE1614.Group6.Exception.UserNotFoundException;
+import com.SE1614.Group6.Model.Order_status;
 import com.SE1614.Group6.Model.User;
+import com.SE1614.Group6.Repo.OrderRepository;
 import com.SE1614.Group6.Service.UserService;
 import lombok.AllArgsConstructor;
 import net.bytebuddy.utility.RandomString;
@@ -27,6 +29,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -34,6 +37,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -43,6 +47,15 @@ public class UserController {
     @Autowired private UserService service;
     @Autowired
     private JavaMailSender mailSender;
+
+    @Autowired
+    HttpSession session;
+
+    @Autowired
+    OrderRepository orderRepository;
+
+    @Autowired
+    HttpServletRequest request;
 
 
     @Controller
@@ -66,13 +79,27 @@ public class UserController {
 
         try {
             User user = service.getEmail(email);
-
             model.addAttribute("user",user);
+
+
+            User user1 = (User) session.getAttribute("user");
+            // lấy user đang đăng nhập truyền vào trong cái id của findAll
+            model.addAttribute("listOrder",orderRepository.findAllByUser(user1.getId()));
+
             return "pages-profile";
         } catch (UserNotFoundException e) {
             return "redirect:/pages-profile";
         }
     }
+    @ModelAttribute("status")
+    public List<Order_status> getStatus() {
+        List<Order_status> list=new ArrayList<>();
+        for (Order_status vp: Order_status.values()) {
+            list.add(vp);
+        }
+        return list;
+    }
+
     @PostMapping("/pages-profile/{email}")
     public String SaveProfile(@PathVariable("email") String email, @ModelAttribute(name="user") User user,
                               RedirectAttributes ra,
