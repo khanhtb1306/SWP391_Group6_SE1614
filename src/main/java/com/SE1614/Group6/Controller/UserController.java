@@ -35,6 +35,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @AllArgsConstructor
@@ -165,7 +166,8 @@ public class UserController {
 
 
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
-        user.setAvatar(fileName);
+
+        if(!fileName.isEmpty()){
         User user1 = service.save(user);
 
             String uploadDir = "./user_avatar/" + user1.getId();
@@ -324,8 +326,6 @@ public class UserController {
         model.addAttribute("message", "Đã xảy ra lỗi khi đăng nhập");
         return "message";
     }
-
-
 
 
     @GetMapping("/changePassword")
