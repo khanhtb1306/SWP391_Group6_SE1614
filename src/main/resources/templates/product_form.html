@@ -11,7 +11,7 @@
     <body>
     <div class="container-fluid">
         <div class="text-center"><h2>[[${pageTitle}]]</h2></div>
-        <form th:action="@{/product/save}" method="post" th:object="${product}" style="margin: 0 auto;max-width: 500px;">
+        <form th:action="@{/product/save}" method="post" th:object="${product}"  enctype="multipart/form-data" style="margin: 0 auto;max-width: 500px;">
             <input type="hidden" th:field="*{id}"/>
             <div class="border border-secondary rounded p-3">
                 <div class="form-group row">
@@ -27,9 +27,10 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Images:</label>
+                    <label class="col-sm-4 col-form-label">Avatar:</label>
                     <div class="col-sm-8">
-                        <input type="text" th:field="*{images}" class="form-control" required maxlength="45" minlength="2"/>
+                        <input id="fileImage" name = "fileImage" type="file"  class="form-control" placeholder="Enter photo" accept="image/png, image/jpeg"  required/>
+                        <img th:src="*{images}" style="max-height: 100px;" id="thumbnail" alt="avatar preview"/>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -78,7 +79,7 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary m-2">Save</button>
+                    <button type="submit" class="btn btn-primary m-2" onclick="return VerifyUploadSizeIsOK()">Save</button>
                     <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
                 </div>
             </div>
@@ -88,6 +89,49 @@
         function cancelForm(){
             window.location="[[@{/product}]]"
         }
+    </script>
+    <script th:src="@{/assets/js/vendor.min.js}"></script>
+    <script th:src="@{/assets/js/app.min.js}"></script>
+
+    <!-- third party js -->
+    <script th:src="@{/assets/js/vendor/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/assets/js/vendor/dataTables.bootstrap5.js}"></script>
+    <script th:src="@{/assets/js/vendor/dataTables.responsive.min.js}"></script>
+    <script th:src="@{/assets/js/vendor/responsive.bootstrap5.min.js}"></script>
+    <script th:src="@{/assets/js/vendor/dataTables.checkboxes.min.js}"></script>
+    <script th:src="@{/assets/js/pages/demo.customers.js}"></script>
+    <script type="text/javascript">
+        $(document).ready(function (){
+            $('#fileImage').change(function (){
+                ShowImageThumbnail(this);
+            });
+            $('.content').richText();
+        });
+        function ShowImageThumbnail(fileInput){
+            file = fileInput.files[0];
+            reader = new FileReader();
+            reader.onload = function (e){
+                $('#thumbnail').attr("src", e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+
+
+    </script>
+    <script type="text/javascript">
+        function VerifyUploadSizeIsOK()
+        {
+            /* Attached file size check. Will Bontrager Software LLC, https://www.willmaster.com */
+            var UploadFieldID = "fileImage";
+            var MaxSizeInBytes = 1048576;
+            var fld = document.getElementById(UploadFieldID);
+            if( fld.files && fld.files.length == 1 && fld.files[0].size > MaxSizeInBytes )
+            {
+                alert("The file size must be no more than " + parseInt(MaxSizeInBytes/1024/1024) + "MB");
+                return false;
+            }
+            return true;
+        } // function VerifyUploadSizeIsOK()
     </script>
     </body>
     </html>

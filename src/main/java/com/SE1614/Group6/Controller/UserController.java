@@ -164,11 +164,9 @@ public class UserController {
         }
 
 
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-
-        if(!fileName.isEmpty()) {
-            user.setAvatar(fileName);
-            User user1 = service.save(user);
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+        user.setAvatar(fileName);
+        User user1 = service.save(user);
 
             String uploadDir = "./user_avatar/" + user1.getId();
             Path uploadPath = Paths.get(uploadDir);

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -44,6 +45,8 @@ public class Blog {
     private String image_Link;
 
     @Column
+    @Lob
     private String content;
-
+    /*alter table blog
+alter column content varchar(8000) to increase size content of blog*/
 }

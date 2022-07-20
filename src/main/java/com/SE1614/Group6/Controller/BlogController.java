@@ -23,6 +23,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class BlogController {
@@ -62,11 +63,11 @@ public class BlogController {
 
     @PostMapping("/blogs/save")
     public String saveBlog(Blog blog, RedirectAttributes ra,@RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
         blog.setImage_Link("/blog_image/"+fileName);
-        Blog blog1 = service.saveAndReturn(blog);
+        Blog blog1 = service.save(blog);
 
-        String uploadDir = "./src/main/resources/static/blog_image/";
+        String uploadDir = "./blog_image/";
         Path uploadPath = Paths.get(uploadDir);
 
         if(!Files.exists(uploadPath)){

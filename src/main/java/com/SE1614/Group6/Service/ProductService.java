@@ -28,6 +28,10 @@ public class ProductService {
         repo.save(product);
     }
 
+    public Product save(Product product) {
+        Product product1 = repo.save(product);
+        return product1;
+    }
 
     public Product getProductById(Integer id) throws ProductNotFoundException {
         Optional<Product> result = repo.findById(id);

@@ -15,8 +15,13 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         Path avatarUpLoadDir = Paths.get("./user_avatar/");
+        Path avatarUpLoadDir1 = Paths.get("./blog_image/");
+        Path avatarUpLoadDir2 = Paths.get("./product_image/");
         String avatarUpLoadPath = avatarUpLoadDir.toFile().getAbsolutePath();
-
+        String avatarUpLoadPath1 = avatarUpLoadDir1.toFile().getAbsolutePath();
+        String avatarUpLoadPath2 = avatarUpLoadDir2.toFile().getAbsolutePath();
         registry.addResourceHandler("/user_avatar/**").addResourceLocations("file:/"+avatarUpLoadPath+"/");
+        registry.addResourceHandler("/blog_image/**").addResourceLocations("file:/"+avatarUpLoadPath1+"/");
+        registry.addResourceHandler("/product_image/**").addResourceLocations("file:/"+avatarUpLoadPath2+"/");
     }
 }
