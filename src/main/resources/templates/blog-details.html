@@ -17,7 +17,7 @@
                 <i class="fa fa-user text-muted"></i> <span class="small-blog-post-author me-3 text-muted" th:text="${blog.user.last_name}"></span> <i class="fa fa-tag text-muted"></i> <span class="small-blog-post-category text-muted" th:text="${blog.category.value}"></span>
                 <hr class="mt-0 mb-5">
                 <img th:src="${blog.image_Link}" class="float-start me-4 img-fluid">
-                <p th:text="${blog.content}"></p>
+                <p th:utext="${blog.content}"></p>
             </div>
             <div class="col-md-3 pt-4">
                 <div class="blog-sidebar rounded shadow-sm border pt-4 pb-5 px-4">

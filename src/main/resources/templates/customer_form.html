@@ -65,7 +65,7 @@
                 <label class="col-sm-4 col-form-label">Avatar:</label>
                 <div class="col-sm-8">
                     <input id="fileImage" name = "fileImage" type="file"  class="form-control" placeholder="Enter photo" accept="image/png, image/jpeg"  required/>
-                    <img style="width: 50px;" id="thumbnail" alt="avatar preview"/>
+                    <img th:src="*{getPhotosImagePath}" style="max-height: 200px;" id="thumbnail" alt="avatar preview"/>
                 </div>
             </div>
             <div class="form-group row">
@@ -116,7 +116,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-primary m-2">Save</button>
+                <button type="submit" class="btn btn-primary m-2" onclick="return VerifyUploadSizeIsOK()">Save</button>
                 <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
             </div>
         </div>
@@ -158,6 +158,21 @@ $(document).ready(function (){
     }
 
 
+</script>
+<script type="text/javascript">
+    function VerifyUploadSizeIsOK()
+    {
+        /* Attached file size check. Will Bontrager Software LLC, https://www.willmaster.com */
+        var UploadFieldID = "fileImage";
+        var MaxSizeInBytes = 1048576;
+        var fld = document.getElementById(UploadFieldID);
+        if( fld.files && fld.files.length == 1 && fld.files[0].size > MaxSizeInBytes )
+        {
+            alert("The file size must be no more than " + parseInt(MaxSizeInBytes/1024/1024) + "MB");
+            return false;
+        }
+        return true;
+    } // function VerifyUploadSizeIsOK()
 </script>
 </body>
 </html>

@@ -5,6 +5,7 @@ import com.SE1614.Group6.Exception.BlogNotFoundException;
 import com.SE1614.Group6.Model.Blog;
 import com.SE1614.Group6.Model.Blog_status;
 import com.SE1614.Group6.Model.Category;
+import com.SE1614.Group6.Model.User;
 import com.SE1614.Group6.Repo.BlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,8 +52,9 @@ public class BlogService {
         return repo.findFirst3ByOrderByUpdateDateDesc();
     }
 
-    public void save(Blog blog) {
-        repo.save(blog);
+    public Blog save(Blog blog) {
+        Blog blog1 = repo.save(blog);
+        return blog1;
     }
 
     public Blog saveAndReturn(Blog blog) {
