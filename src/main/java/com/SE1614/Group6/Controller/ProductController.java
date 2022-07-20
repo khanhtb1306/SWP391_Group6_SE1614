@@ -1,12 +1,9 @@
 package com.SE1614.Group6.Controller;
 
 import com.SE1614.Group6.Exception.FeedBackNotFoundException;
-import com.SE1614.Group6.Model.Category;
+import com.SE1614.Group6.Model.*;
 import com.SE1614.Group6.Exception.ProductNotFoundException;
 import com.SE1614.Group6.Model.Category;
-import com.SE1614.Group6.Model.Feedback;
-import com.SE1614.Group6.Model.Product;
-import com.SE1614.Group6.Model.User;
 import com.SE1614.Group6.Repo.ProductRepository;
 import com.SE1614.Group6.Service.CategoryService;
 import com.SE1614.Group6.Service.FeedbackService;
@@ -28,9 +25,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -62,9 +67,27 @@ public class ProductController {
     }
 
     @PostMapping("/product/save")
-    public String saveProduct(Product product, RedirectAttributes ra) {
-        service.saveProduct(product);
-        ra.addFlashAttribute("message", "product saved successfully!");
+    public String saveProduct(Product product, RedirectAttributes ra,@RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
+
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+        product.setImages("/product_image/"+fileName);
+        Product blog1 = service.save(product);
+
+        String uploadDir = "./product_image/";
+        Path uploadPath = Paths.get(uploadDir);
+
+        if(!Files.exists(uploadPath)){
+            Files.createDirectories(uploadPath);
+        }
+
+        try(InputStream inputStream = multipartFile.getInputStream()){
+            Path filePath = uploadPath.resolve(fileName);
+            System.out.println(filePath.toFile().getAbsolutePath());
+            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+        }catch (IOException e){
+            throw  new IOException("Could not save uploaded file" + fileName);
+        }
+        ra.addFlashAttribute("message","Product saved successfully!");
         return "redirect:/product";
     }
 
