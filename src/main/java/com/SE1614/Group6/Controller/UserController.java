@@ -93,8 +93,10 @@ public class UserController {
         User user1 = service.save(user);
 
 
+
         String uploadDir = "./user_avatar/" + user1.getId();
         Path uploadPath = Paths.get(uploadDir);
+
 
         if(!Files.exists(uploadPath)){
             Files.createDirectories(uploadPath);
@@ -124,8 +126,8 @@ public class UserController {
         return "redirect:/pages_profile";
     }
     @GetMapping("/admin")
-    public String adminHomePage() {
-        return "admin";
+    public String adminHomePage(Model model) {
+            return "admin";
     }
 
 
@@ -147,7 +149,7 @@ public class UserController {
     @PostMapping("/admin/admin_customers/save")
     public String SaveCustomer(@ModelAttribute(name="customer") User user, RedirectAttributes ra,
                                @AuthenticationPrincipal User loggedUser,
-                               @RequestParam("fileImage")MultipartFile multipartFile) throws IOException {
+                               @RequestParam("fileImage")MultipartFile multipartFile) throws IOException, UserNotFoundException {
         if(!user.getPassword().isEmpty()) {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             String encodedPassword = encoder.encode(user.getPassword());
@@ -160,23 +162,32 @@ public class UserController {
                 throw new RuntimeException(e);
             }
         }
+
+
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        user.setAvatar(fileName);
-        User user1 = service.save(user);
 
-        String uploadDir = "./user_avatar/" + user1.getId();
-        Path uploadPath = Paths.get(uploadDir);
+        if(!fileName.isEmpty()) {
+            user.setAvatar(fileName);
+            User user1 = service.save(user);
 
-        if(!Files.exists(uploadPath)){
-            Files.createDirectories(uploadPath);
-        }
+            String uploadDir = "./user_avatar/" + user1.getId();
+            Path uploadPath = Paths.get(uploadDir);
 
-        try(InputStream inputStream = multipartFile.getInputStream()){
-            Path filePath = uploadPath.resolve(fileName);
-            System.out.println(filePath.toFile().getAbsolutePath());
-            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-        }catch (IOException e){
-            throw  new IOException("Could not save uploaded file" + fileName);
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
+
+            try (InputStream inputStream = multipartFile.getInputStream()) {
+                Path filePath = uploadPath.resolve(fileName);
+                System.out.println(filePath.toFile().getAbsolutePath());
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                throw new IOException("Could not save uploaded file" + fileName);
+            }
+        }else{
+            User user2 = service.get(user.getId());
+            user.setAvatar(user2.getAvatar());
+            User user1 = service.save(user);
         }
 
         loggedUser.setFirst_name(user.getFirst_name());
@@ -287,6 +298,8 @@ public class UserController {
         return "forgot_pass_form";
     }
 
+
+
     @PostMapping("/reset_password")
     public String processResetPassword(HttpServletRequest request, Model model) {
         String token = request.getParameter("token");
@@ -306,6 +319,15 @@ public class UserController {
 
         return "message";
     }
+
+    @GetMapping("/403")
+    public String message(Model model){
+        model.addAttribute("title", "Error");
+        model.addAttribute("message", "Đã xảy ra lỗi khi đăng nhập");
+        return "message";
+    }
+
+
 
 
     @GetMapping("/changePassword")

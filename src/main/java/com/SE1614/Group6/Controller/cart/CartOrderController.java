@@ -45,7 +45,7 @@ public class CartOrderController {
         Order orderSession = (Order) session.getAttribute("order");
         if (orderSession != null) {
             //Bao gio set thi xoa dong 47 di mo cmt lai donng 46
-            User user = userService1.get(email1);
+            User user = userService1.getEmail(email1);
             session.setAttribute("user",user);
 
 

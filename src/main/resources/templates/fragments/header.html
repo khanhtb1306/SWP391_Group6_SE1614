@@ -20,12 +20,12 @@
                     </div>
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
-                            <div class="header__top__links">
+                            <div class="header__top__links"  >
                                 <a th:href="@{/login}">Sign in</a>
-                                <a th:href="@{'/pages-profile/'+ ${#httpServletRequest.userPrincipal.principal.email}}">Profile</a>
+                                <a sec:authorize="isAuthenticated()" th:href="@{'/pages-profile/'+ ${#httpServletRequest.userPrincipal.principal.email}}">Profile</a>
                             </div>
 
-                            <div class="header__top__hover">
+                            <div sec:authorize="isAuthenticated()" class="header__top__hover">
                                     <form class="header__top__links"  th:action="@{/logout}" method="post">
                                         <input type="submit" value="Logout"/>
                                     </form>
@@ -46,10 +46,10 @@
                 <div class="col-lg-6 col-md-6">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li><a th:href="@{/}">Home</a></li>
+                            <li><a>Home</a></li>
                             <li><a th:href="@{/shop}">Shop</a></li>
-                            <li><a th:href="@{/}">Pages</a>
-                                <ul class="dropdown">
+                            <li><a>Pages</a>
+                                <ul sec:authorize="authenticated" class="dropdown">
                                     <li><a th:href="@{/about}">About Us</a></li>
                                     <li><a th:href="@{/shop-details}">Shop Details</a></li>
                                     <li><a th:href="@{/shop/cart}">Shopping Cart</a></li>

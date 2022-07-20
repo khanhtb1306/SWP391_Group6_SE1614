@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -19,28 +19,28 @@
                     <div class="collapse" id="sidebarEcommerce">
                         <ul class="side-nav-second-level">
                             <li>
-                                <a th:href="@{/product}">Manage Products</a>
+                                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/product}">Manage Products</a>
                             </li>
                             <li>
-                                <a th:href="@{/product}">Products Details</a>
+                                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/product}">Products Details</a>
                             </li>
                             <li>
-                                <a th:href="@{/admin/order}">Manage Orders</a>
+                                <a sec:authorize="hasAuthority('ADMIN')"  th:href="@{/admin/order}">Manage Orders</a>
                             </li>
                             <li>
-                                <a th:href="@{/admin/admin_customers}">Manage Users</a>
+                                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/admin_customers}">Manage Users</a>
                             </li>
                             <li>
                                 <a th:href="@{/shop}">Shopping</a>
                             </li>
                             <li>
-                                <a th:href="@{/categories}">Manage Category</a>
+                                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/categories}">Manage Category</a>
                             </li>
                             <li>
-                                <a th:href="@{/manage-blogs}">Manage Blogs</a>
+                                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/manage-blogs}">Manage Blogs</a>
                             </li>
                             <li>
-                                <a th:href="@{/feedback}">Manage Feedbacks</a>
+                                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/feedback}">Manage Feedbacks</a>
                             </li>
                             <li>
                                 <a th:href="@{/checkout2}">Checkout</a>

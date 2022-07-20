@@ -282,8 +282,8 @@
                                                                 <div class="mb-3">
                                                                     <label class="col-sm-4 col-form-label">Avatar:</label>
                                                                     <div class="col-sm-8">
-                                                                        <input id="fileImage" name = "fileImage" type="file"  class="form-control" placeholder="Enter photo" accept="image/png, image/jpg"  required/>
-                                                                        <img style="width: 200px;" id="thumbnail" alt="avatar preview"/>
+                                                                        <input id="fileImage" name = "fileImage" type="file"  class="form-control" placeholder="Enter photo" accept="image/png, image/jpg"/>
+                                                                        <img style="width: 200px;" id="thumbnail" alt="avatar preview" th:src="*{getPhotosImagePath}" />
                                                                     </div>
                                                                 </div>
                                                             </div> <!-- end col -->

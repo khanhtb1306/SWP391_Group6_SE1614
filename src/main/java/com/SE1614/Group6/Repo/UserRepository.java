@@ -28,5 +28,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             "SET a.locked = True WHERE a.email = ?1")
     int lockedUser(String email);
 
-
 }
