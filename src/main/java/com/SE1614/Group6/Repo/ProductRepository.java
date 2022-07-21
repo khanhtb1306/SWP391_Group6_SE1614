@@ -57,5 +57,7 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
     List<Product> OrderbyDesc();
     @Query(value = "select * from Product as p ORDER BY p.original_price ASC",nativeQuery = true)
     List<Product> OrderbyASC();
-
+    @Query(value = "select * from Product as p where p.category_id = ?1",nativeQuery = true)
+    List<Product> getProductByCategoryid(Integer cateID);
+    public List<Product> getProductByCategory(Category cat);
 }

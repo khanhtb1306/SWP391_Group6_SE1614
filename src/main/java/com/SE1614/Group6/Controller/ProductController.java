@@ -1,9 +1,12 @@
 package com.SE1614.Group6.Controller;
 
 import com.SE1614.Group6.Exception.FeedBackNotFoundException;
-import com.SE1614.Group6.Model.*;
+import com.SE1614.Group6.Model.Category;
 import com.SE1614.Group6.Exception.ProductNotFoundException;
 import com.SE1614.Group6.Model.Category;
+import com.SE1614.Group6.Model.Feedback;
+import com.SE1614.Group6.Model.Product;
+import com.SE1614.Group6.Model.User;
 import com.SE1614.Group6.Repo.ProductRepository;
 import com.SE1614.Group6.Service.CategoryService;
 import com.SE1614.Group6.Service.FeedbackService;
@@ -128,15 +131,17 @@ public class ProductController {
     }
 
     @GetMapping("/product/detail")
-    public String ProductDetail(@RequestParam(name = "id") Integer id, Model model) {
-        try {
-            Product listProduct = service.getProductById(id);
-            List<Category> listCategories = serviceC.listAll();
-            List<Feedback> listFeedback = serviceF.FindFeedBackbyProductByID(id);
-            model.addAttribute("listCategories", listCategories);
-            model.addAttribute("listProduct", listProduct);
-            model.addAttribute("listFeedback", listFeedback);
-        } catch (FeedBackNotFoundException e) {
+    public String ProductDetail(@RequestParam(name="id")Integer id,Model model){
+      try {
+          Product listProduct = service.getProductById(id);
+          List<Category> listCategories = serviceC.listAll();
+         List<Product> relatedProduct = service.getProductbyCategoryid(listProduct.getCategory().getId());
+          List<Feedback> listFeedback = serviceF.FindFeedBackbyProductByID(id);
+          model.addAttribute("listCategories",listCategories);
+          model.addAttribute("listProduct",listProduct);
+          model.addAttribute("listFeedback",listFeedback);
+          model.addAttribute("relatedProduct",relatedProduct);
+      }catch (FeedBackNotFoundException e) {
 
         } catch (ProductNotFoundException e) {
             throw new RuntimeException(e);
@@ -157,11 +162,9 @@ public class ProductController {
     public String ProductSort2(Model model) {
         List<Product> listProduct = service.OrderbyASC();
         List<Category> listCategories = serviceC.listAll();
-        model.addAttribute("listCategories", listCategories);
-        model.addAttribute("listProduct", listProduct);
-        return "shop";
-    }
-
+        model.addAttribute("listCategories",listCategories);
+        model.addAttribute("listProduct",listProduct);
+        return "shop";}
     @GetMapping("/product/choose/{id}")
     public String ProductCategory(@PathVariable("id") Integer id, Model model) {
         Category cat = serviceC.getById(id);
@@ -170,5 +173,6 @@ public class ProductController {
         model.addAttribute("listCategories", listCategories);
         model.addAttribute("listProduct", listProduct);
         return "shop";
+
     }
 }
