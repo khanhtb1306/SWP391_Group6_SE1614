@@ -53,7 +53,7 @@ public class FeedbackController {
     public String saveFeedback(Feedback feedback, RedirectAttributes ra){
         service.saveFeedback(feedback);
         ra.addFlashAttribute("message","feedback saved successfully!");
-        return "redirect:/shop";
+        return "shop";
     }
     @GetMapping("/feedback/edit/{id}")
     public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra){

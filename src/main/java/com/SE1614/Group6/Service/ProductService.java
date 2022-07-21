@@ -1,12 +1,8 @@
 package com.SE1614.Group6.Service;
 
 import com.SE1614.Group6.Exception.ProductNotFoundException;
-import com.SE1614.Group6.Model.Blog;
-import com.SE1614.Group6.Model.Feedback;
+import com.SE1614.Group6.Model.*;
 
-import com.SE1614.Group6.Model.Product;
-
-import com.SE1614.Group6.Model.User;
 import com.SE1614.Group6.Repo.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -63,9 +59,12 @@ public class ProductService {
         return (List<Product>) repo.findAll();
     }
 
-    public List<Product> getProductbyCategory(Integer id){
+    public List<Product> getProductbyCategoryid(Integer id){
 
-            return repo.findProductByCategoryIdContaining(id);
+            return repo.getProductByCategoryid(id);
 
+    }
+    public List<Product> getProductByCategory(Category cat) {
+        return repo.getProductByCategory(cat);
     }
 }

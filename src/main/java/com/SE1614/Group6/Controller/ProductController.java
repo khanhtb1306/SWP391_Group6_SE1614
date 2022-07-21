@@ -106,10 +106,12 @@ public class ProductController {
       try {
           Product listProduct = service.getProductById(id);
           List<Category> listCategories = serviceC.listAll();
+         List<Product> relatedProduct = service.getProductbyCategoryid(listProduct.getCategory().getId());
           List<Feedback> listFeedback = serviceF.FindFeedBackbyProductByID(id);
           model.addAttribute("listCategories",listCategories);
           model.addAttribute("listProduct",listProduct);
           model.addAttribute("listFeedback",listFeedback);
+          model.addAttribute("relatedProduct",relatedProduct);
       }catch (FeedBackNotFoundException e) {
 
         } catch (ProductNotFoundException e) {
@@ -142,12 +144,14 @@ public class ProductController {
         model.addAttribute("listCategories",listCategories);
         model.addAttribute("listProduct",listProduct);
         return "shop";}
-        @GetMapping("/product/choose/{id}")
-    public String ProductCategory(@PathVariable("id") Integer id,Model model){
-        List<Product> listProduct = service.getProductbyCategory(id);
+    @GetMapping("/product/choose/{id}")
+    public String ProductCategory(@PathVariable("id") Integer id, Model model) {
+        Category cat = serviceC.getById(id);
+        List<Product> listProduct = service.getProductByCategory(cat);
         List<Category> listCategories = serviceC.listAll();
-        model.addAttribute("listCategories",listCategories);
-        model.addAttribute("listProduct",listProduct);
-        return "redirect:/shop";
+        model.addAttribute("listCategories", listCategories);
+        model.addAttribute("listProduct", listProduct);
+        return "shop";
+
     }
    }

@@ -61,7 +61,7 @@
 
                 <th:block name="product" th:field="*{product}"  >
                     <p th:each="product : ${listProduct}"
-                       style="display: none"   th:value="${product.id}" th:text="${product.name}"></p>
+                         th:value="${product.id}" th:text="${product.name}"></p>
                 </th:block>
 
 
@@ -70,7 +70,7 @@
 
                 <th:block name="user" th:field="*{user}" >
                     <p th:each="users : ${listUsers}"
-                       style="display: none"  th:value="${users.id}" th:text="${users.last_name}"></p>
+                        th:value="${users.id}" th:text="${users.last_name}"></p>
                 </th:block>
 
 
