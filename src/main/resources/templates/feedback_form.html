@@ -50,28 +50,31 @@
             <div class="rating">
                 <div class="row">
                 <div class="col-sm-6">
-                Your Vote: <input type="number" th:field="*{star}" required maxlength="45" minlength="8"/>
+                Your Vote: <input type="number" th:field="*{star}" max="5" min="0" required maxlength="45" minlength="8"/>
                 </div>
                 <div class="col-sm-6"><i class="fa fa-star" style="padding-top: 40px"></i></div>
                 </div>
             </div>
+            <div th:hidden="true" class="form-group row">
+                <label class="col-sm-4 col-form-label">Product:</label>
+                <div class="col-sm-8">
+                    <select name="product" th:field="*{product}">
+                        <option th:each="product : ${listProduct}"
+                                th:value="${product.id}" th:text="${product.name}"></option>
+                    </select>
+                </div>
+            </div>
+            <div th:hidden="true" class="form-group row">
+                <label class="col-sm-4 col-form-label">User:</label>
+                <div class="col-sm-8">
+                    <select name="user" th:field="*{user}">
+                        <option th:each="users : ${listUsers}"
+                                th:value="${users.id}" th:text="${users.last_name}"></option>
+                    </select>
+                </div>
+            </div>
 
         </div>
-
-
-                <th:block name="product" th:field="*{product}"  >
-                    <p th:each="product : ${listProduct}"
-                         th:value="${product.id}" th:text="${product.name}"></p>
-                </th:block>
-
-
-
-
-
-                <th:block name="user" th:field="*{user}" >
-                    <p th:each="users : ${listUsers}"
-                        th:value="${users.id}" th:text="${users.last_name}"></p>
-                </th:block>
 
 
         <div class="text-center">

@@ -22,62 +22,66 @@ import java.util.List;
 
 @Controller
 public class FeedbackController {
-    @Autowired private FeedbackService service;
-    @Autowired private UserService serviceU;
+    @Autowired
+    private FeedbackService service;
+    @Autowired
+    private UserService serviceU;
 
-    @Autowired private ProductService serviceP;
+    @Autowired
+    private ProductService serviceP;
 
     @GetMapping("/feedback")
-    public String showFeedbackList(Model model){
+    public String showFeedbackList(Model model) {
         List<Feedback> listFeedback = service.listAllFeedback();
-        model.addAttribute("listFeedback",listFeedback);
+        model.addAttribute("listFeedback", listFeedback);
         return "feedback";
     }
 
-    @GetMapping("/feedback/new/{id}")
-    public String showNewForm(@PathVariable("id")Integer id,Model model){
-       try {
-
-
-        model.addAttribute("feedback",new Feedback());
-        model.addAttribute("pageTitle","Your Comment");
-        List<User> listUsers = serviceU.listAll();
-        model.addAttribute("listUsers",listUsers);
-        Product listProduct = serviceP.getProductById(id);
-        model.addAttribute("listProduct",listProduct);}
-       catch (ProductNotFoundException e){}
+    @GetMapping("/feedback/new/{id}/{userid}")
+    public String showNewForm(@PathVariable("id") Integer id,@PathVariable("userid") Integer userid, Model model) {
+        try {
+            model.addAttribute("feedback", new Feedback());
+            model.addAttribute("pageTitle", "Your Comment");
+            User listUsers = serviceU.get(userid);
+            model.addAttribute("listUsers", listUsers);
+            Product listProduct = serviceP.getProductById(id);
+            model.addAttribute("listProduct", listProduct);
+        } catch (ProductNotFoundException | UserNotFoundException e) {
+        }
         return "feedback_form";
     }
 
     @PostMapping("/feedback/save")
-    public String saveFeedback(Feedback feedback, RedirectAttributes ra){
+    public String saveFeedback(Feedback feedback, RedirectAttributes ra) {
         service.saveFeedback(feedback);
-        ra.addFlashAttribute("message","feedback saved successfully!");
-        return "shop";
+        ra.addFlashAttribute("message", "feedback saved successfully!");
+        return "redirect:/shop";
     }
+
     @GetMapping("/feedback/edit/{id}")
-    public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra){
+    public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
         try {
             Feedback feedback = service.getFeedbackById(id);
-            model.addAttribute("feedback",feedback);
-            model.addAttribute("pageTitle","Edit Feedback ID: "+id);
+            model.addAttribute("feedback", feedback);
+            model.addAttribute("pageTitle", "Edit Feedback ID: " + id);
             List<User> listUsers = serviceU.listAll();
-            model.addAttribute("listUsers",listUsers);      List<Product> listProduct = serviceP.listAllProduct();
-            model.addAttribute("listProduct",listProduct);
+            model.addAttribute("listUsers", listUsers);
+            List<Product> listProduct = serviceP.listAllProduct();
+            model.addAttribute("listProduct", listProduct);
             return "feedback_form";
         } catch (FeedBackNotFoundException e) {
-            ra.addFlashAttribute("message",e.getMessage());
+            ra.addFlashAttribute("message", e.getMessage());
             return "redirect:/feedback";
         }
     }
 
     @GetMapping("/feedback/delete/{id}")
-    public String deleteFeedback(@PathVariable("id") Integer id,RedirectAttributes ra){
+    public String deleteFeedback(@PathVariable("id") Integer id, RedirectAttributes ra) {
         try {
             service.delete(id);
-            ra.addFlashAttribute("message","Feedback Id " + id + " deleted successfully!");
+            ra.addFlashAttribute("message", "Feedback Id " + id + " deleted successfully!");
         } catch (FeedBackNotFoundException e) {
-            ra.addFlashAttribute("message",e.getMessage());
+            ra.addFlashAttribute("message", e.getMessage());
         }
         return "redirect:/feedback";
     }

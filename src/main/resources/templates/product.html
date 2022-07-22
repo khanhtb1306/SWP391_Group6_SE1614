@@ -7,14 +7,20 @@
     <th:block th:replace="fragments/meta_head :: meta_head"></th:block>
 </head>
 <body>
+<div th:include="fragments/header:: header"></div>
 <div class="container-fluid text-center">
-    <div th:include="fragments/header:: header"></div>
     <div><h2>Manage Products</h2></div>
-    <div class="mr-2">
-        <a class="h3" th:href="@{/product/new}">Add New Product</a>
-    </div>
     <div th:if="${message}" class="alert alert-success text-center">
         [[${message}]]
+    </div>
+    <div class="row">
+        <div class="col-5"></div>
+        <div class="col-2">
+            <button type="button" class="btn btn-primary">
+                <a style="color:white;width:100%" th:href="@{/product/new}">Add New Product</a>
+            </button>
+        </div>
+        <div class="col-5"></div>
     </div>
     <div>
         <table class="table table-bordered">
@@ -22,7 +28,7 @@
             <tr>
                 <th>Id</th>
                 <th>Product Detail</th>
-                <th>Detail</th>
+
                 <th>Image</th>
                 <th>Name</th>
                 <th>Original Price</th>
@@ -30,7 +36,7 @@
                 <th>Sale Price</th>
                 <th>Title</th>
                 <th>Update Date</th>
-                <th>Category Id</th>
+                <th>Category</th>
                 <th></th>
             </tr>
             </thead>
@@ -39,9 +45,9 @@
                 <tr>
                     <td>[[${product.id}]]</td>
                     <td>[[${product.product_detail}]]</td>
-                    <td>[[${product.detail}]]</td>
+
                     <!--<td>[[${product.images}]]</td>-->
-                    <td><img th:src="${product.images}"></td>
+                    <td><img style="max-height: 200px" th:src="${product.images}"></td>
                     <td>[[${product.name}]]</td>
                     <td>[[${product.original_price}]]</td>
                     <td>[[${product.quantity}]]</td>
@@ -50,6 +56,8 @@
                     <td>[[${product.update_date}]]</td>
                     <td>[[${product.Category.value}]]</td>
                     <td>
+                        <div class="row">
+                        <div class="col-5">
                         <a class="h4 mr-3" th:href="@{'/product/edit/' + ${product.id}}">
                             <button type="button" class="btn btn-primary">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
@@ -57,7 +65,8 @@
                                 </svg>
                                 Edit
                             </button>
-                        </a>
+                        </a></div>
+                        <div class="col-7">
                         <a class="h4" th:href="@{'/product/delete/' + ${product.id}}">
                             <button type="button" class="btn btn-outline-danger">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -66,7 +75,7 @@
                                 </svg>
                                 Delete
                             </button>
-                        </a>
+                        </a></div></div>
                     </td>
                 </tr>
                 </th:block>
@@ -74,5 +83,6 @@
         </table>
     </div>
 </div>
+<th:block th:replace="fragments/footer :: footer"></th:block>
 </body>
 </html>

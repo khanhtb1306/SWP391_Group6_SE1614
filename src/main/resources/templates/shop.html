@@ -102,9 +102,6 @@
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" th:data-setbg="${product.images}">
                                     <ul class="product__hover">
-                                        <li><a href="#"><img th:src="@{/img/icon/heart.png}" alt=""></a></li>
-                                        <li><a href="#"><img th:src="@{/img/icon/compare.png}" alt=""> <span>Compare</span></a>
-                                        </li>
                                         <li><a th:href="@{'/product/detail?id='+${product.id}}"><img th:src="@{/img/icon/search.png}" alt=""></a></li>
                                     </ul>
                                 </div>

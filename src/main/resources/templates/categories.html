@@ -7,16 +7,30 @@
     <th:block th:replace="fragments/meta_head :: meta_head"></th:block>
 </head>
 <body>
+<div th:include="fragments/header:: header"></div>
 <div class="container-fluid text-center">
-    <div th:include="fragments/header:: header"></div>
     <div><h2>Category List</h2></div>
     <div th:if="${message}" class="alert alert-success text-center">
         [[${message}]]
     </div>
-    <div>
-        <div><a th:href="@{/categories/new}">New Category</a></div>
-        <div><a th:href="@{/manage-blogs}">Back to Manage Blogs</a></div>
-        <div><a th:href="@{/product}">Back to Manage Products</a></div>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-2">
+            <button type="button" class="btn btn-primary">
+                <a style="color:white;width:100%" th:href="@{/categories/new}">New Category</a>
+            </button>
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-primary">
+                <a style="color:white;width:100%" th:href="@{/manage-blogs}">Back to Manage Blogs</a>
+            </button>
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-primary">
+                <a style="color:white;width:100%" th:href="@{/product}">Back to Manage Products</a>
+            </button>
+        </div>
+        <div class="col-3"></div>
     </div>
     <div>
         <table class="table table-bordered">
@@ -48,6 +62,8 @@
             </tbody>
         </table>
     </div>
+
 </div>
+<th:block th:replace="fragments/footer :: footer"></th:block>
 </body>
 </html>

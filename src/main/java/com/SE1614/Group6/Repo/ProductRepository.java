@@ -51,7 +51,6 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
     Long countById(Integer id);
 
     public List<Product> findProductByNameContaining(String name);
-    public List<Product> getProductByCategory(Category cat);
 
     @Query(value = "select * from Product as p ORDER BY p.original_price DESC",nativeQuery = true)
     List<Product> OrderbyDesc();

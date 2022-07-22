@@ -34,8 +34,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/reset_password/**").permitAll()
                 .antMatchers("/pages-profile/**").permitAll()
-                .antMatchers("/blogs/**").permitAll()
-                .antMatchers("/message").permitAll()
+                .antMatchers("/blogs/**","/shop/**","/contact/**","/about/**","/product/**").permitAll()
+                .antMatchers("/message","/user_avatar/**","/blog_image/**","/product_image/**","/blog-details/**","/blog/**").permitAll()
 
                 .anyRequest()
                 .authenticated().and()
