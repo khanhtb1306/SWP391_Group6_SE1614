@@ -1,7 +1,7 @@
 # SWP391_Group6_SE1614
 Spring Boot Shopping online with IntelliJ IDEA, MsSQL, JPA, Hibernate, Spring security Thymeleaf and Bootstrap, Junit5
 
-$DataBase diagram
+**DataBase diagram
 ![image](https://user-images.githubusercontent.com/105474786/182158087-30bfefdf-1936-449c-9769-5715da80126f.png)
 
 
