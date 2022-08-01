@@ -2,7 +2,7 @@
 Spring Boot Shopping online with IntelliJ IDEA, MsSQL, JPA, Hibernate, Spring security Thymeleaf and Bootstrap, Junit5
 
 detail info is in group 6: docs.google.com/spreadsheets/d/14HjqbXLCnHU0pppAcopAdg2bmYHWrCGM/edit?usp=sharing&ouid=100685232531994970225&rtpof=true&sd=true
-DataBase diagram
+*DataBase diagram
 ![image](https://user-images.githubusercontent.com/105474786/182158087-30bfefdf-1936-449c-9769-5715da80126f.png)
 
 ![image](https://user-images.githubusercontent.com/105474786/182158343-fdec65c2-368d-4893-9c04-f2d8958ead34.png)
