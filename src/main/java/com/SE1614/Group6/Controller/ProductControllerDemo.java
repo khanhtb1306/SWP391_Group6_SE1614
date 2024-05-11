@@ -4,4 +4,10 @@ public class ProductControllerDemo {
     public void demoGit(){
         System.out.printf("Toi da code ow day");
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
+
